@@ -82,13 +82,16 @@ export class SinglyLinkedList<T extends NodeValue> implements ISinglyLinkedList<
 					previousNode = newNode;
 				}
 
-				break;
+				this.numberOfNodes += valuesList.size();
+
+				return;
 			} else {
 				previousNode = currentNode;
 			}
 		}
 
-		this.numberOfNodes += valuesList.size();
+		// should never get here
+		throw `Somehow failed to find index, ${index}, even though it is in bounds`;
 	}
 
 	public copyLinkedListValuesToTail(valuesList: IReadonlyLinkedList<T>) {
@@ -203,15 +206,19 @@ export class SinglyLinkedList<T extends NodeValue> implements ISinglyLinkedList<
 			if (currentIndex === index) {
 				previousNode.nextNode = otherSinglyLinkedList.headNode;
 				otherSinglyLinkedList.tailNode!.nextNode = currentNode;
-				break;
+
+				this.numberOfNodes += otherSinglyLinkedList.numberOfNodes;
+
+				otherSinglyLinkedList.clear();
+
+				return;
 			} else {
 				previousNode = currentNode;
 			}
 		}
 
-		this.numberOfNodes += otherSinglyLinkedList.numberOfNodes;
-
-		otherSinglyLinkedList.clear();
+		// should never get here
+		throw `Somehow failed to find index, ${index}, even though it is in bounds`;
 	}
 
 	/**
