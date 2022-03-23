@@ -7,6 +7,10 @@ export function runCircularLinkedListTests(
 	it: (phrase: string, callback: () => void) => void,
 	expect: <T>(value: T) => Expectation<T>,
 ) {
+	describe("copyValuesToSubList", () => {
+		warn("Not implemented");
+	});
+
 	describe("getForwardIterator", () => {
 		it("getForwardIterator - should return nil for both tuple values on the first call for an empty list", () => {
 			const emptyList = createList();
@@ -175,5 +179,9 @@ export function runCircularLinkedListTests(
 
 			expect(numberOfItemsFromIterator).to.equal(arrayInput.size() - 1);
 		});
+	});
+
+	describe("popValuesToSubList", () => {
+		warn("Not implemented");
 	});
 }

@@ -751,4 +751,8 @@ export function runUniversalLinkedListTests(
 			}
 		});
 	});
+
+	describe("toArray", () => {
+		warn("Not implemented");
+	});
 }
