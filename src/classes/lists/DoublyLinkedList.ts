@@ -388,17 +388,10 @@ export class DoublyLinkedList<T extends defined> implements IDoublyLinkedList<T>
 			if (currentIndex === index) {
 				const value = currentNode.value;
 
-				if (previousNode === undefined) {
-					// index must have been 1, which is the same as popping the head node
-					this.headNode = currentNode.nextNode;
-				} else {
-					previousNode.nextNode = currentNode.nextNode;
-				}
+				const nextNode = currentNode.nextNode!; // we aren't popping the tail at this point so this is not undefined
 
-				if (currentNode.nextNode === undefined) {
-					// currentNode was the tail node
-					this.tailNode = previousNode;
-				}
+				previousNode!.nextNode = nextNode;
+				nextNode.previousNode = previousNode;
 
 				this.numberOfNodes--;
 
