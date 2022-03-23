@@ -30,7 +30,7 @@ export class CircularDoublyLinkedList<T extends NodeValue> extends DoublyLinkedL
 
 		let numberOfNodesSeen = 0;
 
-		for (const [_, currentNode] of this.getForwardNodeIterator()) {
+		for (const [_, currentNode] of this.getForwardIndexAndNodeTupleIterator()) {
 			numberOfNodesSeen++;
 			if (numberOfNodesSeen === minLength) {
 				return true;
@@ -50,7 +50,7 @@ export class CircularDoublyLinkedList<T extends NodeValue> extends DoublyLinkedL
 		}
 
 		let numberOfNodesSeen = 0;
-		for (const [currentIndex, currentNode] of this.getForwardNodeIterator()) {
+		for (const [currentIndex, currentNode] of this.getForwardIndexAndNodeTupleIterator()) {
 			numberOfNodesSeen++;
 
 			if (currentIndex === index) {
@@ -122,7 +122,7 @@ export class CircularDoublyLinkedList<T extends NodeValue> extends DoublyLinkedL
 
 		let numberOfNodesSeen = 0;
 		let previousNode: IDoublyLinkedListNode<T> | undefined;
-		for (const [currentIndex, currentNode] of this.getForwardNodeIterator()) {
+		for (const [currentIndex, currentNode] of this.getForwardIndexAndNodeTupleIterator()) {
 			numberOfNodesSeen++;
 
 			if (currentIndex === index) {
@@ -241,7 +241,7 @@ export class CircularDoublyLinkedList<T extends NodeValue> extends DoublyLinkedL
 
 		let numberOfNodesSeen = 0;
 		let previousNode = this.headNode!; // at this point we know this isn't pushing to be the head node
-		for (const [currentIndex, currentNode] of this.getForwardNodeIterator()) {
+		for (const [currentIndex, currentNode] of this.getForwardIndexAndNodeTupleIterator()) {
 			if (currentIndex === index) {
 				const newNode = new DoublyLinkedListNode(value);
 				previousNode.nextNode = newNode;
@@ -288,7 +288,7 @@ export class CircularDoublyLinkedList<T extends NodeValue> extends DoublyLinkedL
 	public size() {
 		let numberOfNodesSeen = 0;
 
-		for (const [_, currentNode] of this.getForwardNodeIterator()) {
+		for (const [_, currentNode] of this.getForwardIndexAndNodeTupleIterator()) {
 			numberOfNodesSeen++;
 
 			if (currentNode === this.tailNode) {

@@ -60,16 +60,20 @@ export class SinglyLinkedList<T extends NodeValue> implements ISinglyLinkedList<
 	}
 
 	public getForwardIterator() {
-		const iterateNodes = this.getForwardNodeIterator();
+		const iterateNodes = this.getForwardIndexAndNodeTupleIterator();
 
 		return (() => {
 			const [index, nextNode] = iterateNodes();
-			return nextNode?.value !== undefined ? [index, nextNode.value] : undefined;
+			if (nextNode?.value === undefined) {
+				return undefined;
+			} else {
+				return [index, nextNode.value] as LuaTuple<[number, T]>;
+			}
 		}) as IterableFunction<LuaTuple<[number, T]>>;
 	}
 
 	public getForwardValuesIterator() {
-		const iterateNodes = this.getForwardNodeIterator();
+		const iterateNodes = this.getForwardIndexAndNodeTupleIterator();
 
 		return (() => {
 			const [_, nextNode] = iterateNodes();
@@ -96,7 +100,7 @@ export class SinglyLinkedList<T extends NodeValue> implements ISinglyLinkedList<
 
 		let numberOfNodesSeen = 0;
 
-		for (const _ of this.getForwardNodeIterator()) {
+		for (const _ of this.getForwardIndexAndNodeTupleIterator()) {
 			numberOfNodesSeen++;
 			if (numberOfNodesSeen === minLength) {
 				return true;
@@ -112,7 +116,7 @@ export class SinglyLinkedList<T extends NodeValue> implements ISinglyLinkedList<
 		}
 
 		let numberOfNodesSeen = 0;
-		for (const [currentIndex, currentNode] of this.getForwardNodeIterator()) {
+		for (const [currentIndex, currentNode] of this.getForwardIndexAndNodeTupleIterator()) {
 			numberOfNodesSeen++;
 
 			if (currentIndex === index) {
@@ -156,7 +160,7 @@ export class SinglyLinkedList<T extends NodeValue> implements ISinglyLinkedList<
 		} else {
 			// set tail node to the last node still in here by
 			// iterating and setting tail node at each step
-			for (const [_, node] of this.getForwardNodeIterator()) {
+			for (const [_, node] of this.getForwardIndexAndNodeTupleIterator()) {
 				this.tailNode = node;
 			}
 		}
@@ -171,7 +175,7 @@ export class SinglyLinkedList<T extends NodeValue> implements ISinglyLinkedList<
 
 		let numberOfNodesSeen = 0;
 		let previousNode: ISinglyLinkedListNode<T> | undefined;
-		for (const [currentIndex, currentNode] of this.getForwardNodeIterator()) {
+		for (const [currentIndex, currentNode] of this.getForwardIndexAndNodeTupleIterator()) {
 			numberOfNodesSeen++;
 
 			if (currentIndex === index) {
@@ -264,7 +268,7 @@ export class SinglyLinkedList<T extends NodeValue> implements ISinglyLinkedList<
 
 		let numberOfNodesSeen = 0;
 		let previousNode = this.headNode!; // at this point we know this isn't pushing to be the head node
-		for (const [currentIndex, currentNode] of this.getForwardNodeIterator()) {
+		for (const [currentIndex, currentNode] of this.getForwardIndexAndNodeTupleIterator()) {
 			if (currentIndex === index) {
 				const newNode = new SinglyLinkedListNode(value);
 				previousNode.nextNode = newNode;
@@ -299,27 +303,26 @@ export class SinglyLinkedList<T extends NodeValue> implements ISinglyLinkedList<
 	public size() {
 		let numberOfNodesSeen = 0;
 
-		for (const _ of this.getForwardNodeIterator()) {
+		for (const _ of this.getForwardIndexAndNodeTupleIterator()) {
 			numberOfNodesSeen++;
 		}
 
 		return numberOfNodesSeen;
 	}
 
-	protected getForwardNodeIterator(): IterableFunction<LuaTuple<[number, ISinglyLinkedListNode<T>]>> {
-		let currentNode = this.headNode;
-		let currentIndex = 1;
+	protected getForwardIndexAndNodeTupleIterator(): IterableFunction<LuaTuple<[number, ISinglyLinkedListNode<T>]>> {
+		let currentNode: ISinglyLinkedListNode<T> | undefined = undefined;
+		let currentIndex = 0;
 
 		return (() => {
-			const node = currentNode;
-			const index = currentIndex;
+			const node = currentNode === undefined ? this.headNode : currentNode.nextNode;
+			const index = ++currentIndex;
 
 			if (node === undefined) {
 				return undefined;
-			} else {
-				currentNode = node.nextNode;
-				currentIndex++;
 			}
+
+			currentNode = node;
 
 			return [index, node] as LuaTuple<[number, ISinglyLinkedListNode<T>]>;
 		}) as IterableFunction<LuaTuple<[number, ISinglyLinkedListNode<T>]>>;

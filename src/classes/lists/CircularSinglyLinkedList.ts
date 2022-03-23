@@ -28,7 +28,7 @@ export class CircularSinglyLinkedList<T extends NodeValue> extends SinglyLinkedL
 
 		let numberOfNodesSeen = 0;
 
-		for (const [_, currentNode] of this.getForwardNodeIterator()) {
+		for (const [_, currentNode] of this.getForwardIndexAndNodeTupleIterator()) {
 			numberOfNodesSeen++;
 			if (numberOfNodesSeen === minLength) {
 				return true;
@@ -48,7 +48,7 @@ export class CircularSinglyLinkedList<T extends NodeValue> extends SinglyLinkedL
 		}
 
 		let numberOfNodesSeen = 0;
-		for (const [currentIndex, currentNode] of this.getForwardNodeIterator()) {
+		for (const [currentIndex, currentNode] of this.getForwardIndexAndNodeTupleIterator()) {
 			numberOfNodesSeen++;
 
 			if (currentIndex === index) {
@@ -99,7 +99,7 @@ export class CircularSinglyLinkedList<T extends NodeValue> extends SinglyLinkedL
 		} else {
 			// set tail node to the last node still in here by
 			// iterating and finding which node points to the old tail node
-			for (const [_, node] of this.getForwardNodeIterator()) {
+			for (const [_, node] of this.getForwardIndexAndNodeTupleIterator()) {
 				if (node.nextNode === oldTailNode) {
 					this.tailNode = node;
 					break;
@@ -118,7 +118,7 @@ export class CircularSinglyLinkedList<T extends NodeValue> extends SinglyLinkedL
 
 		let numberOfNodesSeen = 0;
 		let previousNode: ISinglyLinkedListNode<T> | undefined;
-		for (const [currentIndex, currentNode] of this.getForwardNodeIterator()) {
+		for (const [currentIndex, currentNode] of this.getForwardIndexAndNodeTupleIterator()) {
 			numberOfNodesSeen++;
 
 			if (currentIndex === index) {
@@ -225,7 +225,7 @@ export class CircularSinglyLinkedList<T extends NodeValue> extends SinglyLinkedL
 
 		let numberOfNodesSeen = 0;
 		let previousNode = this.headNode!; // at this point we know this isn't pushing to be the head node
-		for (const [currentIndex, currentNode] of this.getForwardNodeIterator()) {
+		for (const [currentIndex, currentNode] of this.getForwardIndexAndNodeTupleIterator()) {
 			if (currentIndex === index) {
 				const newNode = new SinglyLinkedListNode(value);
 				previousNode.nextNode = newNode;
@@ -265,7 +265,7 @@ export class CircularSinglyLinkedList<T extends NodeValue> extends SinglyLinkedL
 	public size() {
 		let numberOfNodesSeen = 0;
 
-		for (const [_, currentNode] of this.getForwardNodeIterator()) {
+		for (const [_, currentNode] of this.getForwardIndexAndNodeTupleIterator()) {
 			numberOfNodesSeen++;
 
 			if (currentNode === this.tailNode) {

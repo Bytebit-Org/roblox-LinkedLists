@@ -70,35 +70,30 @@ export class DoublyLinkedList<T extends NodeValue> implements IDoublyLinkedList<
 		this.tailNode = mostRecentNode;
 	}
 
-	public getBackwardIterator() {
-		const iterateNodes = this.getBackwardNodeIterator();
-
-		return (() => {
-			const [index, nextNode] = iterateNodes();
-			return nextNode?.value !== undefined ? [index, nextNode.value] : undefined;
-		}) as IterableFunction<LuaTuple<[number, T]>>;
-	}
-
 	public getBackwardValuesIterator() {
 		const iterateNodes = this.getBackwardNodeIterator();
 
 		return (() => {
-			const [_, nextNode] = iterateNodes();
+			const nextNode = iterateNodes();
 			return nextNode?.value;
 		}) as IterableFunction<T>;
 	}
 
 	public getForwardIterator() {
-		const iterateNodes = this.getForwardNodeIterator();
+		const iterateNodes = this.getForwardIndexAndNodeTupleIterator();
 
 		return (() => {
 			const [index, nextNode] = iterateNodes();
-			return nextNode?.value !== undefined ? [index, nextNode.value] : undefined;
+			if (nextNode?.value === undefined) {
+				return undefined;
+			} else {
+				return [index, nextNode.value] as LuaTuple<[number, T]>;
+			}
 		}) as IterableFunction<LuaTuple<[number, T]>>;
 	}
 
 	public getForwardValuesIterator() {
-		const iterateNodes = this.getForwardNodeIterator();
+		const iterateNodes = this.getForwardIndexAndNodeTupleIterator();
 
 		return (() => {
 			const [_, nextNode] = iterateNodes();
@@ -125,7 +120,7 @@ export class DoublyLinkedList<T extends NodeValue> implements IDoublyLinkedList<
 
 		let numberOfNodesSeen = 0;
 
-		for (const _ of this.getForwardNodeIterator()) {
+		for (const _ of this.getForwardIndexAndNodeTupleIterator()) {
 			numberOfNodesSeen++;
 			if (numberOfNodesSeen === minLength) {
 				return true;
@@ -141,7 +136,7 @@ export class DoublyLinkedList<T extends NodeValue> implements IDoublyLinkedList<
 		}
 
 		let numberOfNodesSeen = 0;
-		for (const [currentIndex, currentNode] of this.getForwardNodeIterator()) {
+		for (const [currentIndex, currentNode] of this.getForwardIndexAndNodeTupleIterator()) {
 			numberOfNodesSeen++;
 
 			if (currentIndex === index) {
@@ -199,7 +194,7 @@ export class DoublyLinkedList<T extends NodeValue> implements IDoublyLinkedList<
 
 		let numberOfNodesSeen = 0;
 		let previousNode: IDoublyLinkedListNode<T> | undefined;
-		for (const [currentIndex, currentNode] of this.getForwardNodeIterator()) {
+		for (const [currentIndex, currentNode] of this.getForwardIndexAndNodeTupleIterator()) {
 			numberOfNodesSeen++;
 
 			if (currentIndex === index) {
@@ -304,7 +299,7 @@ export class DoublyLinkedList<T extends NodeValue> implements IDoublyLinkedList<
 
 		let numberOfNodesSeen = 0;
 		let previousNode = this.headNode!; // at this point we know this isn't pushing to be the head node
-		for (const [currentIndex, currentNode] of this.getForwardNodeIterator()) {
+		for (const [currentIndex, currentNode] of this.getForwardIndexAndNodeTupleIterator()) {
 			if (currentIndex === index) {
 				const newNode = new DoublyLinkedListNode(value);
 				previousNode.nextNode = newNode;
@@ -343,48 +338,44 @@ export class DoublyLinkedList<T extends NodeValue> implements IDoublyLinkedList<
 	public size() {
 		let numberOfNodesSeen = 0;
 
-		for (const _ of this.getForwardNodeIterator()) {
+		for (const _ of this.getForwardIndexAndNodeTupleIterator()) {
 			numberOfNodesSeen++;
 		}
 
 		return numberOfNodesSeen;
 	}
 
-	protected getForwardNodeIterator(): IterableFunction<LuaTuple<[number, IDoublyLinkedListNode<T>]>> {
-		let currentNode = this.headNode;
-		let currentIndex = 1;
+	protected getForwardIndexAndNodeTupleIterator(): IterableFunction<LuaTuple<[number, IDoublyLinkedListNode<T>]>> {
+		let currentNode: IDoublyLinkedListNode<T> | undefined = undefined;
+		let currentIndex = 0;
 
 		return (() => {
-			const node = currentNode;
-			const index = currentIndex;
+			const node = currentNode === undefined ? this.headNode : currentNode.nextNode;
+			const index = ++currentIndex;
 
 			if (node === undefined) {
 				return undefined;
-			} else {
-				currentNode = node.nextNode;
-				currentIndex++;
 			}
+
+			currentNode = node;
 
 			return [index, node] as LuaTuple<[number, IDoublyLinkedListNode<T>]>;
 		}) as IterableFunction<LuaTuple<[number, IDoublyLinkedListNode<T>]>>;
 	}
 
-	protected getBackwardNodeIterator(): IterableFunction<LuaTuple<[number, IDoublyLinkedListNode<T>]>> {
-		let currentNode = this.headNode;
-		let currentIndex = 1;
+	protected getBackwardNodeIterator(): IterableFunction<IDoublyLinkedListNode<T>> {
+		let currentNode: IDoublyLinkedListNode<T> | undefined = undefined;
 
 		return (() => {
-			const node = currentNode;
-			const index = currentIndex;
+			const node = currentNode === undefined ? this.tailNode : currentNode.previousNode;
 
 			if (node === undefined) {
 				return undefined;
-			} else {
-				currentNode = node.nextNode;
-				currentIndex++;
 			}
 
-			return [index, node] as LuaTuple<[number, IDoublyLinkedListNode<T>]>;
-		}) as IterableFunction<LuaTuple<[number, IDoublyLinkedListNode<T>]>>;
+			currentNode = node;
+
+			return node;
+		}) as IterableFunction<IDoublyLinkedListNode<T>>;
 	}
 }
