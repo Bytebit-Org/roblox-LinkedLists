@@ -1,10 +1,9 @@
-import { NodeValue } from "types/NodeValue";
 import { IReadonlyLinkedList } from "interfaces/IReadonlyLinkedList";
 
 /**
  * Defines the operations available on all linked lists
  */
-export interface ILinkedList<T extends NodeValue> extends IReadonlyLinkedList<T> {
+export interface ILinkedList<T extends defined> extends IReadonlyLinkedList<T> {
 	/**
 	 * Clears the list such that it contains no nodes
 	 */

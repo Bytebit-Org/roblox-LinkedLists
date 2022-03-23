@@ -1,9 +1,8 @@
-import { NodeValue } from "types/NodeValue";
 
 /**
  * Defines the readonly operations available on all linked lists
  */
-export interface IReadonlyLinkedList<T extends NodeValue> {
+export interface IReadonlyLinkedList<T extends defined> {
 	/**
 	 * Gets an iterator to be used in making looping over values in the list possible.
 	 * Will return lua tuples of the 1-based index and the value.

@@ -2,9 +2,8 @@ import { SinglyLinkedListNode } from "classes/nodes/SinglyLinkedListNode";
 import { ISinglyLinkedList } from "interfaces/ISinglyLinkedList";
 import { IReadonlyLinkedList } from "interfaces/IReadonlyLinkedList";
 import { ISinglyLinkedListNode } from "interfaces/ISinglyLinkedListNode";
-import { NodeValue } from "types/NodeValue";
 
-export class SinglyLinkedList<T extends NodeValue> implements ISinglyLinkedList<T> {
+export class SinglyLinkedList<T extends defined> implements ISinglyLinkedList<T> {
 	protected headNode?: ISinglyLinkedListNode<T>;
 	protected tailNode?: ISinglyLinkedListNode<T>;
 	protected numberOfNodes = 0;
@@ -24,7 +23,8 @@ export class SinglyLinkedList<T extends NodeValue> implements ISinglyLinkedList<
 
 		let mostRecentNode: ISinglyLinkedListNode<T> | undefined;
 
-		for (const value of valuesList.getForwardValuesIterator()) {
+		// use tuple iterator to ensure circular lists are handled properly
+		for (const [_, value] of valuesList.getForwardIterator()) {
 			const newestNode = new SinglyLinkedListNode(value);
 
 			if (mostRecentNode === undefined) {
@@ -73,7 +73,8 @@ export class SinglyLinkedList<T extends NodeValue> implements ISinglyLinkedList<
 		let previousNode = this.headNode!; // at this point we know this isn't pushing to be the head node and the list is not empty
 		for (const [currentIndex, currentNode] of this.getForwardIndexAndNodeTupleIterator()) {
 			if (currentIndex === index) {
-				for (const value of valuesList.getForwardValuesIterator()) {
+				// use tuple iterator to ensure circular lists are handled properly
+				for (const [_, value] of valuesList.getForwardIterator()) {
 					const newNode = new SinglyLinkedListNode(value);
 
 					previousNode.nextNode = newNode;
@@ -99,7 +100,8 @@ export class SinglyLinkedList<T extends NodeValue> implements ISinglyLinkedList<
 			return;
 		}
 
-		for (const value of valuesList.getForwardValuesIterator()) {
+		// use tuple iterator to ensure circular lists are handled properly
+		for (const [_, value] of valuesList.getForwardIterator()) {
 			const newNode = new SinglyLinkedListNode(value);
 
 			if (this.tailNode === undefined) {
@@ -285,11 +287,11 @@ export class SinglyLinkedList<T extends NodeValue> implements ISinglyLinkedList<
 		const oldHeadNode = this.headNode;
 		const headValue = oldHeadNode.value;
 
+		this.headNode = oldHeadNode.nextNode;
+
 		if (oldHeadNode === this.tailNode) {
 			// the list only had one element
 			this.tailNode = undefined;
-		} else {
-			this.headNode = oldHeadNode.nextNode;
 		}
 
 		this.numberOfNodes--;
@@ -372,6 +374,7 @@ export class SinglyLinkedList<T extends NodeValue> implements ISinglyLinkedList<
 			const newestNode = new SinglyLinkedListNode(value);
 
 			if (mostRecentNode === undefined) {
+				// the list was empty before this
 				newestNode.nextNode = this.headNode;
 				this.headNode = newestNode;
 			} else {
@@ -444,6 +447,7 @@ export class SinglyLinkedList<T extends NodeValue> implements ISinglyLinkedList<
 			const newNode = new SinglyLinkedListNode(value);
 
 			if (this.tailNode === undefined) {
+				// the list was empty before this
 				this.headNode = newNode;
 			} else {
 				this.tailNode.nextNode = newNode;

@@ -1,7 +1,6 @@
 import { ILinkedListNode } from "interfaces/ILinkedListNode";
-import { NodeValue } from "types/NodeValue";
 
-export interface IDoublyLinkedListNode<T extends NodeValue> extends ILinkedListNode<T> {
+export interface IDoublyLinkedListNode<T extends defined> extends ILinkedListNode<T> {
 	/**
 	 * A reference to the next node, or "right" neighbor, from this node
 	 */

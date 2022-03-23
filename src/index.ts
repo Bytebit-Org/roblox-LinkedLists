@@ -16,5 +16,3 @@ export * from "interfaces/IReadonlyLinkedListNode";
 export * from "interfaces/IReadonlySinglyLinkedListNode";
 export * from "interfaces/ISinglyLinkedList";
 export * from "interfaces/ISinglyLinkedListNode";
-
-export * from "types/NodeValue";

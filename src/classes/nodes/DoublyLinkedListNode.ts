@@ -1,7 +1,6 @@
 import { IDoublyLinkedListNode } from "interfaces/IDoublyLinkedListNode";
-import { NodeValue } from "types/NodeValue";
 
-export class DoublyLinkedListNode<T extends NodeValue> implements IDoublyLinkedListNode<T> {
+export class DoublyLinkedListNode<T extends defined> implements IDoublyLinkedListNode<T> {
 	public nextNode: DoublyLinkedListNode<T> | undefined;
 	public previousNode: DoublyLinkedListNode<T> | undefined;
 

@@ -2,13 +2,13 @@ import Expectation from "@rbxts/testez/src/Expectation";
 import { ILinkedList } from "interfaces/ILinkedList";
 
 export function runCircularLinkedListTests(
-	createList: () => ILinkedList<object>,
+	createList: <T extends defined>() => ILinkedList<T>,
 	describe: (phrase: string, callback: () => void) => void,
 	it: (phrase: string, callback: () => void) => void,
 	expect: <T>(value: T) => Expectation<T>,
 ) {
 	describe("getForwardIterator", () => {
-		it("should return nil for both tuple values on the first call for an empty list", () => {
+		it("getForwardIterator - should return nil for both tuple values on the first call for an empty list", () => {
 			const emptyList = createList();
 			const forwardIterator = emptyList.getForwardIterator();
 			const [index, value] = forwardIterator();
@@ -16,8 +16,8 @@ export function runCircularLinkedListTests(
 			expect(value).to.never.be.ok();
 		});
 
-		it("should return exactly as many tuples as there are items in the list", () => {
-			const arrayInput = [{}, {}, {}];
+		it("getForwardIterator - should return exactly as many tuples as there are items in the list", () => {
+			const arrayInput = ["a", "b", "c"];
 
 			const list = createList();
 			list.pushArrayToHead(arrayInput);
@@ -30,8 +30,8 @@ export function runCircularLinkedListTests(
 			expect(numberOfItemsFromIterator).to.equal(arrayInput.size());
 		});
 
-		it("should return tuples in order as the items were expected", () => {
-			const arrayInput = [{}, {}, {}];
+		it("getForwardIterator - should return tuples in order as the items were expected", () => {
+			const arrayInput = ["a", "b", "c"];
 
 			const list = createList();
 			list.pushArrayToHead(arrayInput);
@@ -41,8 +41,8 @@ export function runCircularLinkedListTests(
 			}
 		});
 
-		it("should return the new first value in the tuple when a value is pushed to head", () => {
-			const arrayInput = [{}, {}, {}];
+		it("getForwardIterator - should return the new first value in the tuple when a value is pushed to head", () => {
+			const arrayInput = ["a", "b", "c"];
 
 			const list = createList();
 			list.pushArrayToHead(arrayInput);
@@ -57,8 +57,8 @@ export function runCircularLinkedListTests(
 			expect(secondIteratorFirstValue).to.equal(newHeadValue);
 		});
 
-		it("should continue without skipping over tuples if the current node is deleted while being iterated over", () => {
-			const arrayInput = [{}, {}, {}];
+		it("getForwardIterator - should continue without skipping over tuples if the current node is deleted while being iterated over", () => {
+			const arrayInput = ["a", "b", "c"];
 
 			const list = createList();
 			list.pushArrayToHead(arrayInput);
@@ -69,8 +69,8 @@ export function runCircularLinkedListTests(
 			}
 		});
 
-		it("should skip over tuples if they are deleted while iterating", () => {
-			const arrayInput = [{}, {}, {}];
+		it("getForwardIterator - should skip over tuples if they are deleted while iterating", () => {
+			const arrayInput = ["a", "b", "c"];
 
 			const list = createList();
 			list.pushArrayToHead(arrayInput);
@@ -92,15 +92,15 @@ export function runCircularLinkedListTests(
 	});
 
 	describe("getForwardValuesIterator", () => {
-		it("should return nil on the first call for an empty list", () => {
+		it("getForwardValuesIterator - should return nil on the first call for an empty list", () => {
 			const emptyList = createList();
 			const forwardIterator = emptyList.getForwardValuesIterator();
 			const value = forwardIterator();
 			expect(value).to.never.be.ok();
 		});
 
-		it("should repeat over values infinitely but continue in order", () => {
-			const arrayInput = [{}, {}, {}];
+		it("getForwardValuesIterator - should repeat over values infinitely but continue in order", () => {
+			const arrayInput = ["a", "b", "c"];
 
 			const list = createList();
 			list.pushArrayToHead(arrayInput);
@@ -118,8 +118,8 @@ export function runCircularLinkedListTests(
 			expect(numberOfItemsFromIterator).to.equal(arrayInput.size() * 11);
 		});
 
-		it("should return the new first value when a value is pushed to head", () => {
-			const arrayInput = [{}, {}, {}];
+		it("getForwardValuesIterator - should return the new first value when a value is pushed to head", () => {
+			const arrayInput = ["a", "b", "c"];
 
 			const list = createList();
 			list.pushArrayToHead(arrayInput);
@@ -134,8 +134,8 @@ export function runCircularLinkedListTests(
 			expect(secondIteratorFirstValue).to.equal(newHeadValue);
 		});
 
-		it("should continue without skipping over values if the current node is deleted while being iterated over", () => {
-			const arrayInput = [{}, {}, {}];
+		it("getForwardValuesIterator - should continue without skipping over values if the current node is deleted while being iterated over", () => {
+			const arrayInput = ["a", "b", "c"];
 
 			const list = createList();
 			list.pushArrayToHead(arrayInput);
@@ -152,8 +152,8 @@ export function runCircularLinkedListTests(
 			}
 		});
 
-		it("should skip over values if they are deleted while iterating", () => {
-			const arrayInput = [{}, {}, {}];
+		it("getForwardValuesIterator - should skip over values if they are deleted while iterating", () => {
+			const arrayInput = ["a", "b", "c"];
 
 			const list = createList();
 			list.pushArrayToHead(arrayInput);

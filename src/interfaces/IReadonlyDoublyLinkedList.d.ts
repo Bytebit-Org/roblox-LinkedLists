@@ -1,7 +1,6 @@
-import { NodeValue } from "types/NodeValue";
 import { IReadonlyLinkedList } from "interfaces/IReadonlyLinkedList";
 
-export interface IReadonlyDoublyLinkedList<T extends NodeValue> extends IReadonlyLinkedList<T> {
+export interface IReadonlyDoublyLinkedList<T extends defined> extends IReadonlyLinkedList<T> {
 	/**
 	 * Gets an iterator to be used in making looping over values in the list possible.
 	 * Will return lua tuples of the 1-based index and the value.

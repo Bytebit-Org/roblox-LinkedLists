@@ -2,9 +2,8 @@ import { DoublyLinkedListNode } from "classes/nodes/DoublyLinkedListNode";
 import { IDoublyLinkedList } from "interfaces/IDoublyLinkedList";
 import { IReadonlyLinkedList } from "interfaces/IReadonlyLinkedList";
 import { IDoublyLinkedListNode } from "interfaces/IDoublyLinkedListNode";
-import { NodeValue } from "types/NodeValue";
 
-export class DoublyLinkedList<T extends NodeValue> implements IDoublyLinkedList<T> {
+export class DoublyLinkedList<T extends defined> implements IDoublyLinkedList<T> {
 	protected headNode?: IDoublyLinkedListNode<T>;
 	protected tailNode?: IDoublyLinkedListNode<T>;
 	protected numberOfNodes = 0;
@@ -24,7 +23,8 @@ export class DoublyLinkedList<T extends NodeValue> implements IDoublyLinkedList<
 
 		let mostRecentNode: IDoublyLinkedListNode<T> | undefined;
 
-		for (const value of valuesList.getForwardValuesIterator()) {
+		// use tuple iterator to ensure circular lists are handled properly
+		for (const [_, value] of valuesList.getForwardIterator()) {
 			const newestNode = new DoublyLinkedListNode(value);
 
 			if (mostRecentNode === undefined) {
@@ -78,7 +78,8 @@ export class DoublyLinkedList<T extends NodeValue> implements IDoublyLinkedList<
 		let previousNode = this.headNode!; // at this point we know this isn't pushing to be the head node and the list is not empty
 		for (const [currentIndex, currentNode] of this.getForwardIndexAndNodeTupleIterator()) {
 			if (currentIndex === index) {
-				for (const value of valuesList.getForwardValuesIterator()) {
+				// use tuple iterator to ensure circular lists are handled properly
+				for (const [_, value] of valuesList.getForwardIterator()) {
 					const newNode = new DoublyLinkedListNode(value);
 
 					previousNode.nextNode = newNode;
@@ -88,14 +89,16 @@ export class DoublyLinkedList<T extends NodeValue> implements IDoublyLinkedList<
 
 					previousNode = newNode;
 				}
+				this.numberOfNodes += valuesList.size();
 
-				break;
+				return;
 			} else {
 				previousNode = currentNode;
 			}
 		}
 
-		this.numberOfNodes += valuesList.size();
+		// should never get here
+		throw `Somehow failed to find index, ${index}, even though it is in bounds`;
 	}
 
 	public copyLinkedListValuesToTail(valuesList: IReadonlyLinkedList<T>) {
@@ -105,7 +108,8 @@ export class DoublyLinkedList<T extends NodeValue> implements IDoublyLinkedList<
 
 		let mostRecentNode = this.tailNode;
 
-		for (const value of valuesList.getForwardValuesIterator()) {
+		// use tuple iterator to ensure circular lists are handled properly
+		for (const [_, value] of valuesList.getForwardIterator()) {
 			const newestNode = new DoublyLinkedListNode(value);
 
 			if (mostRecentNode === undefined) {
@@ -206,7 +210,7 @@ export class DoublyLinkedList<T extends NodeValue> implements IDoublyLinkedList<
 	 * Moves the nodes from the input list into this list at the given index in this list,
 	 * such that the head of the input list is now at the given index of this list and all other
 	 * nodes follow in order and the previous node, if any, at the given index of this list is
-	 * attached as the next node following the tail of the input list.
+	 * attached as the next node following the tail of the input list and vice versa.
 	 * The input list is cleared in the process.
 	 * @param otherDoublyLinkedList The input list
 	 */
@@ -242,22 +246,26 @@ export class DoublyLinkedList<T extends NodeValue> implements IDoublyLinkedList<
 				otherDoublyLinkedList.headNode!.previousNode = previousNode;
 				otherDoublyLinkedList.tailNode!.nextNode = currentNode;
 				currentNode.previousNode = otherDoublyLinkedList.tailNode;
-				break;
+
+				this.numberOfNodes += otherDoublyLinkedList.numberOfNodes;
+
+				otherDoublyLinkedList.clear();
+
+				return;
 			} else {
 				previousNode = currentNode;
 			}
 		}
 
-		this.numberOfNodes += otherDoublyLinkedList.numberOfNodes;
-
-		otherDoublyLinkedList.clear();
+		// should never get here
+		throw `Somehow failed to find index, ${index}, even though it is in bounds`;
 	}
 
 	/**
 	 * Moves the nodes from the input list into this list at the tail of this list,
 	 * such that the tail of the input list is the new tail of this list and all other
 	 * nodes follow in order and the head of the input list is attached as the
-	 * next node following the prior tail of this list.
+	 * next node following the prior tail of this list and vice versa.
 	 * The input list is cleared in the process.
 	 * @param otherDoublyLinkedList The input list
 	 */
@@ -288,20 +296,22 @@ export class DoublyLinkedList<T extends NodeValue> implements IDoublyLinkedList<
 	}
 
 	public peekValueAtIndex(index: number) {
-		if (index <= 1) {
-			throw `Index was less than 0`;
+		if (index < 1) {
+			throw `Provided index, ${index}, is less than 1`;
 		}
 
-		let numberOfNodesSeen = 0;
-		for (const [currentIndex, currentNode] of this.getForwardIndexAndNodeTupleIterator()) {
-			numberOfNodesSeen++;
+		if (index > this.numberOfNodes) {
+			throw `Provided index, ${index}, is out of range of list with ${this.numberOfNodes} elements`;
+		}
 
+		for (const [currentIndex, currentNode] of this.getForwardIndexAndNodeTupleIterator()) {
 			if (currentIndex === index) {
 				return currentNode.value;
 			}
 		}
 
-		throw `Index ${index} was out of range of list with ${numberOfNodesSeen} elements`;
+		// should never get here
+		throw `Somehow failed to find index, ${index}, even though it is in bounds`;
 	}
 
 	public peekValueAtTail() {
@@ -316,7 +326,7 @@ export class DoublyLinkedList<T extends NodeValue> implements IDoublyLinkedList<
 		const oldHeadNode = this.headNode;
 		const headValue = oldHeadNode.value;
 
-		this.headNode = this.headNode.nextNode;
+		this.headNode = oldHeadNode.nextNode;
 
 		if (oldHeadNode === this.tailNode) {
 			// the list only had one element
@@ -338,7 +348,7 @@ export class DoublyLinkedList<T extends NodeValue> implements IDoublyLinkedList<
 		const oldTailNode = this.tailNode;
 		const tailValue = oldTailNode.value;
 
-		this.tailNode = this.tailNode.previousNode;
+		this.tailNode = oldTailNode.previousNode;
 
 		if (oldTailNode === this.headNode) {
 			// the list only had one element
@@ -524,7 +534,7 @@ export class DoublyLinkedList<T extends NodeValue> implements IDoublyLinkedList<
 
 	public pushToIndex(index: number, value: T) {
 		if (index < 1) {
-			throw `Provided index, ${index}, is less than 0`;
+			throw `Provided index, ${index}, is less than 1`;
 		}
 
 		if (index > this.numberOfNodes + 1) {
@@ -532,15 +542,15 @@ export class DoublyLinkedList<T extends NodeValue> implements IDoublyLinkedList<
 		}
 
 		if (index === 1) {
-			// same as popping the head node
-			// we know there has to be a head value, so cast is safe
-			return this.popHeadValue() as T;
+			// just the same as pushing to head
+			this.pushToHead(value);
+			return;
 		}
 
 		if (index === this.numberOfNodes + 1) {
-			// same as popping the tail node
-			// we know there has to be a tail value, so cast is safe
-			return this.popTailValue() as T;
+			// just the same as pushing to tail
+			this.pushToTail(value);
+			return;
 		}
 
 		let previousNode = this.headNode!; // at this point we know this isn't pushing to be the head node
@@ -552,6 +562,8 @@ export class DoublyLinkedList<T extends NodeValue> implements IDoublyLinkedList<
 				newNode.nextNode = currentNode;
 				currentNode.previousNode = newNode;
 				this.numberOfNodes++;
+
+				return;
 			} else {
 				previousNode = currentNode;
 			}

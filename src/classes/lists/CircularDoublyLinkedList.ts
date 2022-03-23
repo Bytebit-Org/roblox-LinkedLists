@@ -1,9 +1,8 @@
 import { IReadonlyLinkedList } from "interfaces/IReadonlyLinkedList";
-import { NodeValue } from "types/NodeValue";
 import { DoublyLinkedList } from "classes/lists/DoublyLinkedList";
 import { ILinkedListNode } from "interfaces/ILinkedListNode";
 
-export class CircularDoublyLinkedList<T extends NodeValue> extends DoublyLinkedList<T> {
+export class CircularDoublyLinkedList<T extends defined> extends DoublyLinkedList<T> {
 	public copyLinkedListValuesToHead(valuesList: IReadonlyLinkedList<T>) {
 		super.copyLinkedListValuesToHead(valuesList);
 

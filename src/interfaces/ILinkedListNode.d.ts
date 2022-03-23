@@ -1,6 +1,5 @@
-import { NodeValue } from "types/NodeValue";
 
-export interface ILinkedListNode<T extends NodeValue> {
+export interface ILinkedListNode<T extends defined> {
 	/**
 	 * The value held within this node
 	 */
