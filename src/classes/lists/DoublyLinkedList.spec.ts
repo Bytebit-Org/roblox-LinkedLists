@@ -4,7 +4,9 @@
 
 import { runAcyclicLinkedListTests } from "./reusable-tests/AcyclicLinkedListTests";
 import { DoublyLinkedList } from "./DoublyLinkedList";
+import { runUniversalLinkedListTests } from "./reusable-tests/UniversalLinkedListTests";
 
 export = () => {
 	runAcyclicLinkedListTests(() => new DoublyLinkedList(), describe, it, expect);
+	runUniversalLinkedListTests(() => new DoublyLinkedList(), describe, it, expect);
 };

@@ -3,5 +3,8 @@
 /// <reference types="@rbxts/testez/globals" />
 
 import { CircularDoublyLinkedList } from "./CircularDoublyLinkedList";
+import { runUniversalLinkedListTests } from "./reusable-tests/UniversalLinkedListTests";
 
-export = () => {};
+export = () => {
+	runUniversalLinkedListTests(() => new CircularDoublyLinkedList(), describe, it, expect);
+};
