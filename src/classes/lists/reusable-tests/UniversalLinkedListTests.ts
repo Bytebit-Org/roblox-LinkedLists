@@ -288,7 +288,18 @@ export function runUniversalLinkedListTests(
 	});
 
 	describe("isEmpty", () => {
-		throw "Not implemented";
+		it("isEmpty - should change response after items are added and after the list is cleared", () => {
+			const arrayInput = ["a", "b", "c"];
+
+			const list = createList();
+			expect(list.isEmpty()).to.equal(true);
+
+			list.pushArrayToHead(arrayInput);
+			expect(list.isEmpty()).to.equal(false);
+
+			list.clear();
+			expect(list.isEmpty()).to.equal(true);
+		});
 	});
 
 	describe("peekValueAtHead", () => {
