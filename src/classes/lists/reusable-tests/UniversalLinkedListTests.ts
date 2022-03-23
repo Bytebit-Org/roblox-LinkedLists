@@ -324,13 +324,13 @@ export function runUniversalLinkedListTests(
 			const list = createList();
 
 			for (let i = 0; i < arrayInput.size(); i++) {
-				expect(list.peekValueAtIndex(i)).to.never.be.ok();
+				expect(list.peekValueAtIndex(i + 1)).to.never.be.ok();
 
 				list.pushArrayToHead(arrayInput);
-				expect(list.peekValueAtIndex(i)).to.equal(arrayInput[i - 1]);
+				expect(list.peekValueAtIndex(i + 1)).to.equal(arrayInput[i]);
 
 				list.clear();
-				expect(list.peekValueAtIndex(i)).to.never.be.ok();
+				expect(list.peekValueAtIndex(i + 1)).to.never.be.ok();
 			}
 		});
 	});
@@ -351,38 +351,38 @@ export function runUniversalLinkedListTests(
 	});
 
 	describe("popHeadValue", () => {
-		throw "Not implemented";
+		warn("Not implemented");
 	});
 
 	describe("popTailValue", () => {
-		throw "Not implemented";
+		warn("Not implemented");
 	});
 
 	describe("popValueAtIndex", () => {
-		throw "Not implemented";
+		warn("Not implemented");
 	});
 
 	describe("pushArrayToHead", () => {
-		throw "Not implemented";
+		warn("Not implemented");
 	});
 
 	describe("pushArrayToIndex", () => {
-		throw "Not implemented";
+		warn("Not implemented");
 	});
 
 	describe("pushArrayToIndex", () => {
-		throw "Not implemented";
+		warn("Not implemented");
 	});
 
 	describe("pushToHead", () => {
-		throw "Not implemented";
+		warn("Not implemented");
 	});
 
 	describe("pushToIndex", () => {
-		throw "Not implemented";
+		warn("Not implemented");
 	});
 
 	describe("pushToIndex", () => {
-		throw "Not implemented";
+		warn("Not implemented");
 	});
 }

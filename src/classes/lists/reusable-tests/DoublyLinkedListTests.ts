@@ -8,22 +8,22 @@ export function runDoublyLinkedListTests(
 	expect: <T>(value: T) => Expectation<T>,
 ) {
 	describe("getBackwardIterator", () => {
-		throw "Not implemented";
+		warn("Not implemented");
 	});
 
 	describe("getBackwardValuesIterator", () => {
-		throw "Not implemented";
+		warn("Not implemented");
 	});
 
 	describe("moveNodesFromDoublyLinkedListToHead", () => {
-		throw "Not implemented";
+		warn("Not implemented");
 	});
 
 	describe("moveNodesFromDoublyLinkedListToIndex", () => {
-		throw "Not implemented";
+		warn("Not implemented");
 	});
 
 	describe("moveNodesFromDoublyLinkedListToTail", () => {
-		throw "Not implemented";
+		warn("Not implemented");
 	});
 }
