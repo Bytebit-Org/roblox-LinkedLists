@@ -5,8 +5,8 @@ import { IDoublyLinkedListNode } from "interfaces/IDoublyLinkedListNode";
 import { NodeValue } from "types/NodeValue";
 
 export class DoublyLinkedList<T extends NodeValue> implements IDoublyLinkedList<T> {
-	private headNode?: IDoublyLinkedListNode<T>;
-	private tailNode?: IDoublyLinkedListNode<T>;
+	protected headNode?: IDoublyLinkedListNode<T>;
+	protected tailNode?: IDoublyLinkedListNode<T>;
 
 	public clear() {
 		this.headNode = undefined;
@@ -162,10 +162,11 @@ export class DoublyLinkedList<T extends NodeValue> implements IDoublyLinkedList<
 
 		this.headNode = this.headNode.nextNode;
 
-		if (this.headNode === undefined) {
+		if (oldHeadNode === this.tailNode) {
+			// the list only had one element
 			this.tailNode = undefined;
 		} else {
-			this.headNode.previousNode = undefined;
+			this.headNode!.previousNode = undefined;
 		}
 
 		return headValue;
@@ -181,10 +182,11 @@ export class DoublyLinkedList<T extends NodeValue> implements IDoublyLinkedList<
 
 		this.tailNode = this.tailNode.previousNode;
 
-		if (this.tailNode === undefined) {
+		if (oldTailNode === this.headNode) {
+			// the list only had one element
 			this.headNode = undefined;
 		} else {
-			this.tailNode.nextNode = undefined;
+			this.tailNode!.nextNode = undefined;
 		}
 
 		return tailValue;
@@ -348,7 +350,7 @@ export class DoublyLinkedList<T extends NodeValue> implements IDoublyLinkedList<
 		return numberOfNodesSeen;
 	}
 
-	private getForwardNodeIterator(): IterableFunction<LuaTuple<[number, IDoublyLinkedListNode<T>]>> {
+	protected getForwardNodeIterator(): IterableFunction<LuaTuple<[number, IDoublyLinkedListNode<T>]>> {
 		let currentNode = this.headNode;
 		let currentIndex = 1;
 
@@ -367,7 +369,7 @@ export class DoublyLinkedList<T extends NodeValue> implements IDoublyLinkedList<
 		}) as IterableFunction<LuaTuple<[number, IDoublyLinkedListNode<T>]>>;
 	}
 
-	private getBackwardNodeIterator(): IterableFunction<LuaTuple<[number, IDoublyLinkedListNode<T>]>> {
+	protected getBackwardNodeIterator(): IterableFunction<LuaTuple<[number, IDoublyLinkedListNode<T>]>> {
 		let currentNode = this.headNode;
 		let currentIndex = 1;
 

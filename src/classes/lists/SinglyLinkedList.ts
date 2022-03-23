@@ -5,8 +5,8 @@ import { ISinglyLinkedListNode } from "interfaces/ISinglyLinkedListNode";
 import { NodeValue } from "types/NodeValue";
 
 export class SinglyLinkedList<T extends NodeValue> implements ISinglyLinkedList<T> {
-	private headNode?: ISinglyLinkedListNode<T>;
-	private tailNode?: ISinglyLinkedListNode<T>;
+	protected headNode?: ISinglyLinkedListNode<T>;
+	protected tailNode?: ISinglyLinkedListNode<T>;
 
 	public clear() {
 		this.headNode = undefined;
@@ -133,7 +133,8 @@ export class SinglyLinkedList<T extends NodeValue> implements ISinglyLinkedList<
 
 		this.headNode = oldHeadNode.nextNode;
 
-		if (oldHeadNode.nextNode === undefined) {
+		if (oldHeadNode === this.tailNode) {
+			// the list only had one element
 			this.tailNode = undefined;
 		}
 
@@ -150,14 +151,14 @@ export class SinglyLinkedList<T extends NodeValue> implements ISinglyLinkedList<
 		this.tailNode = undefined;
 
 		if (oldTailNode === this.headNode) {
+			// the list only had one element
 			this.headNode = undefined;
-			return;
-		}
-
-		// set tail node to the last node still in here by
-		// iterating and setting tail node at each step
-		for (const [_, node] of this.getForwardNodeIterator()) {
-			this.tailNode = node;
+		} else {
+			// set tail node to the last node still in here by
+			// iterating and setting tail node at each step
+			for (const [_, node] of this.getForwardNodeIterator()) {
+				this.tailNode = node;
+			}
 		}
 
 		return tailValue;
@@ -169,7 +170,7 @@ export class SinglyLinkedList<T extends NodeValue> implements ISinglyLinkedList<
 		}
 
 		let numberOfNodesSeen = 0;
-		let previousNode: SinglyLinkedListNode<T> | undefined;
+		let previousNode: ISinglyLinkedListNode<T> | undefined;
 		for (const [currentIndex, currentNode] of this.getForwardNodeIterator()) {
 			numberOfNodesSeen++;
 
@@ -268,6 +269,7 @@ export class SinglyLinkedList<T extends NodeValue> implements ISinglyLinkedList<
 				const newNode = new SinglyLinkedListNode(value);
 				previousNode.nextNode = newNode;
 				newNode.nextNode = currentNode;
+				return;
 			} else {
 				previousNode = currentNode;
 				numberOfNodesSeen++;
@@ -304,7 +306,7 @@ export class SinglyLinkedList<T extends NodeValue> implements ISinglyLinkedList<
 		return numberOfNodesSeen;
 	}
 
-	private getForwardNodeIterator(): IterableFunction<LuaTuple<[number, ISinglyLinkedListNode<T>]>> {
+	protected getForwardNodeIterator(): IterableFunction<LuaTuple<[number, ISinglyLinkedListNode<T>]>> {
 		let currentNode = this.headNode;
 		let currentIndex = 1;
 
