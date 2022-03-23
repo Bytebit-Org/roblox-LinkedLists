@@ -375,7 +375,7 @@ export function runUniversalLinkedListTests(
 	});
 
 	describe("popTailValue", () => {
-		it("popTailValue - should change response after items are added and after each value is popped off", () => {
+		it("popTailValue - should change response after items are added and after each value is popped off while also changing size", () => {
 			const arrayInput = ["a", "b", "c"];
 
 			const list = createList<string>();
@@ -399,7 +399,52 @@ export function runUniversalLinkedListTests(
 	});
 
 	describe("popValueAtIndex", () => {
-		warn("Not implemented");
+		it("popValueAtIndex - should throw when index is out of bounds", () => {
+			const arrayInput = ["a", "b", "c"];
+
+			const list = createList<string>();
+			expect(() => list.popValueAtIndex(0)).to.throw();
+			expect(() => list.popValueAtIndex(1)).to.throw();
+			expect(list.size()).to.equal(0);
+
+			list.pushArrayToHead(arrayInput);
+			expect(list.size()).to.equal(arrayInput.size());
+
+			expect(() => list.popValueAtIndex(0)).to.throw();
+			expect(() => list.popValueAtIndex(arrayInput.size() + 1)).to.throw();
+
+			expect(list.popValueAtIndex(1)).to.equal(arrayInput[0]);
+			expect(list.size()).to.equal(arrayInput.size() - 1);
+		});
+
+		it("popValueAtIndex - should change response after items are added and after each value is popped off while also changing size", () => {
+			const arrayInput = ["a", "b", "c"];
+
+			const list = createList<string>();
+			expect(() => list.popValueAtIndex(1)).to.throw();
+			expect(list.size()).to.equal(0);
+
+			list.pushArrayToHead(arrayInput);
+			expect(list.size()).to.equal(arrayInput.size());
+
+			for (let i = 1; i < arrayInput.size() - 1; i++) {
+				expect(list.popValueAtIndex(2)).to.equal(arrayInput[i]);
+				expect(list.size()).to.equal(arrayInput.size() - i);
+			}
+
+			expect(list.popValueAtIndex(2)).to.equal(arrayInput[arrayInput.size() - 1]);
+			expect(list.size()).to.equal(1);
+
+			expect(list.popValueAtIndex(1)).to.equal(arrayInput[0]);
+			expect(list.size()).to.equal(0);
+
+			expect(() => list.popValueAtIndex(1)).to.throw();
+
+			// shouldn't have a head or tail value at this point and should be empty
+			expect(list.popHeadValue()).to.never.be.ok();
+			expect(list.popTailValue()).to.never.be.ok();
+			expect(list.isEmpty()).to.equal(true);
+		});
 	});
 
 	describe("pushArrayToHead", () => {
