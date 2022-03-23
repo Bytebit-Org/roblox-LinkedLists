@@ -351,20 +351,26 @@ export function runUniversalLinkedListTests(
 	});
 
 	describe("popHeadValue", () => {
-		it("popHeadValue - should change response after items are added and after each value is popped off", () => {
+		it("popHeadValue - should change response after items are added and after each value is popped off while also changing size", () => {
 			const arrayInput = ["a", "b", "c"];
 
 			const list = createList<string>();
 			expect(list.popHeadValue()).to.never.be.ok();
+			expect(list.size()).to.equal(0);
 
 			list.pushArrayToHead(arrayInput);
+			expect(list.size()).to.equal(arrayInput.size());
 
 			let i = 0;
 			while (i < arrayInput.size()) {
 				expect(list.popHeadValue()).to.equal(arrayInput[i++]);
+				expect(list.size()).to.equal(arrayInput.size() - i);
 			}
 
+			// shouldn't have a head or tail value at this point and should be empty
 			expect(list.popHeadValue()).to.never.be.ok();
+			expect(list.popTailValue()).to.never.be.ok();
+			expect(list.isEmpty()).to.equal(true);
 		});
 	});
 
@@ -374,15 +380,21 @@ export function runUniversalLinkedListTests(
 
 			const list = createList<string>();
 			expect(list.popTailValue()).to.never.be.ok();
+			expect(list.size()).to.equal(0);
 
 			list.pushArrayToHead(arrayInput);
+			expect(list.size()).to.equal(arrayInput.size());
 
 			let i = arrayInput.size() - 1;
 			while (i >= 0) {
 				expect(list.popTailValue()).to.equal(arrayInput[i--]);
+				expect(list.size()).to.equal(i + 1);
 			}
 
+			// shouldn't have a head or tail value at this point and should be empty
+			expect(list.popHeadValue()).to.never.be.ok();
 			expect(list.popTailValue()).to.never.be.ok();
+			expect(list.isEmpty()).to.equal(true);
 		});
 	});
 
