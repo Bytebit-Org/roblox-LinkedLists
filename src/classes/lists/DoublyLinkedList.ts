@@ -12,7 +12,7 @@ export class DoublyLinkedList<T extends NodeValue> implements IDoublyLinkedList<
 	public clear() {
 		this.headNode = undefined;
 		this.tailNode = undefined;
-		this.numberOfNodes++;
+		this.numberOfNodes = 0;
 	}
 
 	public copyLinkedListValuesToHead(valuesList: IReadonlyLinkedList<T>) {
