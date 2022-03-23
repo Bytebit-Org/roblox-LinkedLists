@@ -8,7 +8,7 @@ export function runLinkedListTests(
 	expect: <T>(value: T) => Expectation<T>,
 ) {
 	describe("getForwardIterator", () => {
-		it("should return nil on the first call for an empty list", () => {
+		it("should return nil for both tuple values on the first call for an empty list", () => {
 			const emptyList = createList();
 			const forwardIterator = emptyList.getForwardIterator();
 			const [index, value] = forwardIterator();
@@ -16,7 +16,7 @@ export function runLinkedListTests(
 			expect(value).to.never.be.ok();
 		});
 
-		it("should return exactly as many items as are in the list", () => {
+		it("should return exactly as many tuples as there are items in the list", () => {
 			const arrayInput = [{}, {}, {}];
 
 			const list = createList();
@@ -30,7 +30,7 @@ export function runLinkedListTests(
 			expect(numberOfItemsFromIterator).to.equal(arrayInput.size());
 		});
 
-		it("should return items in order", () => {
+		it("should return tuples in order as the items were expected", () => {
 			const arrayInput = [{}, {}, {}];
 
 			const list = createList();
@@ -41,7 +41,7 @@ export function runLinkedListTests(
 			}
 		});
 
-		it("should return the new first value when value is pushed to head", () => {
+		it("should return the new first value in the tuple when a value is pushed to head", () => {
 			const arrayInput = [{}, {}, {}];
 
 			const list = createList();
@@ -57,7 +57,7 @@ export function runLinkedListTests(
 			expect(secondIteratorFirstValue).to.equal(newHeadValue);
 		});
 
-		it("should continue without skipping over values if the current node is deleted while being iterated over", () => {
+		it("should continue without skipping over tuples if the current node is deleted while being iterated over", () => {
 			const arrayInput = [{}, {}, {}];
 
 			const list = createList();
@@ -69,7 +69,7 @@ export function runLinkedListTests(
 			}
 		});
 
-		it("should skip over values if they are deleted while iterating", () => {
+		it("should skip over tuples if they are deleted while iterating", () => {
 			const arrayInput = [{}, {}, {}];
 
 			const list = createList();
@@ -80,6 +80,89 @@ export function runLinkedListTests(
 				numberOfItemsFromIterator++;
 
 				if (index === 1) {
+					expect(value).to.equal(arrayInput[0]);
+					list.popValueAtIndex(2);
+				} else {
+					expect(value).to.equal(arrayInput[2]);
+				}
+			}
+
+			expect(numberOfItemsFromIterator).to.equal(arrayInput.size() - 1);
+		});
+	});
+
+	describe("getForwardValuesIterator", () => {
+		it("should return nil on the first call for an empty list", () => {
+			const emptyList = createList();
+			const forwardIterator = emptyList.getForwardValuesIterator();
+			const value = forwardIterator();
+			expect(value).to.never.be.ok();
+		});
+
+		it("should return exactly as many values as there are items in the list", () => {
+			const arrayInput = [{}, {}, {}];
+
+			const list = createList();
+			list.pushArrayToHead(arrayInput);
+
+			let numberOfItemsFromIterator = 0;
+			for (const _ of list.getForwardValuesIterator()) {
+				numberOfItemsFromIterator++;
+			}
+
+			expect(numberOfItemsFromIterator).to.equal(arrayInput.size());
+		});
+
+		it("should return values in order as the items are in the list", () => {
+			const arrayInput = [{}, {}, {}];
+
+			const list = createList();
+			list.pushArrayToHead(arrayInput);
+
+			let index = 0;
+			for (const value of list.getForwardValuesIterator()) {
+				expect(value).to.equal(arrayInput[index++]);
+			}
+		});
+
+		it("should return the new first value when a value is pushed to head", () => {
+			const arrayInput = [{}, {}, {}];
+
+			const list = createList();
+			list.pushArrayToHead(arrayInput);
+
+			const firstIteratorFirstValue = list.getForwardValuesIterator()();
+			expect(firstIteratorFirstValue).to.equal(arrayInput[0]);
+
+			const newHeadValue = {};
+			list.pushToHead(newHeadValue);
+
+			const secondIteratorFirstValue = list.getForwardValuesIterator()();
+			expect(secondIteratorFirstValue).to.equal(newHeadValue);
+		});
+
+		it("should continue without skipping over values if the current node is deleted while being iterated over", () => {
+			const arrayInput = [{}, {}, {}];
+
+			const list = createList();
+			list.pushArrayToHead(arrayInput);
+
+			let index = 0;
+			for (const value of list.getForwardValuesIterator()) {
+				expect(value).to.equal(arrayInput[index++]);
+				list.popHeadValue();
+			}
+		});
+
+		it("should skip over values if they are deleted while iterating", () => {
+			const arrayInput = [{}, {}, {}];
+
+			const list = createList();
+			list.pushArrayToHead(arrayInput);
+
+			let numberOfItemsFromIterator = 0;
+			for (const value of list.getForwardValuesIterator()) {
+				if (numberOfItemsFromIterator++ === 0) {
 					expect(value).to.equal(arrayInput[0]);
 					list.popValueAtIndex(2);
 				} else {
