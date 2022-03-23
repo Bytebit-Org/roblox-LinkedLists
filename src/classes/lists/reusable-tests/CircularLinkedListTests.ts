@@ -36,7 +36,9 @@ export function runCircularLinkedListTests(
 			const list = createList();
 			list.pushArrayToHead(arrayInput);
 
+			let expectedIndex = 1;
 			for (const [index, value] of list.getForwardIterator()) {
+				expect(index).to.equal(expectedIndex++);
 				expect(value).to.equal(arrayInput[index - 1]);
 			}
 		});
