@@ -68,7 +68,7 @@ export class CircularSinglyLinkedList<T extends defined> extends SinglyLinkedLis
 	}
 
 	public peekValueAtIndex(index: number) {
-		if (index <= 1) {
+		if (index < 1) {
 			throw `Index was less than 0`;
 		}
 
