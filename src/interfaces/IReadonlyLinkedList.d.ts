@@ -1,4 +1,3 @@
-
 /**
  * Defines the readonly operations available on all linked lists
  */
