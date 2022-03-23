@@ -668,14 +668,87 @@ export function runUniversalLinkedListTests(
 	});
 
 	describe("pushToHead", () => {
-		warn("Not implemented");
+		it("pushToHead - should change head value after items are added while also changing size", () => {
+			const arrayInput = ["a", "b", "c"];
+
+			const list = createList<string>();
+
+			for (let i = 0; i < arrayInput.size(); i++) {
+				list.pushToHead(arrayInput[i]);
+
+				expect(list.size()).to.equal(i + 1);
+				expect(list.peekValueAtHead()).to.equal(arrayInput[i]);
+				expect(list.peekValueAtTail()).to.equal(arrayInput[0]);
+			}
+		});
 	});
 
 	describe("pushToIndex", () => {
-		warn("Not implemented");
+		it("pushToIndex - pushing to index 1 should behave like pushToHead", () => {
+			const arrayInput = ["a", "b", "c"];
+
+			const list = createList<string>();
+
+			for (let i = 0; i < arrayInput.size(); i++) {
+				list.pushToIndex(1, arrayInput[i]);
+
+				expect(list.size()).to.equal(i + 1);
+				expect(list.peekValueAtHead()).to.equal(arrayInput[i]);
+				expect(list.peekValueAtTail()).to.equal(arrayInput[0]);
+			}
+		});
+
+		it("pushToIndex - pushing to index size + 1 should behave like pushToTail", () => {
+			const arrayInput = ["a", "b", "c"];
+
+			const list = createList<string>();
+
+			for (let i = 0; i < arrayInput.size(); i++) {
+				list.pushToIndex(list.size() + 1, arrayInput[i]);
+
+				expect(list.size()).to.equal(i + 1);
+				expect(list.peekValueAtHead()).to.equal(arrayInput[0]);
+				expect(list.peekValueAtTail()).to.equal(arrayInput[i]);
+			}
+		});
+
+		it("pushToIndex - pushing to an index in the middle should not change head or tail but should change size, and all elements should stay in order", () => {
+			const headValue = "head";
+			const tailValue = "tail";
+			const arrayInput = ["a", "b", "c"];
+
+			const list = createList<string>();
+			list.pushToHead(headValue);
+			list.pushToTail(tailValue);
+
+			for (let i = 0; i < arrayInput.size(); i++) {
+				list.pushToIndex(i + 2, arrayInput[i]);
+
+				expect(list.size()).to.equal(i + 3);
+				expect(list.peekValueAtIndex(i + 2)).to.equal(arrayInput[i]);
+				expect(list.peekValueAtHead()).to.equal(headValue);
+				expect(list.peekValueAtTail()).to.equal(tailValue);
+			}
+
+			for (let i = 2; i < list.size(); i++) {
+				expect(list.peekValueAtIndex(i)).to.equal(arrayInput[i - 2]);
+			}
+		});
 	});
 
 	describe("pushToTail", () => {
-		warn("Not implemented");
+		it("pushToTail - should change tail value after items are added while also changing size", () => {
+			const arrayInput = ["a", "b", "c"];
+
+			const list = createList<string>();
+
+			for (let i = 0; i < arrayInput.size(); i++) {
+				list.pushToTail(arrayInput[i]);
+
+				expect(list.size()).to.equal(i + 1);
+				expect(list.peekValueAtHead()).to.equal(arrayInput[0]);
+				expect(list.peekValueAtTail()).to.equal(arrayInput[i]);
+			}
+		});
 	});
 }
