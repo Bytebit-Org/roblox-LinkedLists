@@ -1,6 +1,7 @@
 import { IReadonlyLinkedList } from "interfaces/IReadonlyLinkedList";
 import { NodeValue } from "types/NodeValue";
 import { SinglyLinkedList } from "classes/lists/SinglyLinkedList";
+import { ILinkedListNode } from "interfaces/ILinkedListNode";
 
 export class CircularSinglyLinkedList<T extends NodeValue> extends SinglyLinkedList<T> {
 	public copyLinkedListValuesToHead(valuesList: IReadonlyLinkedList<T>) {
@@ -17,6 +18,36 @@ export class CircularSinglyLinkedList<T extends NodeValue> extends SinglyLinkedL
 		if (this.headNode !== undefined && this.tailNode !== undefined) {
 			this.tailNode.nextNode = this.headNode;
 		}
+	}
+
+	/**
+	 * {@inheritdoc IReadonlyLinkedList.getForwardIterator}
+	 * @remarks Because this iterator includes an index, it will not loop despite being
+	 * a circular list
+	 */
+	public getForwardIterator() {
+		const iterateNodes = this.getForwardIndexAndNodeTupleIterator();
+
+		let lastHeadNodeSeen: ILinkedListNode<T> | undefined;
+
+		return (() => {
+			const [index, nextNode] = iterateNodes();
+			if (nextNode === this.headNode) {
+				if (nextNode === lastHeadNodeSeen) {
+					// clearly made a full loop at this point
+					return undefined;
+				} else {
+					// looks like the list has been mutated to have a new head
+					lastHeadNodeSeen = nextNode;
+				}
+			}
+
+			if (nextNode?.value === undefined) {
+				return undefined;
+			} else {
+				return [index, nextNode.value] as LuaTuple<[number, T]>;
+			}
+		}) as IterableFunction<LuaTuple<[number, T]>>;
 	}
 
 	public moveNodesFromSinglyLinkedListToHead(otherSinglyLinkedList: SinglyLinkedList<T>) {

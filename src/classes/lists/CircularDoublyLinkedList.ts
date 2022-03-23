@@ -1,6 +1,7 @@
 import { IReadonlyLinkedList } from "interfaces/IReadonlyLinkedList";
 import { NodeValue } from "types/NodeValue";
 import { DoublyLinkedList } from "classes/lists/DoublyLinkedList";
+import { ILinkedListNode } from "interfaces/ILinkedListNode";
 
 export class CircularDoublyLinkedList<T extends NodeValue> extends DoublyLinkedList<T> {
 	public copyLinkedListValuesToHead(valuesList: IReadonlyLinkedList<T>) {
@@ -19,6 +20,66 @@ export class CircularDoublyLinkedList<T extends NodeValue> extends DoublyLinkedL
 			this.tailNode.nextNode = this.headNode;
 			this.headNode.previousNode = this.tailNode;
 		}
+	}
+
+	/**
+	 * {@inheritdoc IReadonlyDoublyLinkedList.getBackwardIterator}
+	 * @remarks Because this iterator includes an index, it will not loop despite being
+	 * a circular list
+	 */
+	public getBackwardIterator() {
+		const iterateNodes = this.getBackwardIndexAndNodeTupleIterator();
+
+		let lastTailNodeSeen: ILinkedListNode<T> | undefined;
+
+		return (() => {
+			const [index, nextNode] = iterateNodes();
+			if (nextNode === this.tailNode) {
+				if (nextNode === lastTailNodeSeen) {
+					// clearly made a full loop at this point
+					return undefined;
+				} else {
+					// looks like the list has been mutated to have a new tail
+					lastTailNodeSeen = nextNode;
+				}
+			}
+
+			if (nextNode?.value === undefined) {
+				return undefined;
+			} else {
+				return [index, nextNode.value] as LuaTuple<[number, T]>;
+			}
+		}) as IterableFunction<LuaTuple<[number, T]>>;
+	}
+
+	/**
+	 * {@inheritdoc IReadonlyLinkedList.getForwardIterator}
+	 * @remarks Because this iterator includes an index, it will not loop despite being
+	 * a circular list
+	 */
+	public getForwardIterator() {
+		const iterateNodes = this.getForwardIndexAndNodeTupleIterator();
+
+		let lastHeadNodeSeen: ILinkedListNode<T> | undefined;
+
+		return (() => {
+			const [index, nextNode] = iterateNodes();
+			if (nextNode === this.headNode) {
+				if (nextNode === lastHeadNodeSeen) {
+					// clearly made a full loop at this point
+					return undefined;
+				} else {
+					// looks like the list has been mutated to have a new head
+					lastHeadNodeSeen = nextNode;
+				}
+			}
+
+			if (nextNode?.value === undefined) {
+				return undefined;
+			} else {
+				return [index, nextNode.value] as LuaTuple<[number, T]>;
+			}
+		}) as IterableFunction<LuaTuple<[number, T]>>;
 	}
 
 	public moveNodesFromDoublyLinkedListToHead(otherDoublyLinkedList: DoublyLinkedList<T>) {
