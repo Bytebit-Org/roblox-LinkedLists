@@ -410,24 +410,29 @@ export class DoublyLinkedList<T extends defined> implements IDoublyLinkedList<T>
 			return;
 		}
 
-		let mostRecentNode = this.headNode;
+		const priorHeadNode = this.headNode;
 
+		let mostRecentNode: DoublyLinkedListNode<T> | undefined;
 		for (const value of valuesArray) {
-			const newestNode = new DoublyLinkedListNode(value);
+			const newNode = new DoublyLinkedListNode(value);
 
-			if (mostRecentNode === undefined) {
-				// the list was empty before this
-				this.headNode = newestNode;
-			} else {
-				newestNode.nextNode = mostRecentNode.nextNode;
-				newestNode.previousNode = mostRecentNode;
-				mostRecentNode.nextNode = newestNode;
+			newNode.nextNode = priorHeadNode;
+
+			if (this.headNode === priorHeadNode) {
+				// this is the first new node
+				this.headNode = newNode;
 			}
 
-			mostRecentNode = newestNode;
+			if (mostRecentNode !== undefined) {
+				mostRecentNode.nextNode = newNode;
+				newNode.previousNode = mostRecentNode;
+			}
+
+			mostRecentNode = newNode;
 		}
 
 		if (this.tailNode === undefined) {
+			// the list was empty before this
 			this.tailNode = mostRecentNode;
 		}
 

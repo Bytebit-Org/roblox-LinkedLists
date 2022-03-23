@@ -374,24 +374,28 @@ export class SinglyLinkedList<T extends defined> implements ISinglyLinkedList<T>
 			return;
 		}
 
+		const priorHeadNode = this.headNode;
+
 		let mostRecentNode: SinglyLinkedListNode<T> | undefined;
 
 		for (const value of valuesArray) {
-			const newestNode = new SinglyLinkedListNode(value);
+			const newNode = new SinglyLinkedListNode(value);
+			newNode.nextNode = priorHeadNode;
 
-			if (mostRecentNode === undefined) {
-				// the list was empty before this
-				newestNode.nextNode = this.headNode;
-				this.headNode = newestNode;
-			} else {
-				newestNode.nextNode = mostRecentNode.nextNode;
-				mostRecentNode.nextNode = newestNode;
+			if (this.headNode === priorHeadNode) {
+				// this is the first new node
+				this.headNode = newNode;
 			}
 
-			mostRecentNode = newestNode;
+			if (mostRecentNode !== undefined) {
+				mostRecentNode.nextNode = newNode;
+			}
+
+			mostRecentNode = newNode;
 		}
 
 		if (this.tailNode === undefined) {
+			// the list was empty before this
 			this.tailNode = mostRecentNode;
 		}
 
