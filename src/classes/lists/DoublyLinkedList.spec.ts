@@ -5,8 +5,12 @@
 import { runAcyclicLinkedListTests } from "./reusable-tests/AcyclicLinkedListTests";
 import { DoublyLinkedList } from "./DoublyLinkedList";
 import { runUniversalLinkedListTests } from "./reusable-tests/UniversalLinkedListTests";
+import { runDoublyLinkedListTests } from "./reusable-tests/DoublyLinkedListTests";
+
+const createList = <T extends defined>() => new DoublyLinkedList<T>();
 
 export = () => {
-	runAcyclicLinkedListTests(<T extends defined>() => new DoublyLinkedList<T>(), describe, it, expect);
-	runUniversalLinkedListTests(() => new DoublyLinkedList(), describe, it, expect);
+	runAcyclicLinkedListTests(createList, describe, it, expect);
+	runUniversalLinkedListTests(createList, describe, it, expect);
+	runDoublyLinkedListTests(createList, describe, it, expect);
 };

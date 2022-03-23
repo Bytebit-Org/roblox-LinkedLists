@@ -4,9 +4,13 @@
 
 import { CircularDoublyLinkedList } from "./CircularDoublyLinkedList";
 import { runCircularLinkedListTests } from "./reusable-tests/CircularLinkedListTests";
+import { runDoublyLinkedListTests } from "./reusable-tests/DoublyLinkedListTests";
 import { runUniversalLinkedListTests } from "./reusable-tests/UniversalLinkedListTests";
 
+const createList = <T extends defined>() => new CircularDoublyLinkedList<T>();
+
 export = () => {
-	runCircularLinkedListTests(() => new CircularDoublyLinkedList(), describe, it, expect);
-	runUniversalLinkedListTests(() => new CircularDoublyLinkedList(), describe, it, expect);
+	runCircularLinkedListTests(createList, describe, it, expect);
+	runUniversalLinkedListTests(createList, describe, it, expect);
+	runDoublyLinkedListTests(createList, describe, it, expect);
 };
