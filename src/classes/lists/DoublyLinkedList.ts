@@ -480,7 +480,7 @@ export class DoublyLinkedList<T extends defined> implements IDoublyLinkedList<T>
 
 				this.numberOfNodes += valuesArray.size();
 
-				break;
+				return;
 			} else {
 				previousNode = currentNode;
 			}

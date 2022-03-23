@@ -441,7 +441,7 @@ export class SinglyLinkedList<T extends defined> implements ISinglyLinkedList<T>
 
 				this.numberOfNodes += valuesArray.size();
 
-				break;
+				return;
 			} else {
 				previousNode = currentNode;
 			}
