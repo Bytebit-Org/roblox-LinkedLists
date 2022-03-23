@@ -277,7 +277,6 @@ export class SinglyLinkedList<T extends NodeValue> implements ISinglyLinkedList<
 
 		const oldHeadNode = this.headNode;
 		const headValue = oldHeadNode.value;
-		this.numberOfNodes--;
 
 		if (oldHeadNode === this.tailNode) {
 			// the list only had one element
@@ -285,6 +284,8 @@ export class SinglyLinkedList<T extends NodeValue> implements ISinglyLinkedList<
 		} else {
 			this.headNode = oldHeadNode.nextNode;
 		}
+
+		this.numberOfNodes--;
 
 		return headValue;
 	}
@@ -297,7 +298,6 @@ export class SinglyLinkedList<T extends NodeValue> implements ISinglyLinkedList<
 		const oldTailNode = this.tailNode;
 		const tailValue = oldTailNode.value;
 		this.tailNode = undefined;
-		this.numberOfNodes--;
 
 		if (oldTailNode === this.headNode) {
 			// the list only had one element
@@ -309,6 +309,8 @@ export class SinglyLinkedList<T extends NodeValue> implements ISinglyLinkedList<
 				this.tailNode = node;
 			}
 		}
+
+		this.numberOfNodes--;
 
 		return tailValue;
 	}
@@ -450,11 +452,12 @@ export class SinglyLinkedList<T extends NodeValue> implements ISinglyLinkedList<
 		const newNode = new SinglyLinkedListNode(value);
 		newNode.nextNode = this.headNode;
 		this.headNode = newNode;
-		this.numberOfNodes++;
 
 		if (this.tailNode === undefined) {
 			this.tailNode = newNode;
 		}
+
+		this.numberOfNodes++;
 	}
 
 	public pushToIndex(index: number, value: T) {
@@ -491,6 +494,9 @@ export class SinglyLinkedList<T extends NodeValue> implements ISinglyLinkedList<
 				previousNode = currentNode;
 			}
 		}
+
+		// should never get here
+		throw `Somehow failed to find index, ${index}, even though it is in bounds`;
 	}
 
 	public pushToTail(value: T) {
