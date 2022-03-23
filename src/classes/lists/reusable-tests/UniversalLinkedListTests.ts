@@ -351,11 +351,39 @@ export function runUniversalLinkedListTests(
 	});
 
 	describe("popHeadValue", () => {
-		warn("Not implemented");
+		it("popHeadValue - should change response after items are added and after each value is popped off", () => {
+			const arrayInput = ["a", "b", "c"];
+
+			const list = createList<string>();
+			expect(list.popHeadValue()).to.never.be.ok();
+
+			list.pushArrayToHead(arrayInput);
+
+			let i = 0;
+			while (i < arrayInput.size()) {
+				expect(list.popHeadValue()).to.equal(arrayInput[i++]);
+			}
+
+			expect(list.popHeadValue()).to.never.be.ok();
+		});
 	});
 
 	describe("popTailValue", () => {
-		warn("Not implemented");
+		it("popTailValue - should change response after items are added and after each value is popped off", () => {
+			const arrayInput = ["a", "b", "c"];
+
+			const list = createList<string>();
+			expect(list.popTailValue()).to.never.be.ok();
+
+			list.pushArrayToHead(arrayInput);
+
+			let i = arrayInput.size() - 1;
+			while (i >= 0) {
+				expect(list.popTailValue()).to.equal(arrayInput[i--]);
+			}
+
+			expect(list.popTailValue()).to.never.be.ok();
+		});
 	});
 
 	describe("popValueAtIndex", () => {
