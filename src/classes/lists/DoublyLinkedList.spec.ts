@@ -3,8 +3,8 @@
 /// <reference types="@rbxts/testez/globals" />
 
 import { runAcyclicLinkedListTests } from "./reusable-tests/AcyclicLinkedListTests";
-import { SinglyLinkedList } from "./SinglyLinkedList";
+import { DoublyLinkedList } from "./DoublyLinkedList";
 
 export = () => {
-	runAcyclicLinkedListTests(() => new SinglyLinkedList(), describe, it, expect);
+	runAcyclicLinkedListTests(() => new DoublyLinkedList(), describe, it, expect);
 };

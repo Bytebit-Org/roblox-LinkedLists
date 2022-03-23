@@ -1,7 +1,7 @@
 import Expectation from "@rbxts/testez/src/Expectation";
 import { ILinkedList } from "interfaces/ILinkedList";
 
-export function runLinkedListTests(
+export function runAcyclicLinkedListTests(
 	createList: () => ILinkedList<object>,
 	describe: (phrase: string, callback: () => void) => void,
 	it: (phrase: string, callback: () => void) => void,
