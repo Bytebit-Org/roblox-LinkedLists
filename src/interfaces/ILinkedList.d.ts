@@ -19,6 +19,15 @@ export interface ILinkedList<T extends NodeValue> extends IReadonlyLinkedList<T>
 	copyLinkedListValuesToHead(valuesList: IReadonlyLinkedList<T>): void;
 
 	/**
+	 * Pushes a new set of nodes into the list with the given values,
+	 * with the first value in the input list going in as the node at the given index
+	 * @param index The index of where to push the new values into the list
+	 * @param valuesList The list of values to put into new nodes in this list
+	 * @throws Throws if the index is outside the range of the list's length
+	 */
+	copyLinkedListValuesToIndex(index: number, valuesList: IReadonlyLinkedList<T>): void;
+
+	/**
 	 * Pushes a new set of nodes to the tail of this list with the given values,
 	 * with the last value in the input list being placed as the value at the
 	 * tail of this list
@@ -49,6 +58,15 @@ export interface ILinkedList<T extends NodeValue> extends IReadonlyLinkedList<T>
 	 * @param valuesArray The array of values to put into nodes in the list
 	 */
 	pushArrayToHead(valuesArray: ReadonlyArray<T>): void;
+
+	/**
+	 * Pushes a new set of nodes into the list with the given values,
+	 * with the first value in the array going in as the node at the given index
+	 * @param index The index of where to push the new values into the list
+	 * @param valuesArray The array of values to put into nodes in the list
+	 * @throws Throws if the index is outside the range of the list's length
+	 */
+	pushArrayToIndex(index: number, valuesArray: ReadonlyArray<T>): void;
 
 	/**
 	 * Pushes a new set of nodes to the tail of the list with the given values,
