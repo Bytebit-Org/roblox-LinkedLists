@@ -326,12 +326,12 @@ export class DoublyLinkedList<T extends defined> implements IDoublyLinkedList<T>
 		const oldHeadNode = this.headNode;
 		const headValue = oldHeadNode.value;
 
-		this.headNode = oldHeadNode.nextNode;
-
 		if (oldHeadNode === this.tailNode) {
 			// the list only had one element
+			this.headNode = undefined;
 			this.tailNode = undefined;
 		} else {
+			this.headNode = oldHeadNode.nextNode;
 			this.headNode!.previousNode = undefined;
 		}
 
@@ -348,12 +348,12 @@ export class DoublyLinkedList<T extends defined> implements IDoublyLinkedList<T>
 		const oldTailNode = this.tailNode;
 		const tailValue = oldTailNode.value;
 
-		this.tailNode = oldTailNode.previousNode;
-
 		if (oldTailNode === this.headNode) {
 			// the list only had one element
 			this.headNode = undefined;
+			this.tailNode = undefined;
 		} else {
+			this.tailNode = oldTailNode.previousNode;
 			this.tailNode!.nextNode = undefined;
 		}
 

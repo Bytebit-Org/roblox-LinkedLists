@@ -315,8 +315,14 @@ export class SinglyLinkedList<T extends defined> implements ISinglyLinkedList<T>
 			// set tail node to the last node still in here by
 			// iterating and setting tail node at each step
 			for (const [_, node] of this.getForwardIndexAndNodeTupleIterator()) {
+				if (node === oldTailNode) {
+					break;
+				}
+
 				this.tailNode = node;
 			}
+
+			this.tailNode!.nextNode = undefined;
 		}
 
 		this.numberOfNodes--;
