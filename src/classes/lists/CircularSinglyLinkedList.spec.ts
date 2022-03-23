@@ -4,6 +4,7 @@
 
 import { CircularSinglyLinkedList } from "./CircularSinglyLinkedList";
 import { runCircularLinkedListTests } from "./reusable-tests/CircularLinkedListTests";
+import { runSinglyLinkedListTests } from "./reusable-tests/SinglyLinkedListTests";
 import { runUniversalLinkedListTests } from "./reusable-tests/UniversalLinkedListTests";
 
 const createList = <T extends defined>() => new CircularSinglyLinkedList<T>();
@@ -11,4 +12,5 @@ const createList = <T extends defined>() => new CircularSinglyLinkedList<T>();
 export = () => {
 	runCircularLinkedListTests(createList, describe, it, expect);
 	runUniversalLinkedListTests(createList, describe, it, expect);
+	runSinglyLinkedListTests(createList, describe, it, expect);
 };
