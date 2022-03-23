@@ -475,7 +475,7 @@ export function runUniversalLinkedListTests(
 			expect(list1.peekValueAtHead()).to.equal(arrayInput2[0]);
 			expect(list1.peekValueAtTail()).to.equal(arrayInput1[2]);
 
-			expect(arrayInput2.size()).to.equal(arrayInput2.size());
+			expect(arrayInput2.size()).to.equal(3);
 		});
 
 		it("pushArrayToHead - should keep elements in order", () => {
@@ -498,7 +498,123 @@ export function runUniversalLinkedListTests(
 	});
 
 	describe("pushArrayToIndex", () => {
-		warn("Not implemented");
+		it("pushArrayToIndex - should do nothing if the input array is empty", () => {
+			const arrayInput1 = ["a", "b", "c"];
+			const list1 = createList();
+			list1.pushArrayToHead(arrayInput1);
+
+			const arrayInput2 = new Array<string>();
+
+			list1.pushArrayToIndex(2, arrayInput2);
+
+			expect(list1.size()).to.equal(arrayInput1.size());
+			expect(list1.peekValueAtHead()).to.equal(arrayInput1[0]);
+			expect(list1.peekValueAtTail()).to.equal(arrayInput1[2]);
+		});
+
+		it("pushArrayToIndex - should change head value when given index 1 and change size without affecting the input array", () => {
+			const arrayInput1 = ["a", "b", "c"];
+			const list1 = createList();
+			list1.pushArrayToHead(arrayInput1);
+
+			const arrayInput2 = ["d", "e", "f"];
+
+			list1.pushArrayToIndex(1, arrayInput2);
+
+			expect(list1.size()).to.equal(arrayInput1.size() + arrayInput2.size());
+			expect(list1.peekValueAtHead()).to.equal(arrayInput2[0]);
+			expect(list1.peekValueAtTail()).to.equal(arrayInput1[2]);
+
+			expect(arrayInput2.size()).to.equal(3);
+		});
+
+		it("pushArrayToIndex - should not change head or tail when given an index in the middle and change size without affecting the input array", () => {
+			const arrayInput1 = ["a", "b", "c"];
+			const list1 = createList();
+			list1.pushArrayToHead(arrayInput1);
+
+			const arrayInput2 = ["d", "e", "f"];
+
+			list1.pushArrayToIndex(2, arrayInput2);
+
+			expect(list1.size()).to.equal(arrayInput1.size() + arrayInput2.size());
+			expect(list1.peekValueAtHead()).to.equal(arrayInput1[0]);
+			expect(list1.peekValueAtTail()).to.equal(arrayInput1[2]);
+
+			expect(arrayInput2.size()).to.equal(3);
+		});
+
+		it("pushArrayToIndex - should change tail value when given index size + 1 and change size without affecting the input array", () => {
+			const arrayInput1 = ["a", "b", "c"];
+			const list1 = createList();
+			list1.pushArrayToHead(arrayInput1);
+
+			const arrayInput2 = ["d", "e", "f"];
+
+			list1.pushArrayToIndex(arrayInput1.size() + 1, arrayInput2);
+
+			expect(list1.size()).to.equal(arrayInput1.size() + arrayInput2.size());
+			expect(list1.peekValueAtHead()).to.equal(arrayInput1[0]);
+			expect(list1.peekValueAtTail()).to.equal(arrayInput2[2]);
+
+			expect(arrayInput2.size()).to.equal(3);
+		});
+
+		it("pushArrayToIndex - should keep elements in order when given index 1", () => {
+			const arrayInput1 = ["a", "b", "c"];
+			const list1 = createList();
+			list1.pushArrayToHead(arrayInput1);
+
+			const arrayInput2 = ["d", "e", "f"];
+
+			list1.pushArrayToIndex(1, arrayInput2);
+
+			for (const [index, value] of list1.getForwardIterator()) {
+				if (index <= arrayInput2.size()) {
+					expect(value).to.equal(arrayInput2[index - 1]);
+				} else {
+					expect(value).to.equal(arrayInput1[index - arrayInput2.size() - 1]);
+				}
+			}
+		});
+
+		it("pushArrayToIndex - should keep elements in order when given an index in the middle", () => {
+			const arrayInput1 = ["a", "b", "c"];
+			const list1 = createList();
+			list1.pushArrayToHead(arrayInput1);
+
+			const arrayInput2 = ["d", "e", "f"];
+
+			list1.pushArrayToIndex(2, arrayInput2);
+
+			for (const [index, value] of list1.getForwardIterator()) {
+				if (index === 1) {
+					expect(value).to.equal(arrayInput1[0]);
+				} else if (index <= arrayInput2.size() + 1) {
+					expect(value).to.equal(arrayInput2[index - 2]);
+				} else {
+					expect(value).to.equal(arrayInput1[index - arrayInput2.size() - 1]);
+				}
+			}
+		});
+
+		it("pushArrayToIndex - should keep elements in order when given index size + 1", () => {
+			const arrayInput1 = ["a", "b", "c"];
+			const list1 = createList();
+			list1.pushArrayToHead(arrayInput1);
+
+			const arrayInput2 = ["d", "e", "f"];
+
+			list1.pushArrayToIndex(arrayInput1.size() + 1, arrayInput2);
+
+			for (const [index, value] of list1.getForwardIterator()) {
+				if (index <= arrayInput1.size()) {
+					expect(value).to.equal(arrayInput1[index - 1]);
+				} else {
+					expect(value).to.equal(arrayInput2[index - arrayInput1.size() - 1]);
+				}
+			}
+		});
 	});
 
 	describe("pushArrayToTail", () => {
@@ -529,7 +645,7 @@ export function runUniversalLinkedListTests(
 			expect(list1.peekValueAtHead()).to.equal(arrayInput1[0]);
 			expect(list1.peekValueAtTail()).to.equal(arrayInput2[2]);
 
-			expect(arrayInput2.size()).to.equal(arrayInput2.size());
+			expect(arrayInput2.size()).to.equal(3);
 		});
 
 		it("pushArrayToTail - should keep elements in order", () => {
