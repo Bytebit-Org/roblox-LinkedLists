@@ -7,10 +7,12 @@ import { NodeValue } from "types/NodeValue";
 export class SinglyLinkedList<T extends NodeValue> implements ISinglyLinkedList<T> {
 	protected headNode?: ISinglyLinkedListNode<T>;
 	protected tailNode?: ISinglyLinkedListNode<T>;
+	protected numberOfNodes = 0;
 
 	public clear() {
 		this.headNode = undefined;
 		this.tailNode = undefined;
+		this.numberOfNodes = 0;
 	}
 
 	public copyLinkedListValuesToHead(valuesList: IReadonlyLinkedList<T>) {
@@ -39,6 +41,54 @@ export class SinglyLinkedList<T extends NodeValue> implements ISinglyLinkedList<
 		if (this.tailNode === undefined) {
 			this.tailNode = mostRecentNode;
 		}
+
+		this.numberOfNodes += valuesList.size();
+	}
+
+	public copyLinkedListValuesToIndex(index: number, valuesList: IReadonlyLinkedList<T>) {
+		if (index < 1) {
+			throw `Provided index, ${index}, is less than 1`;
+		}
+
+		if (index > this.numberOfNodes + 1) {
+			throw `Provided index, ${index}, is out of range of list with ${this.numberOfNodes} elements`;
+		}
+
+		if (valuesList.isEmpty()) {
+			return;
+		}
+
+		if (index === 1) {
+			// just the same as pushing to head
+			this.copyLinkedListValuesToHead(valuesList);
+			return;
+		}
+
+		if (index === this.numberOfNodes + 1) {
+			// just the same as pushing to tail
+			this.copyLinkedListValuesToTail(valuesList);
+			return;
+		}
+
+		let previousNode = this.headNode!; // at this point we know this isn't pushing to be the head node and the list is not empty
+		for (const [currentIndex, currentNode] of this.getForwardIndexAndNodeTupleIterator()) {
+			if (currentIndex === index) {
+				for (const value of valuesList.getForwardValuesIterator()) {
+					const newNode = new SinglyLinkedListNode(value);
+
+					previousNode.nextNode = newNode;
+					newNode.nextNode = currentNode;
+
+					previousNode = newNode;
+				}
+
+				break;
+			} else {
+				previousNode = currentNode;
+			}
+		}
+
+		this.numberOfNodes += valuesList.size();
 	}
 
 	public copyLinkedListValuesToTail(valuesList: IReadonlyLinkedList<T>) {
@@ -57,6 +107,8 @@ export class SinglyLinkedList<T extends NodeValue> implements ISinglyLinkedList<
 
 			this.tailNode = newNode;
 		}
+
+		this.numberOfNodes += valuesList.size();
 	}
 
 	public getForwardIterator() {
@@ -81,50 +133,141 @@ export class SinglyLinkedList<T extends NodeValue> implements ISinglyLinkedList<
 		}) as IterableFunction<T>;
 	}
 
-	public getHeadValue() {
-		return this.headNode?.value;
-	}
-
-	public getTailValue() {
-		return this.tailNode?.value;
-	}
-
 	public isEmpty() {
 		return this.headNode === undefined;
 	}
 
-	public isLengthGreaterThanOrEqualTo(minLength: number) {
-		if (minLength <= 0) {
-			throw `Invalid input to isLengthGreaterThanOrEqualTo: ${minLength}`;
+	/**
+	 * Moves the nodes from the input list into this list at the head of this list,
+	 * such that the head of the input list is the new head of this list and all other
+	 * nodes follow in order and the previous head of this list is attached as the
+	 * next node following the tail of the input list.
+	 * The input list is cleared in the process.
+	 * @param otherSinglyLinkedList The input list
+	 */
+	public moveNodesFromSinglyLinkedListToHead(otherSinglyLinkedList: SinglyLinkedList<T>) {
+		if (otherSinglyLinkedList.isEmpty()) {
+			return;
 		}
 
-		let numberOfNodesSeen = 0;
+		const priorHeadNode = this.headNode;
 
-		for (const _ of this.getForwardIndexAndNodeTupleIterator()) {
-			numberOfNodesSeen++;
-			if (numberOfNodesSeen === minLength) {
-				return true;
+		this.headNode = otherSinglyLinkedList.headNode;
+		otherSinglyLinkedList.tailNode!.nextNode = priorHeadNode;
+
+		if (this.tailNode === undefined) {
+			// this list was empty
+			this.tailNode = otherSinglyLinkedList.tailNode;
+		}
+
+		this.numberOfNodes += otherSinglyLinkedList.numberOfNodes;
+
+		otherSinglyLinkedList.clear();
+	}
+
+	/**
+	 * Moves the nodes from the input list into this list at the given index in this list,
+	 * such that the head of the input list is now at the given index of this list and all other
+	 * nodes follow in order and the previous node, if any, at the given index of this list is
+	 * attached as the next node following the tail of the input list.
+	 * The input list is cleared in the process.
+	 * @param otherSinglyLinkedList The input list
+	 */
+	public moveNodesFromSinglyLinkedListToIndex(index: number, otherSinglyLinkedList: SinglyLinkedList<T>) {
+		if (index < 1) {
+			throw `Provided index, ${index}, is less than 1`;
+		}
+
+		if (index > this.numberOfNodes + 1) {
+			throw `Provided index, ${index}, is out of range of list with ${this.numberOfNodes} elements`;
+		}
+
+		if (otherSinglyLinkedList.isEmpty()) {
+			return;
+		}
+
+		if (index === 1) {
+			// same as moving to head
+			this.moveNodesFromSinglyLinkedListToHead(otherSinglyLinkedList);
+			return;
+		}
+
+		if (index === this.numberOfNodes + 1) {
+			// same as moving to tail
+			this.moveNodesFromSinglyLinkedListToTail(otherSinglyLinkedList);
+			return;
+		}
+
+		let previousNode = this.headNode!; // at this point we know this isn't pushing to be the head node and the list is not empty
+		for (const [currentIndex, currentNode] of this.getForwardIndexAndNodeTupleIterator()) {
+			if (currentIndex === index) {
+				previousNode.nextNode = otherSinglyLinkedList.headNode;
+				otherSinglyLinkedList.tailNode!.nextNode = currentNode;
+				break;
+			} else {
+				previousNode = currentNode;
 			}
 		}
 
-		return false;
+		this.numberOfNodes += otherSinglyLinkedList.numberOfNodes;
+
+		otherSinglyLinkedList.clear();
+	}
+
+	/**
+	 * Moves the nodes from the input list into this list at the tail of this list,
+	 * such that the tail of the input list is the new tail of this list and all other
+	 * nodes follow in order and the head of the input list is attached as the
+	 * next node following the prior tail of this list.
+	 * The input list is cleared in the process.
+	 * @param otherSinglyLinkedList The input list
+	 */
+	public moveNodesFromSinglyLinkedListToTail(otherSinglyLinkedList: SinglyLinkedList<T>) {
+		if (otherSinglyLinkedList.isEmpty()) {
+			return;
+		}
+
+		const priorTailNode = this.tailNode;
+
+		this.tailNode = otherSinglyLinkedList.tailNode;
+
+		if (priorTailNode !== undefined) {
+			priorTailNode.nextNode = otherSinglyLinkedList.headNode;
+		} else {
+			// this list was empty
+			this.headNode = otherSinglyLinkedList.headNode;
+		}
+
+		this.numberOfNodes += otherSinglyLinkedList.numberOfNodes;
+
+		otherSinglyLinkedList.clear();
+	}
+
+	public peekValueAtHead() {
+		return this.headNode?.value;
 	}
 
 	public peekValueAtIndex(index: number) {
-		if (index <= 1) {
-			throw `Index was less than 0`;
+		if (index < 1) {
+			throw `Provided index, ${index}, is less than 1`;
 		}
 
-		let numberOfNodesSeen = 0;
-		for (const [currentIndex, currentNode] of this.getForwardIndexAndNodeTupleIterator()) {
-			numberOfNodesSeen++;
+		if (index > this.numberOfNodes) {
+			throw `Provided index, ${index}, is out of range of list with ${this.numberOfNodes} elements`;
+		}
 
+		for (const [currentIndex, currentNode] of this.getForwardIndexAndNodeTupleIterator()) {
 			if (currentIndex === index) {
 				return currentNode.value;
 			}
 		}
 
-		throw `Index ${index} was out of range of list with ${numberOfNodesSeen} elements`;
+		// should never get here
+		throw `Somehow failed to find index, ${index}, even though it is in bounds`;
+	}
+
+	public peekValueAtTail() {
+		return this.tailNode?.value;
 	}
 
 	public popHeadValue() {
@@ -134,12 +277,13 @@ export class SinglyLinkedList<T extends NodeValue> implements ISinglyLinkedList<
 
 		const oldHeadNode = this.headNode;
 		const headValue = oldHeadNode.value;
-
-		this.headNode = oldHeadNode.nextNode;
+		this.numberOfNodes--;
 
 		if (oldHeadNode === this.tailNode) {
 			// the list only had one element
 			this.tailNode = undefined;
+		} else {
+			this.headNode = oldHeadNode.nextNode;
 		}
 
 		return headValue;
@@ -153,6 +297,7 @@ export class SinglyLinkedList<T extends NodeValue> implements ISinglyLinkedList<
 		const oldTailNode = this.tailNode;
 		const tailValue = oldTailNode.value;
 		this.tailNode = undefined;
+		this.numberOfNodes--;
 
 		if (oldTailNode === this.headNode) {
 			// the list only had one element
@@ -169,29 +314,33 @@ export class SinglyLinkedList<T extends NodeValue> implements ISinglyLinkedList<
 	}
 
 	public popValueAtIndex(index: number) {
-		if (index <= 1) {
+		if (index < 1) {
 			throw `Provided index, ${index}, is less than 0`;
 		}
 
-		let numberOfNodesSeen = 0;
+		if (index > this.numberOfNodes) {
+			throw `Provided index, ${index}, is out of range of list with ${this.numberOfNodes} elements`;
+		}
+
+		if (index === 1) {
+			// same as popping the head node
+			// we know there has to be a head value, so cast is safe
+			return this.popHeadValue() as T;
+		}
+
+		if (index === this.numberOfNodes) {
+			// same as popping the tail node
+			// we know there has to be a tail value, so cast is safe
+			return this.popTailValue() as T;
+		}
+
 		let previousNode: ISinglyLinkedListNode<T> | undefined;
 		for (const [currentIndex, currentNode] of this.getForwardIndexAndNodeTupleIterator()) {
-			numberOfNodesSeen++;
-
 			if (currentIndex === index) {
 				const value = currentNode.value;
 
-				if (previousNode === undefined) {
-					// index must have been 1, which is the same as popping the head node
-					this.headNode = currentNode.nextNode;
-				} else {
-					previousNode.nextNode = currentNode.nextNode;
-				}
-
-				if (currentNode.nextNode === undefined) {
-					// currentNode was the tail node
-					this.tailNode = previousNode;
-				}
+				previousNode!.nextNode = currentNode.nextNode;
+				this.numberOfNodes--;
 
 				return value;
 			} else {
@@ -199,7 +348,8 @@ export class SinglyLinkedList<T extends NodeValue> implements ISinglyLinkedList<
 			}
 		}
 
-		throw `Provided index, ${index}, is out of range of list with ${numberOfNodesSeen} elements`;
+		// should never get here
+		throw `Somehow failed to find index, ${index}, even though it is in bounds`;
 	}
 
 	public pushArrayToHead(valuesArray: readonly T[]) {
@@ -226,6 +376,54 @@ export class SinglyLinkedList<T extends NodeValue> implements ISinglyLinkedList<
 		if (this.tailNode === undefined) {
 			this.tailNode = mostRecentNode;
 		}
+
+		this.numberOfNodes += valuesArray.size();
+	}
+
+	public pushArrayToIndex(index: number, valuesArray: readonly T[]) {
+		if (index < 1) {
+			throw `Provided index, ${index}, is less than 1`;
+		}
+
+		if (index > this.numberOfNodes + 1) {
+			throw `Provided index, ${index}, is out of range of list with ${this.numberOfNodes} elements`;
+		}
+
+		if (valuesArray.isEmpty()) {
+			return;
+		}
+
+		if (index === 1) {
+			// just the same as pushing to head
+			this.pushArrayToHead(valuesArray);
+			return;
+		}
+
+		if (index === this.numberOfNodes + 1) {
+			// just the same as pushing to tail
+			this.pushArrayToTail(valuesArray);
+			return;
+		}
+
+		let previousNode = this.headNode!; // at this point we know this isn't pushing to be the head node and the list is not empty
+		for (const [currentIndex, currentNode] of this.getForwardIndexAndNodeTupleIterator()) {
+			if (currentIndex === index) {
+				for (const value of valuesArray) {
+					const newNode = new SinglyLinkedListNode(value);
+
+					previousNode.nextNode = newNode;
+					newNode.nextNode = currentNode;
+
+					previousNode = newNode;
+				}
+
+				break;
+			} else {
+				previousNode = currentNode;
+			}
+		}
+
+		this.numberOfNodes += valuesArray.size();
 	}
 
 	public pushArrayToTail(valuesArray: readonly T[]) {
@@ -244,12 +442,15 @@ export class SinglyLinkedList<T extends NodeValue> implements ISinglyLinkedList<
 
 			this.tailNode = newNode;
 		}
+
+		this.numberOfNodes += valuesArray.size();
 	}
 
 	public pushToHead(value: T) {
 		const newNode = new SinglyLinkedListNode(value);
 		newNode.nextNode = this.headNode;
 		this.headNode = newNode;
+		this.numberOfNodes++;
 
 		if (this.tailNode === undefined) {
 			this.tailNode = newNode;
@@ -257,35 +458,39 @@ export class SinglyLinkedList<T extends NodeValue> implements ISinglyLinkedList<
 	}
 
 	public pushToIndex(index: number, value: T) {
-		if (index <= 1) {
-			throw `Index was less than 0`;
+		if (index < 1) {
+			throw `Provided index, ${index}, is less than 1`;
+		}
+
+		if (index > this.numberOfNodes + 1) {
+			throw `Provided index, ${index}, is out of range of list with ${this.numberOfNodes} elements`;
 		}
 
 		if (index === 1) {
 			// just the same as pushing to head
 			this.pushToHead(value);
+			return;
 		}
 
-		let numberOfNodesSeen = 0;
-		let previousNode = this.headNode!; // at this point we know this isn't pushing to be the head node
+		if (index === this.numberOfNodes + 1) {
+			// just the same as pushing to tail
+			this.pushToTail(value);
+			return;
+		}
+
+		let previousNode = this.headNode!; // at this point we know this isn't pushing to be the head node and the list is not empty
 		for (const [currentIndex, currentNode] of this.getForwardIndexAndNodeTupleIterator()) {
 			if (currentIndex === index) {
 				const newNode = new SinglyLinkedListNode(value);
 				previousNode.nextNode = newNode;
 				newNode.nextNode = currentNode;
+				this.numberOfNodes++;
+
 				return;
 			} else {
 				previousNode = currentNode;
-				numberOfNodesSeen++;
 			}
 		}
-
-		if (index > numberOfNodesSeen + 1) {
-			throw `Provided index, ${index}, is out of range of list with ${numberOfNodesSeen} elements`;
-		}
-
-		// this is just the same as pushing to tail
-		this.pushToTail(value);
 	}
 
 	public pushToTail(value: T) {
@@ -298,16 +503,11 @@ export class SinglyLinkedList<T extends NodeValue> implements ISinglyLinkedList<
 		}
 
 		this.tailNode = newNode;
+		this.numberOfNodes++;
 	}
 
 	public size() {
-		let numberOfNodesSeen = 0;
-
-		for (const _ of this.getForwardIndexAndNodeTupleIterator()) {
-			numberOfNodesSeen++;
-		}
-
-		return numberOfNodesSeen;
+		return this.numberOfNodes;
 	}
 
 	protected getForwardIndexAndNodeTupleIterator(): IterableFunction<LuaTuple<[number, ISinglyLinkedListNode<T>]>> {
