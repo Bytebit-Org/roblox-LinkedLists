@@ -501,8 +501,54 @@ export function runUniversalLinkedListTests(
 		warn("Not implemented");
 	});
 
-	describe("pushArrayToIndex", () => {
-		warn("Not implemented");
+	describe("pushArrayToTail", () => {
+		it("pushArrayToTail - should do nothing if the input array is empty", () => {
+			const arrayInput1 = ["a", "b", "c"];
+			const list1 = createList();
+			list1.pushArrayToHead(arrayInput1);
+
+			const arrayInput2 = new Array<string>();
+
+			list1.pushArrayToTail(arrayInput2);
+
+			expect(list1.size()).to.equal(arrayInput1.size());
+			expect(list1.peekValueAtHead()).to.equal(arrayInput1[0]);
+			expect(list1.peekValueAtTail()).to.equal(arrayInput1[2]);
+		});
+
+		it("pushArrayToTail - should change tail value and change size without affecting the input array", () => {
+			const arrayInput1 = ["a", "b", "c"];
+			const list1 = createList();
+			list1.pushArrayToHead(arrayInput1);
+
+			const arrayInput2 = ["d", "e", "f"];
+
+			list1.pushArrayToTail(arrayInput2);
+
+			expect(list1.size()).to.equal(arrayInput1.size() + arrayInput2.size());
+			expect(list1.peekValueAtHead()).to.equal(arrayInput1[0]);
+			expect(list1.peekValueAtTail()).to.equal(arrayInput2[2]);
+
+			expect(arrayInput2.size()).to.equal(arrayInput2.size());
+		});
+
+		it("pushArrayToTail - should keep elements in order", () => {
+			const arrayInput1 = ["a", "b", "c"];
+			const list1 = createList();
+			list1.pushArrayToHead(arrayInput1);
+
+			const arrayInput2 = ["d", "e", "f"];
+
+			list1.pushArrayToTail(arrayInput2);
+
+			for (const [index, value] of list1.getForwardIterator()) {
+				if (index <= arrayInput1.size()) {
+					expect(value).to.equal(arrayInput1[index - 1]);
+				} else {
+					expect(value).to.equal(arrayInput2[index - arrayInput1.size() - 1]);
+				}
+			}
+		});
 	});
 
 	describe("pushToHead", () => {
@@ -513,7 +559,7 @@ export function runUniversalLinkedListTests(
 		warn("Not implemented");
 	});
 
-	describe("pushToIndex", () => {
+	describe("pushToTail", () => {
 		warn("Not implemented");
 	});
 }
