@@ -324,13 +324,13 @@ export function runUniversalLinkedListTests(
 			const list = createList();
 
 			for (let i = 0; i < arrayInput.size(); i++) {
-				expect(list.peekValueAtIndex(i + 1)).to.never.be.ok();
+				expect(() => list.peekValueAtIndex(i + 1)).to.throw();
 
 				list.pushArrayToHead(arrayInput);
 				expect(list.peekValueAtIndex(i + 1)).to.equal(arrayInput[i]);
 
 				list.clear();
-				expect(list.peekValueAtIndex(i + 1)).to.never.be.ok();
+				expect(() => list.peekValueAtIndex(i + 1)).to.throw();
 			}
 		});
 	});
