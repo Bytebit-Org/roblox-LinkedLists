@@ -19,28 +19,14 @@ export interface IReadonlyLinkedList<T extends NodeValue> {
 	getForwardValuesIterator(): IterableFunction<T>;
 
 	/**
-	 * Gets the value at the head of the list, if any
-	 */
-	getHeadValue(): T | undefined;
-
-	/**
-	 * Gets the value at the tail of the list, if any
-	 */
-	getTailValue(): T | undefined;
-
-	/**
 	 * Gets whether the list is empty (i.e. no head node)
 	 */
 	isEmpty(): boolean;
 
 	/**
-	 * Checks whether the list is at as long as the minLength provided by performing a
-	 * linear iteration of the nodes up to the minLength or returning false if not able
-	 * to do so.
-	 * @param minLength The minimum length the list needs to be in order to return true
-	 * @throws Throws if the given minLength is non-positive
+	 * Peeks at the value in the head node of the list without modifying the list
 	 */
-	isLengthGreaterThanOrEqualTo(minLength: number): boolean;
+	peekValueAtHead(): T | undefined;
 
 	/**
 	 * Peeks at the value from the given index without moving nodes around
@@ -50,7 +36,12 @@ export interface IReadonlyLinkedList<T extends NodeValue> {
 	peekValueAtIndex(index: number): T;
 
 	/**
-	 * Performs a linear iteration of the nodes to compute the total size of the list
+	 * Peeks at the value in the tail node of the list without modifying the list
+	 */
+	peekValueAtTail(): T | undefined;
+
+	/**
+	 * Returns the total size of the list
 	 */
 	size(): number;
 }
