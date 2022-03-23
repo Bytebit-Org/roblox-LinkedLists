@@ -1,0 +1,9 @@
+[package]
+name = "bytebit/linked-lists"
+description = "A module that provides basic linked list data structures."
+version = "0.0.1"
+license = "MIT"
+registry = "https://github.com/UpliftGames/wally-index"
+realm = "shared"
+
+[dependencies]
