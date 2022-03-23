@@ -286,4 +286,56 @@ export function runUniversalLinkedListTests(
 			}
 		});
 	});
+
+	describe("isEmpty", () => {
+		throw "Not implemented";
+	});
+
+	describe("peekValueAtHead", () => {
+		throw "Not implemented";
+	});
+
+	describe("peekValueAtIndex", () => {
+		throw "Not implemented";
+	});
+
+	describe("peekValueAtTail", () => {
+		throw "Not implemented";
+	});
+
+	describe("popHeadValue", () => {
+		throw "Not implemented";
+	});
+
+	describe("popTailValue", () => {
+		throw "Not implemented";
+	});
+
+	describe("popValueAtIndex", () => {
+		throw "Not implemented";
+	});
+
+	describe("pushArrayToHead", () => {
+		throw "Not implemented";
+	});
+
+	describe("pushArrayToIndex", () => {
+		throw "Not implemented";
+	});
+
+	describe("pushArrayToIndex", () => {
+		throw "Not implemented";
+	});
+
+	describe("pushToHead", () => {
+		throw "Not implemented";
+	});
+
+	describe("pushToIndex", () => {
+		throw "Not implemented";
+	});
+
+	describe("pushToIndex", () => {
+		throw "Not implemented";
+	});
 }
