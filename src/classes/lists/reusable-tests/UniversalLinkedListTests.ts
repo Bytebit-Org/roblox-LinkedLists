@@ -303,15 +303,51 @@ export function runUniversalLinkedListTests(
 	});
 
 	describe("peekValueAtHead", () => {
-		throw "Not implemented";
+		it("peekValueAtHead - should change response after items are added and after the list is cleared", () => {
+			const arrayInput = ["a", "b", "c"];
+
+			const list = createList();
+			expect(list.peekValueAtHead()).to.never.be.ok();
+
+			list.pushArrayToHead(arrayInput);
+			expect(list.peekValueAtHead()).to.equal(arrayInput[0]);
+
+			list.clear();
+			expect(list.peekValueAtHead()).to.never.be.ok();
+		});
 	});
 
 	describe("peekValueAtIndex", () => {
-		throw "Not implemented";
+		it("peekValueAtIndex - should change response after items are added and after the list is cleared for each index", () => {
+			const arrayInput = ["a", "b", "c"];
+
+			const list = createList();
+
+			for (let i = 0; i < arrayInput.size(); i++) {
+				expect(list.peekValueAtIndex(i)).to.never.be.ok();
+
+				list.pushArrayToHead(arrayInput);
+				expect(list.peekValueAtIndex(i)).to.equal(arrayInput[i - 1]);
+
+				list.clear();
+				expect(list.peekValueAtIndex(i)).to.never.be.ok();
+			}
+		});
 	});
 
 	describe("peekValueAtTail", () => {
-		throw "Not implemented";
+		it("peekValueAtTail - should change response after items are added and after the list is cleared", () => {
+			const arrayInput = ["a", "b", "c"];
+
+			const list = createList();
+			expect(list.peekValueAtTail()).to.never.be.ok();
+
+			list.pushArrayToHead(arrayInput);
+			expect(list.peekValueAtTail()).to.equal(arrayInput[2]);
+
+			list.clear();
+			expect(list.peekValueAtTail()).to.never.be.ok();
+		});
 	});
 
 	describe("popHeadValue", () => {
