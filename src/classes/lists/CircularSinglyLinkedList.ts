@@ -28,23 +28,21 @@ export class CircularSinglyLinkedList<T extends NodeValue> extends SinglyLinkedL
 	public getForwardIterator() {
 		const iterateNodes = this.getForwardIndexAndNodeTupleIterator();
 
-		let lastHeadNodeSeen: ILinkedListNode<T> | undefined;
+		const visitedNodes = new Set<ILinkedListNode<T>>();
 
 		return (() => {
 			const [index, nextNode] = iterateNodes();
-			if (nextNode === this.headNode) {
-				if (nextNode === lastHeadNodeSeen) {
-					// clearly made a full loop at this point
-					return undefined;
-				} else {
-					// looks like the list has been mutated to have a new head
-					lastHeadNodeSeen = nextNode;
-				}
-			}
 
 			if (nextNode?.value === undefined) {
 				return undefined;
 			} else {
+				if (visitedNodes.has(nextNode)) {
+					// clearly made a full loop at this point
+					return undefined;
+				} else {
+					visitedNodes.add(nextNode);
+				}
+
 				return [index, nextNode.value] as LuaTuple<[number, T]>;
 			}
 		}) as IterableFunction<LuaTuple<[number, T]>>;
