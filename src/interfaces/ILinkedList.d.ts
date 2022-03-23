@@ -35,6 +35,11 @@ export interface ILinkedList<T extends defined> extends IReadonlyLinkedList<T> {
 	copyLinkedListValuesToTail(valuesList: IReadonlyLinkedList<T>): void;
 
 	/**
+	 * {@inheritdoc IReadonlyLinkedList.copyValuesToSubList}
+	 */
+	copyValuesToSubList(startIndex: number, exclusiveEndIndex: number): ILinkedList<T>;
+
+	/**
 	 * Pops the head node off the list and returns the value, if any
 	 */
 	popHeadValue(): T | undefined;
