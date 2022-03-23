@@ -1,4 +1,14 @@
 import { ILinkedList } from "interfaces/ILinkedList";
-import { IReadonlyLinkedList } from "interfaces/IReadonlyLinkedList";
+import { IReadonlySinglyLinkedList } from "./IReadonlySinglyLinkedList";
 
-export interface ISinglyLinkedList<T extends defined> extends IReadonlyLinkedList<T>, ILinkedList<T> {}
+export interface ISinglyLinkedList<T extends defined> extends IReadonlySinglyLinkedList<T>, ILinkedList<T> {
+	/**
+	 * {@inheritdoc IReadonlyLinkedList.copyValuesToSubList}
+	 */
+	copyValuesToSubList(startIndex: number, exclusiveEndIndex: number): ISinglyLinkedList<T>;
+
+	/**
+	 * {@inheritdoc ILinkedList.popValuesToSubList}
+	 */
+	popValuesToSubList(startIndex: number, exclusiveEndIndex: number): ISinglyLinkedList<T>;
+}

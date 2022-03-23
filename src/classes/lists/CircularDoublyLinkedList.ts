@@ -21,6 +21,15 @@ export class CircularDoublyLinkedList<T extends defined> extends DoublyLinkedLis
 		}
 	}
 
+	public copyValuesToSubList(startIndex: number, exclusiveEndIndex: number): CircularDoublyLinkedList<T> {
+		const subList = super.popValuesToSubList(startIndex, exclusiveEndIndex) as CircularDoublyLinkedList<T>;
+
+		subList.tailNode!.nextNode = subList.headNode;
+		subList.headNode!.previousNode = subList.tailNode;
+
+		return subList;
+	}
+
 	/**
 	 * {@inheritdoc IReadonlyDoublyLinkedList.getBackwardIterator}
 	 * @remarks Because this iterator includes an index, it will not loop despite being
@@ -129,6 +138,15 @@ export class CircularDoublyLinkedList<T extends defined> extends DoublyLinkedLis
 		return tailValue;
 	}
 
+	public popValuesToSubList(startIndex: number, exclusiveEndIndex: number): CircularDoublyLinkedList<T> {
+		const subList = super.popValuesToSubList(startIndex, exclusiveEndIndex) as CircularDoublyLinkedList<T>;
+
+		subList.tailNode!.nextNode = subList.headNode;
+		subList.headNode!.previousNode = subList.tailNode;
+
+		return subList;
+	}
+
 	public pushArrayToHead(valuesArray: readonly T[]) {
 		if (valuesArray.isEmpty()) {
 			return;
@@ -163,5 +181,20 @@ export class CircularDoublyLinkedList<T extends defined> extends DoublyLinkedLis
 
 		this.tailNode!.nextNode = this.headNode;
 		this.headNode!.previousNode = this.tailNode;
+	}
+
+	public toArray() {
+		const array = new Array<T>(this.numberOfNodes);
+
+		for (const [index, node] of this.getForwardIndexAndNodeTupleIterator()) {
+			if (index > this.numberOfNodes) {
+				// made a full loop
+				break;
+			}
+
+			array[index - 1] = node.value;
+		}
+
+		return array;
 	}
 }

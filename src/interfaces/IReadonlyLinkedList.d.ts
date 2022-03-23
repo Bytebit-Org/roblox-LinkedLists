@@ -3,6 +3,14 @@
  */
 export interface IReadonlyLinkedList<T extends defined> {
 	/**
+	 * Copies the values from the given bounds into a sublist of the same type
+	 * @param startIndex An inclusive index to start the sub list
+	 * @param exclusiveEndIndex An exclusive index to end the sub list
+	 * @throws Throws if either index is out of bounds for the list or if startIndex >= exclusiveEndIndex
+	 */
+	copyValuesToSubList(startIndex: number, exclusiveEndIndex: number): IReadonlyLinkedList<T>;
+
+	/**
 	 * Gets an iterator to be used in making looping over values in the list possible.
 	 * Will return lua tuples of the 1-based index and the value.
 	 * Iterator will loop from head value to tail value.
@@ -42,4 +50,10 @@ export interface IReadonlyLinkedList<T extends defined> {
 	 * Returns the total size of the list
 	 */
 	size(): number;
+
+	/**
+	 * Iterates over the elements and puts their values into an array in the same order
+	 * @returns The array with the same values in the same order
+	 */
+	toArray(): Array<T>;
 }

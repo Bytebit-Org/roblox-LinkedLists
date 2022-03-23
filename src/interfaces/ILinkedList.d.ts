@@ -52,6 +52,14 @@ export interface ILinkedList<T extends defined> extends IReadonlyLinkedList<T> {
 	popValueAtIndex(index: number): T;
 
 	/**
+	 * Pops the values from the given bounds into a sublist of the same type
+	 * @param startIndex An inclusive index to start the sub list
+	 * @param exclusiveEndIndex An exclusive index to end the sub list
+	 * @throws Throws if either index is out of bounds for the list or if startIndex >= exclusiveEndIndex
+	 */
+	popValuesToSubList(startIndex: number, exclusiveEndIndex: number): ILinkedList<T>;
+
+	/**
 	 * Pushes a new set of nodes to the head of the list with the given values,
 	 * with the first value in the array being placed as the value at the head of the list
 	 * @param valuesArray The array of values to put into nodes in the list

@@ -2,6 +2,11 @@ import { IReadonlyLinkedList } from "interfaces/IReadonlyLinkedList";
 
 export interface IReadonlyDoublyLinkedList<T extends defined> extends IReadonlyLinkedList<T> {
 	/**
+	 * {@inheritdoc IReadonlyLinkedList.copyValuesToSubList}
+	 */
+	copyValuesToSubList(startIndex: number, exclusiveEndIndex: number): IReadonlyDoublyLinkedList<T>;
+
+	/**
 	 * Gets an iterator to be used in making looping over values in the list possible.
 	 * Will return lua tuples of the 1-based index and the value.
 	 * Iterator will loop from tail value to head value.
