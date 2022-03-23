@@ -439,13 +439,16 @@ export class SinglyLinkedList<T extends defined> implements ISinglyLinkedList<T>
 					previousNode = newNode;
 				}
 
+				this.numberOfNodes += valuesArray.size();
+
 				break;
 			} else {
 				previousNode = currentNode;
 			}
 		}
 
-		this.numberOfNodes += valuesArray.size();
+		// should never get here
+		throw `Somehow failed to find index, ${index}, even though it is in bounds`;
 	}
 
 	public pushArrayToTail(valuesArray: readonly T[]) {

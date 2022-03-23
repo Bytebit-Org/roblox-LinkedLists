@@ -478,13 +478,16 @@ export class DoublyLinkedList<T extends defined> implements IDoublyLinkedList<T>
 					previousNode = newNode;
 				}
 
+				this.numberOfNodes += valuesArray.size();
+
 				break;
 			} else {
 				previousNode = currentNode;
 			}
 		}
 
-		this.numberOfNodes += valuesArray.size();
+		// should never get here
+		throw `Somehow failed to find index, ${index}, even though it is in bounds`;
 	}
 
 	public pushArrayToTail(valuesArray: readonly T[]) {
@@ -492,23 +495,19 @@ export class DoublyLinkedList<T extends defined> implements IDoublyLinkedList<T>
 			return;
 		}
 
-		let mostRecentNode = this.tailNode;
-
 		for (const value of valuesArray) {
-			const newestNode = new DoublyLinkedListNode(value);
+			const newNode = new DoublyLinkedListNode(value);
 
-			if (mostRecentNode === undefined) {
+			if (this.tailNode === undefined) {
 				// the list was empty before this
-				this.headNode = newestNode;
+				this.headNode = newNode;
 			} else {
-				newestNode.previousNode = mostRecentNode;
-				mostRecentNode.nextNode = newestNode;
+				newNode.previousNode = this.tailNode;
+				this.tailNode.nextNode = newNode;
 			}
 
-			mostRecentNode = newestNode;
+			this.tailNode = newNode;
 		}
-
-		this.tailNode = mostRecentNode;
 
 		this.numberOfNodes += valuesArray.size();
 	}
