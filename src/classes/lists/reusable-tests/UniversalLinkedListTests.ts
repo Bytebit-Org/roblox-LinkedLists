@@ -668,17 +668,21 @@ export function runUniversalLinkedListTests(
 	});
 
 	describe("pushToHead", () => {
-		it("pushToHead - should change head value after items are added while also changing size", () => {
+		it("pushToHead - should change head value after items are added while also changing size and elements should end up in expected order", () => {
 			const arrayInput = ["a", "b", "c"];
 
 			const list = createList<string>();
 
-			for (let i = 0; i < arrayInput.size(); i++) {
+			for (let i = arrayInput.size() - 1; i >= 0; i--) {
 				list.pushToHead(arrayInput[i]);
 
-				expect(list.size()).to.equal(i + 1);
+				expect(list.size()).to.equal(arrayInput.size() - i);
 				expect(list.peekValueAtHead()).to.equal(arrayInput[i]);
-				expect(list.peekValueAtTail()).to.equal(arrayInput[0]);
+				expect(list.peekValueAtTail()).to.equal(arrayInput[arrayInput.size() - 1]);
+			}
+
+			for (const [listIndex, listValue] of list.getForwardIterator()) {
+				expect(listValue).to.equal(arrayInput[listIndex - 1]);
 			}
 		});
 	});
@@ -689,12 +693,16 @@ export function runUniversalLinkedListTests(
 
 			const list = createList<string>();
 
-			for (let i = 0; i < arrayInput.size(); i++) {
-				list.pushToIndex(1, arrayInput[i]);
+			for (let i = arrayInput.size() - 1; i >= 0; i--) {
+				list.pushToHead(arrayInput[i]);
 
-				expect(list.size()).to.equal(i + 1);
+				expect(list.size()).to.equal(arrayInput.size() - i);
 				expect(list.peekValueAtHead()).to.equal(arrayInput[i]);
-				expect(list.peekValueAtTail()).to.equal(arrayInput[0]);
+				expect(list.peekValueAtTail()).to.equal(arrayInput[arrayInput.size() - 1]);
+			}
+
+			for (const [listIndex, listValue] of list.getForwardIterator()) {
+				expect(listValue).to.equal(arrayInput[listIndex - 1]);
 			}
 		});
 
@@ -704,11 +712,15 @@ export function runUniversalLinkedListTests(
 			const list = createList<string>();
 
 			for (let i = 0; i < arrayInput.size(); i++) {
-				list.pushToIndex(list.size() + 1, arrayInput[i]);
+				list.pushToTail(arrayInput[i]);
 
 				expect(list.size()).to.equal(i + 1);
 				expect(list.peekValueAtHead()).to.equal(arrayInput[0]);
 				expect(list.peekValueAtTail()).to.equal(arrayInput[i]);
+			}
+
+			for (const [listIndex, listValue] of list.getForwardIterator()) {
+				expect(listValue).to.equal(arrayInput[listIndex - 1]);
 			}
 		});
 
@@ -737,7 +749,7 @@ export function runUniversalLinkedListTests(
 	});
 
 	describe("pushToTail", () => {
-		it("pushToTail - should change tail value after items are added while also changing size", () => {
+		it("pushToTail - should change tail value after items are added while also changing size and elements should end up in expected order", () => {
 			const arrayInput = ["a", "b", "c"];
 
 			const list = createList<string>();
@@ -748,6 +760,10 @@ export function runUniversalLinkedListTests(
 				expect(list.size()).to.equal(i + 1);
 				expect(list.peekValueAtHead()).to.equal(arrayInput[0]);
 				expect(list.peekValueAtTail()).to.equal(arrayInput[i]);
+			}
+
+			for (const [listIndex, listValue] of list.getForwardIterator()) {
+				expect(listValue).to.equal(arrayInput[listIndex - 1]);
 			}
 		});
 	});
