@@ -753,7 +753,7 @@ export function runUniversalLinkedListTests(
 	});
 
 	describe("toArray", () => {
-		it("should give an array of the same length back with the same order", () => {
+		it("toArray - should give an array of the same length back with the same order", () => {
 			const list = createList();
 
 			expect(list.toArray().size()).to.equal(0);
