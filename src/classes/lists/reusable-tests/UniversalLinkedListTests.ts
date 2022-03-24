@@ -760,7 +760,7 @@ export function runUniversalLinkedListTests(
 
 			const inputArray = ["a", "b", "c"];
 			for (let i = 0; i < inputArray.size(); i++) {
-				list.pushToHead(inputArray[i]);
+				list.pushToTail(inputArray[i]);
 				expect(list.toArray().size()).to.equal(i + 1);
 
 				for (const [listIndex, value] of list.getForwardIterator()) {
