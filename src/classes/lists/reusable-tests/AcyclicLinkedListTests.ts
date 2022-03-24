@@ -33,7 +33,7 @@ export function runAcyclicLinkedListTests(
 			list.pushArrayToHead(arrayInput);
 
 			for (let startIndex = 1; startIndex < arrayInput.size(); startIndex++) {
-				for (let endIndex = startIndex + 1; endIndex <= arrayInput.size(); endIndex++) {
+				for (let endIndex = startIndex; endIndex <= arrayInput.size(); endIndex++) {
 					const subList = list.copyValuesToSubList(startIndex, endIndex);
 
 					expect(subList.size()).to.equal(endIndex - startIndex + 1);
@@ -216,6 +216,58 @@ export function runAcyclicLinkedListTests(
 	});
 
 	describe("popValuesToSubList", () => {
-		warn("Not implemented");
+		it("popValuesToSubList - should throw if startIndex is below 1", () => {
+			const list = createList();
+
+			const arrayInput = ["a", "b", "c"];
+			list.pushArrayToHead(arrayInput);
+
+			expect(() => list.popValuesToSubList(0, arrayInput.size())).to.throw();
+		});
+
+		it("popValuesToSubList - should throw if endIndex is too large", () => {
+			const list = createList();
+
+			const arrayInput = ["a", "b", "c"];
+			list.pushArrayToHead(arrayInput);
+
+			expect(() => list.popValuesToSubList(1, arrayInput.size() + 1)).to.throw();
+		});
+
+		it("popValuesToSubList - should return a list of the expected size and values and reduce original list size and pop appropriate values", () => {
+			const arrayInput = ["a", "b", "c", "d"];
+
+			for (let startIndex = 1; startIndex < arrayInput.size(); startIndex++) {
+				for (let endIndex = startIndex; endIndex <= arrayInput.size(); endIndex++) {
+					const list = createList();
+					list.pushArrayToHead(arrayInput);
+
+					const subList = list.popValuesToSubList(startIndex, endIndex);
+					const expectedSubListSize = endIndex - startIndex + 1;
+
+					expect(list.size()).to.equal(arrayInput.size() - expectedSubListSize);
+
+					for (const [listIndex, listValue] of list.getForwardIterator()) {
+						assert(listIndex <= list.size(), "List iterator went past expected size");
+
+						let arrayInputIndex = listIndex - 1;
+						if (listIndex >= startIndex) {
+							arrayInputIndex += expectedSubListSize;
+						}
+
+						expect(listValue).to.equal(arrayInput[arrayInputIndex]);
+					}
+
+					expect(subList.size()).to.equal(expectedSubListSize);
+
+					for (const [subListIndex, subListValue] of subList.getForwardIterator()) {
+						assert(subListIndex <= subList.size(), "SubList iterator went past expected size");
+
+						const arrayInputIndex = startIndex - 1 + (subListIndex - 1);
+						expect(subListValue).to.equal(arrayInput[arrayInputIndex]);
+					}
+				}
+			}
+		});
 	});
 }

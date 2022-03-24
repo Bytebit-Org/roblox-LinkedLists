@@ -20,7 +20,11 @@ export class CircularSinglyLinkedList<T extends defined> extends SinglyLinkedLis
 	}
 
 	public copyValuesToSubList(startIndex: number, endIndex: number): CircularSinglyLinkedList<T> {
-		const subList = super.popValuesToSubList(startIndex, endIndex) as CircularSinglyLinkedList<T>;
+		const subList = super.doCopyValuesToSubList(
+			startIndex,
+			endIndex,
+			new CircularSinglyLinkedList(),
+		) as CircularSinglyLinkedList<T>;
 
 		subList.tailNode!.nextNode = subList.headNode;
 
@@ -40,7 +44,7 @@ export class CircularSinglyLinkedList<T extends defined> extends SinglyLinkedLis
 		return (() => {
 			const [index, nextNode] = iterateNodes();
 
-			if (nextNode?.value === undefined) {
+			if (nextNode === undefined) {
 				return undefined;
 			} else {
 				if (visitedNodes.has(nextNode)) {
@@ -151,9 +155,17 @@ export class CircularSinglyLinkedList<T extends defined> extends SinglyLinkedLis
 	}
 
 	public popValuesToSubList(startIndex: number, endIndex: number): CircularSinglyLinkedList<T> {
-		const subList = super.popValuesToSubList(startIndex, endIndex) as CircularSinglyLinkedList<T>;
+		const subList = super.doPopValuesToSubList(
+			startIndex,
+			endIndex,
+			new CircularSinglyLinkedList(),
+		) as CircularSinglyLinkedList<T>;
 
 		subList.tailNode!.nextNode = subList.headNode;
+
+		if (this.headNode !== undefined && this.tailNode !== undefined) {
+			this.tailNode.nextNode = this.headNode;
+		}
 
 		return subList;
 	}

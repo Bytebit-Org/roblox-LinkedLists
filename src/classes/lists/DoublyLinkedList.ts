@@ -129,31 +129,7 @@ export class DoublyLinkedList<T extends defined> implements IDoublyLinkedList<T>
 	}
 
 	public copyValuesToSubList(startIndex: number, endIndex: number): DoublyLinkedList<T> {
-		if (startIndex > endIndex) {
-			throw `Provided start index, ${startIndex}, is greater than the end index, ${endIndex}`;
-		}
-
-		if (startIndex < 1) {
-			throw `Provided start index, ${startIndex}, is less than 1`;
-		}
-
-		if (endIndex > this.numberOfNodes) {
-			throw `Provided end index, ${endIndex}, is out of range of list with ${this.numberOfNodes} elements`;
-		}
-
-		const subList = new DoublyLinkedList<T>();
-
-		for (const [index, node] of this.getForwardIndexAndNodeTupleIterator()) {
-			if (index > endIndex) {
-				break;
-			}
-
-			if (index >= startIndex) {
-				subList.pushToTail(node.value);
-			}
-		}
-
-		return subList;
+		return this.doCopyValuesToSubList(startIndex, endIndex, new DoublyLinkedList());
 	}
 
 	public getBackwardIterator() {
@@ -434,52 +410,7 @@ export class DoublyLinkedList<T extends defined> implements IDoublyLinkedList<T>
 	}
 
 	public popValuesToSubList(startIndex: number, endIndex: number): DoublyLinkedList<T> {
-		if (startIndex > endIndex) {
-			throw `Provided start index, ${startIndex}, is greater than the end index, ${endIndex}`;
-		}
-
-		if (startIndex < 1) {
-			throw `Provided start index, ${startIndex}, is less than 1`;
-		}
-
-		if (endIndex > this.numberOfNodes) {
-			throw `Provided end index, ${endIndex}, is out of range of list with ${this.numberOfNodes} elements`;
-		}
-
-		const subList = new DoublyLinkedList<T>();
-		let priorToStartNode: IDoublyLinkedListNode<T> | undefined;
-		let afterEndNode: IDoublyLinkedListNode<T> | undefined;
-
-		for (const [index, node] of this.getForwardIndexAndNodeTupleIterator()) {
-			if (index < startIndex) {
-				priorToStartNode = node;
-			} else if (index === startIndex) {
-				subList.headNode = node;
-				subList.tailNode = node;
-			} else if (index <= endIndex) {
-				subList.tailNode = node;
-			} else if (index > endIndex) {
-				afterEndNode = node;
-				break;
-			}
-		}
-
-		subList.headNode!.previousNode = undefined;
-		subList.tailNode!.nextNode = undefined;
-
-		if (priorToStartNode !== undefined) {
-			priorToStartNode.nextNode = afterEndNode;
-		}
-
-		if (afterEndNode !== undefined) {
-			afterEndNode.previousNode = priorToStartNode;
-		}
-
-		const rangeSize = endIndex - startIndex;
-		subList.numberOfNodes = rangeSize;
-		this.numberOfNodes -= rangeSize;
-
-		return subList;
+		return this.doPopValuesToSubList(startIndex, endIndex, new DoublyLinkedList());
 	}
 
 	public pushArrayToHead(valuesArray: readonly T[]) {
@@ -676,6 +607,91 @@ export class DoublyLinkedList<T extends defined> implements IDoublyLinkedList<T>
 		}
 
 		return array;
+	}
+
+	protected doCopyValuesToSubList(startIndex: number, endIndex: number, subList: DoublyLinkedList<T>) {
+		if (startIndex > endIndex) {
+			throw `Provided start index, ${startIndex}, is greater than the end index, ${endIndex}`;
+		}
+
+		if (startIndex < 1) {
+			throw `Provided start index, ${startIndex}, is less than 1`;
+		}
+
+		if (endIndex > this.numberOfNodes) {
+			throw `Provided end index, ${endIndex}, is out of range of list with ${this.numberOfNodes} elements`;
+		}
+
+		for (const [index, node] of this.getForwardIndexAndNodeTupleIterator()) {
+			if (index > endIndex) {
+				break;
+			}
+
+			if (index >= startIndex) {
+				subList.pushToTail(node.value);
+			}
+		}
+
+		return subList;
+	}
+
+	protected doPopValuesToSubList(startIndex: number, endIndex: number, subList: DoublyLinkedList<T>) {
+		if (startIndex > endIndex) {
+			throw `Provided start index, ${startIndex}, is greater than the end index, ${endIndex}`;
+		}
+
+		if (startIndex < 1) {
+			throw `Provided start index, ${startIndex}, is less than 1`;
+		}
+
+		if (endIndex > this.numberOfNodes) {
+			throw `Provided end index, ${endIndex}, is out of range of list with ${this.numberOfNodes} elements`;
+		}
+
+		let priorToStartNode: IDoublyLinkedListNode<T> | undefined;
+		let afterEndNode: IDoublyLinkedListNode<T> | undefined;
+
+		for (const [index, node] of this.getForwardIndexAndNodeTupleIterator()) {
+			if (index > this.numberOfNodes) {
+				// this is to protect against problems with circular lists
+				break;
+			}
+
+			if (index < startIndex) {
+				priorToStartNode = node;
+			} else if (index === startIndex) {
+				subList.headNode = node;
+				subList.tailNode = node;
+			} else if (index <= endIndex) {
+				subList.tailNode = node;
+			} else if (index > endIndex) {
+				afterEndNode = node;
+				break;
+			}
+		}
+
+		subList.headNode!.previousNode = undefined;
+		subList.tailNode!.nextNode = undefined;
+
+		if (priorToStartNode !== undefined) {
+			priorToStartNode.nextNode = afterEndNode;
+		} else {
+			// must have started the sublist at the head
+			this.headNode = afterEndNode;
+		}
+
+		if (afterEndNode !== undefined) {
+			afterEndNode.previousNode = priorToStartNode;
+		} else {
+			// must have ended the sublist at the tail
+			this.tailNode = priorToStartNode;
+		}
+
+		const rangeSize = endIndex - startIndex + 1;
+		subList.numberOfNodes = rangeSize;
+		this.numberOfNodes -= rangeSize;
+
+		return subList;
 	}
 
 	protected getForwardIndexAndNodeTupleIterator(): IterableFunction<LuaTuple<[number, IDoublyLinkedListNode<T>]>> {

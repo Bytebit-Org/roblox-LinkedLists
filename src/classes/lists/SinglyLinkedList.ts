@@ -117,31 +117,7 @@ export class SinglyLinkedList<T extends defined> implements ISinglyLinkedList<T>
 	}
 
 	public copyValuesToSubList(startIndex: number, endIndex: number): SinglyLinkedList<T> {
-		if (startIndex > endIndex) {
-			throw `Provided start index, ${startIndex}, is greater than the end index, ${endIndex}`;
-		}
-
-		if (startIndex < 1) {
-			throw `Provided start index, ${startIndex}, is less than 1`;
-		}
-
-		if (endIndex > this.numberOfNodes) {
-			throw `Provided end index, ${endIndex}, is out of range of list with ${this.numberOfNodes} elements`;
-		}
-
-		const subList = new SinglyLinkedList<T>();
-
-		for (const [index, node] of this.getForwardIndexAndNodeTupleIterator()) {
-			if (index > endIndex) {
-				break;
-			}
-
-			if (index >= startIndex) {
-				subList.pushToTail(node.value);
-			}
-		}
-
-		return subList;
+		return this.doCopyValuesToSubList(startIndex, endIndex, new SinglyLinkedList());
 	}
 
 	public getForwardIterator() {
@@ -398,47 +374,7 @@ export class SinglyLinkedList<T extends defined> implements ISinglyLinkedList<T>
 	}
 
 	public popValuesToSubList(startIndex: number, endIndex: number): SinglyLinkedList<T> {
-		if (startIndex > endIndex) {
-			throw `Provided start index, ${startIndex}, is greater than the end index, ${endIndex}`;
-		}
-
-		if (startIndex < 1) {
-			throw `Provided start index, ${startIndex}, is less than 1`;
-		}
-
-		if (endIndex > this.numberOfNodes) {
-			throw `Provided end index, ${endIndex}, is out of range of list with ${this.numberOfNodes} elements`;
-		}
-
-		const subList = new SinglyLinkedList<T>();
-		let priorToStartNode: ISinglyLinkedListNode<T> | undefined;
-		let afterEndNode: ISinglyLinkedListNode<T> | undefined;
-
-		for (const [index, node] of this.getForwardIndexAndNodeTupleIterator()) {
-			if (index < startIndex) {
-				priorToStartNode = node;
-			} else if (index === startIndex) {
-				subList.headNode = node;
-				subList.tailNode = node;
-			} else if (index <= endIndex) {
-				subList.tailNode = node;
-			} else if (index > endIndex) {
-				afterEndNode = node;
-				break;
-			}
-		}
-
-		subList.tailNode!.nextNode = undefined;
-
-		if (priorToStartNode !== undefined) {
-			priorToStartNode.nextNode = afterEndNode;
-		}
-
-		const rangeSize = endIndex - startIndex;
-		subList.numberOfNodes = rangeSize;
-		this.numberOfNodes -= rangeSize;
-
-		return subList;
+		return this.doPopValuesToSubList(startIndex, endIndex, new SinglyLinkedList());
 	}
 
 	public pushArrayToHead(valuesArray: readonly T[]) {
@@ -620,6 +556,88 @@ export class SinglyLinkedList<T extends defined> implements ISinglyLinkedList<T>
 		}
 
 		return array;
+	}
+
+	protected doCopyValuesToSubList(startIndex: number, endIndex: number, subList: SinglyLinkedList<T>) {
+		if (startIndex > endIndex) {
+			throw `Provided start index, ${startIndex}, is greater than the end index, ${endIndex}`;
+		}
+
+		if (startIndex < 1) {
+			throw `Provided start index, ${startIndex}, is less than 1`;
+		}
+
+		if (endIndex > this.numberOfNodes) {
+			throw `Provided end index, ${endIndex}, is out of range of list with ${this.numberOfNodes} elements`;
+		}
+
+		for (const [index, node] of this.getForwardIndexAndNodeTupleIterator()) {
+			if (index > endIndex) {
+				break;
+			}
+
+			if (index >= startIndex) {
+				subList.pushToTail(node.value);
+			}
+		}
+
+		return subList;
+	}
+
+	protected doPopValuesToSubList(startIndex: number, endIndex: number, subList: SinglyLinkedList<T>) {
+		if (startIndex > endIndex) {
+			throw `Provided start index, ${startIndex}, is greater than the end index, ${endIndex}`;
+		}
+
+		if (startIndex < 1) {
+			throw `Provided start index, ${startIndex}, is less than 1`;
+		}
+
+		if (endIndex > this.numberOfNodes) {
+			throw `Provided end index, ${endIndex}, is out of range of list with ${this.numberOfNodes} elements`;
+		}
+
+		let priorToStartNode: ISinglyLinkedListNode<T> | undefined;
+		let afterEndNode: ISinglyLinkedListNode<T> | undefined;
+
+		for (const [index, node] of this.getForwardIndexAndNodeTupleIterator()) {
+			if (index > this.numberOfNodes) {
+				// this is to protect against problems with circular lists
+				break;
+			}
+
+			if (index < startIndex) {
+				priorToStartNode = node;
+			} else if (index === startIndex) {
+				subList.headNode = node;
+				subList.tailNode = node;
+			} else if (index <= endIndex) {
+				subList.tailNode = node;
+			} else if (index > endIndex) {
+				afterEndNode = node;
+				break;
+			}
+		}
+
+		subList.tailNode!.nextNode = undefined;
+
+		if (priorToStartNode !== undefined) {
+			// must have started the sublist at the head
+			priorToStartNode.nextNode = afterEndNode;
+		} else {
+			this.headNode = afterEndNode;
+		}
+
+		if (afterEndNode === undefined) {
+			// must have ended the sublist at the tail
+			this.tailNode = priorToStartNode;
+		}
+
+		const rangeSize = endIndex - startIndex + 1;
+		subList.numberOfNodes = rangeSize;
+		this.numberOfNodes -= rangeSize;
+
+		return subList;
 	}
 
 	protected getForwardIndexAndNodeTupleIterator(): IterableFunction<LuaTuple<[number, ISinglyLinkedListNode<T>]>> {

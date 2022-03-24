@@ -182,6 +182,78 @@ export function runCircularLinkedListTests(
 	});
 
 	describe("popValuesToSubList", () => {
-		warn("Not implemented");
+		it("popValuesToSubList - should throw if startIndex is below 1", () => {
+			const list = createList();
+
+			const arrayInput = ["a", "b", "c"];
+			list.pushArrayToHead(arrayInput);
+
+			expect(() => list.popValuesToSubList(0, arrayInput.size())).to.throw();
+		});
+
+		it("popValuesToSubList - should throw if endIndex is too large", () => {
+			const list = createList();
+
+			const arrayInput = ["a", "b", "c"];
+			list.pushArrayToHead(arrayInput);
+
+			expect(() => list.popValuesToSubList(1, arrayInput.size() + 1)).to.throw();
+		});
+
+		it("popValuesToSubList - should return a list of the expected size and values, reduce original list size and pop appropriate values, and both lists should be circular", () => {
+			const arrayInput = ["a", "b", "c", "d"];
+
+			for (let startIndex = 1; startIndex < arrayInput.size(); startIndex++) {
+				for (let endIndex = startIndex; endIndex <= arrayInput.size(); endIndex++) {
+					const list = createList();
+					list.pushArrayToHead(arrayInput);
+
+					const subList = list.popValuesToSubList(startIndex, endIndex);
+					const expectedSubListSize = endIndex - startIndex + 1;
+
+					expect(list.size()).to.equal(arrayInput.size() - expectedSubListSize);
+
+					for (const [listIndex, listValue] of list.getForwardIterator()) {
+						assert(listIndex <= list.size(), "List iterator went past expected size");
+
+						let arrayInputIndex = listIndex - 1;
+						if (listIndex >= startIndex) {
+							arrayInputIndex += expectedSubListSize;
+						}
+
+						expect(listValue).to.equal(arrayInput[arrayInputIndex]);
+					}
+
+					if (!list.isEmpty()) {
+						let numberOfItemsFromListValuesIterator = 0;
+						for (const _ of list.getForwardValuesIterator()) {
+							if (++numberOfItemsFromListValuesIterator === list.size() * 11) {
+								break;
+							}
+						}
+
+						expect(numberOfItemsFromListValuesIterator).to.equal(list.size() * 11);
+					}
+
+					expect(subList.size()).to.equal(expectedSubListSize);
+
+					for (const [subListIndex, subListValue] of subList.getForwardIterator()) {
+						assert(subListIndex <= subList.size(), "SubList iterator went past expected size");
+
+						const arrayInputIndex = startIndex - 1 + (subListIndex - 1);
+						expect(subListValue).to.equal(arrayInput[arrayInputIndex]);
+					}
+
+					let numberOfItemsFromSubListValuesIterator = 0;
+					for (const _ of subList.getForwardValuesIterator()) {
+						if (++numberOfItemsFromSubListValuesIterator === subList.size() * 11) {
+							break;
+						}
+					}
+
+					expect(numberOfItemsFromSubListValuesIterator).to.equal(subList.size() * 11);
+				}
+			}
+		});
 	});
 }

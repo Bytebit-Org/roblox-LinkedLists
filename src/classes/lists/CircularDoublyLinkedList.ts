@@ -22,10 +22,19 @@ export class CircularDoublyLinkedList<T extends defined> extends DoublyLinkedLis
 	}
 
 	public copyValuesToSubList(startIndex: number, endIndex: number): CircularDoublyLinkedList<T> {
-		const subList = super.popValuesToSubList(startIndex, endIndex) as CircularDoublyLinkedList<T>;
+		const subList = super.doCopyValuesToSubList(
+			startIndex,
+			endIndex,
+			new CircularDoublyLinkedList(),
+		) as CircularDoublyLinkedList<T>;
 
 		subList.tailNode!.nextNode = subList.headNode;
 		subList.headNode!.previousNode = subList.tailNode;
+
+		if (this.headNode !== undefined && this.tailNode !== undefined) {
+			this.tailNode.nextNode = this.headNode;
+			this.headNode.previousNode = this.tailNode;
+		}
 
 		return subList;
 	}
@@ -139,10 +148,19 @@ export class CircularDoublyLinkedList<T extends defined> extends DoublyLinkedLis
 	}
 
 	public popValuesToSubList(startIndex: number, endIndex: number): CircularDoublyLinkedList<T> {
-		const subList = super.popValuesToSubList(startIndex, endIndex) as CircularDoublyLinkedList<T>;
+		const subList = super.doPopValuesToSubList(
+			startIndex,
+			endIndex,
+			new CircularDoublyLinkedList(),
+		) as CircularDoublyLinkedList<T>;
 
 		subList.tailNode!.nextNode = subList.headNode;
 		subList.headNode!.previousNode = subList.tailNode;
+
+		if (this.headNode !== undefined && this.tailNode !== undefined) {
+			this.tailNode.nextNode = this.headNode;
+			this.headNode.previousNode = this.tailNode;
+		}
 
 		return subList;
 	}
