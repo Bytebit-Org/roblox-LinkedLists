@@ -768,6 +768,14 @@ export function runUniversalLinkedListTests(
 		});
 	});
 
+	describe("size", () => {
+		// this is tested in just about every other method so I'm going to call it good to go with just this
+		it("size - should be 0 upon initialization", () => {
+			const list = createList();
+			expect(list.size()).to.equal(0);
+		});
+	});
+
 	describe("toArray", () => {
 		it("toArray - should give an array of the same length back with the same order", () => {
 			const list = createList();
