@@ -753,6 +753,20 @@ export function runUniversalLinkedListTests(
 	});
 
 	describe("toArray", () => {
-		warn("Not implemented");
+		it("should give an array of the same length back with the same order", () => {
+			const list = createList();
+
+			expect(list.toArray().size()).to.equal(0);
+
+			const inputArray = ["a", "b", "c"];
+			for (let i = 0; i < inputArray.size(); i++) {
+				list.pushToHead(inputArray[i]);
+				expect(list.toArray().size()).to.equal(i + 1);
+
+				for (const [listIndex, value] of list.getForwardIterator()) {
+					expect(value).to.equal(inputArray[listIndex - 1]);
+				}
+			}
+		});
 	});
 }
