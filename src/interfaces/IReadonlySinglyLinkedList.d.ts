@@ -4,5 +4,5 @@ export interface IReadonlySinglyLinkedList<T extends defined> extends IReadonlyL
 	/**
 	 * {@inheritdoc IReadonlyLinkedList.copyValuesToSubList}
 	 */
-	copyValuesToSubList(startIndex: number, exclusiveEndIndex: number): IReadonlySinglyLinkedList<T>;
+	copyValuesToSubList(startIndex: number, endIndex: number): IReadonlySinglyLinkedList<T>;
 }

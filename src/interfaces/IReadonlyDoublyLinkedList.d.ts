@@ -4,7 +4,7 @@ export interface IReadonlyDoublyLinkedList<T extends defined> extends IReadonlyL
 	/**
 	 * {@inheritdoc IReadonlyLinkedList.copyValuesToSubList}
 	 */
-	copyValuesToSubList(startIndex: number, exclusiveEndIndex: number): IReadonlyDoublyLinkedList<T>;
+	copyValuesToSubList(startIndex: number, endIndex: number): IReadonlyDoublyLinkedList<T>;
 
 	/**
 	 * Gets an iterator to be used in making looping over values in the list possible.

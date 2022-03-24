@@ -5,10 +5,10 @@ export interface ISinglyLinkedList<T extends defined> extends IReadonlySinglyLin
 	/**
 	 * {@inheritdoc IReadonlyLinkedList.copyValuesToSubList}
 	 */
-	copyValuesToSubList(startIndex: number, exclusiveEndIndex: number): ISinglyLinkedList<T>;
+	copyValuesToSubList(startIndex: number, endIndex: number): ISinglyLinkedList<T>;
 
 	/**
 	 * {@inheritdoc ILinkedList.popValuesToSubList}
 	 */
-	popValuesToSubList(startIndex: number, exclusiveEndIndex: number): ISinglyLinkedList<T>;
+	popValuesToSubList(startIndex: number, endIndex: number): ISinglyLinkedList<T>;
 }

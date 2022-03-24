@@ -37,7 +37,7 @@ export interface ILinkedList<T extends defined> extends IReadonlyLinkedList<T> {
 	/**
 	 * {@inheritdoc IReadonlyLinkedList.copyValuesToSubList}
 	 */
-	copyValuesToSubList(startIndex: number, exclusiveEndIndex: number): ILinkedList<T>;
+	copyValuesToSubList(startIndex: number, endIndex: number): ILinkedList<T>;
 
 	/**
 	 * Pops the head node off the list and returns the value, if any
@@ -59,10 +59,10 @@ export interface ILinkedList<T extends defined> extends IReadonlyLinkedList<T> {
 	/**
 	 * Pops the values from the given bounds into a sublist of the same type
 	 * @param startIndex An inclusive index to start the sub list
-	 * @param exclusiveEndIndex An exclusive index to end the sub list
-	 * @throws Throws if either index is out of bounds for the list or if startIndex >= exclusiveEndIndex
+	 * @param endIndex An inclusive index to end the sub list
+	 * @throws Throws if either index is out of bounds for the list or if startIndex > endIndex
 	 */
-	popValuesToSubList(startIndex: number, exclusiveEndIndex: number): ILinkedList<T>;
+	popValuesToSubList(startIndex: number, endIndex: number): ILinkedList<T>;
 
 	/**
 	 * Pushes a new set of nodes to the head of the list with the given values,

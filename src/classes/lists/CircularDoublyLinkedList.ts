@@ -21,8 +21,8 @@ export class CircularDoublyLinkedList<T extends defined> extends DoublyLinkedLis
 		}
 	}
 
-	public copyValuesToSubList(startIndex: number, exclusiveEndIndex: number): CircularDoublyLinkedList<T> {
-		const subList = super.popValuesToSubList(startIndex, exclusiveEndIndex) as CircularDoublyLinkedList<T>;
+	public copyValuesToSubList(startIndex: number, endIndex: number): CircularDoublyLinkedList<T> {
+		const subList = super.popValuesToSubList(startIndex, endIndex) as CircularDoublyLinkedList<T>;
 
 		subList.tailNode!.nextNode = subList.headNode;
 		subList.headNode!.previousNode = subList.tailNode;
@@ -138,8 +138,8 @@ export class CircularDoublyLinkedList<T extends defined> extends DoublyLinkedLis
 		return tailValue;
 	}
 
-	public popValuesToSubList(startIndex: number, exclusiveEndIndex: number): CircularDoublyLinkedList<T> {
-		const subList = super.popValuesToSubList(startIndex, exclusiveEndIndex) as CircularDoublyLinkedList<T>;
+	public popValuesToSubList(startIndex: number, endIndex: number): CircularDoublyLinkedList<T> {
+		const subList = super.popValuesToSubList(startIndex, endIndex) as CircularDoublyLinkedList<T>;
 
 		subList.tailNode!.nextNode = subList.headNode;
 		subList.headNode!.previousNode = subList.tailNode;

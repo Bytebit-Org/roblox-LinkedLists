@@ -128,23 +128,23 @@ export class DoublyLinkedList<T extends defined> implements IDoublyLinkedList<T>
 		this.numberOfNodes += valuesList.size();
 	}
 
-	public copyValuesToSubList(startIndex: number, exclusiveEndIndex: number): DoublyLinkedList<T> {
-		if (startIndex >= exclusiveEndIndex) {
-			throw `Provided start index, ${startIndex}, was not strictly less than exclusive end index, ${exclusiveEndIndex}`;
+	public copyValuesToSubList(startIndex: number, endIndex: number): DoublyLinkedList<T> {
+		if (startIndex > endIndex) {
+			throw `Provided start index, ${startIndex}, is greater than the end index, ${endIndex}`;
 		}
 
 		if (startIndex < 1) {
 			throw `Provided start index, ${startIndex}, is less than 1`;
 		}
 
-		if (exclusiveEndIndex > this.numberOfNodes + 1) {
-			throw `Provided exclusive end index, ${exclusiveEndIndex}, is out of range of list with ${this.numberOfNodes} elements`;
+		if (endIndex > this.numberOfNodes) {
+			throw `Provided end index, ${endIndex}, is out of range of list with ${this.numberOfNodes} elements`;
 		}
 
 		const subList = new DoublyLinkedList<T>();
 
 		for (const [index, node] of this.getForwardIndexAndNodeTupleIterator()) {
-			if (index >= exclusiveEndIndex) {
+			if (index > endIndex) {
 				break;
 			}
 
@@ -433,17 +433,17 @@ export class DoublyLinkedList<T extends defined> implements IDoublyLinkedList<T>
 		throw `Somehow failed to find index, ${index}, even though it is in bounds`;
 	}
 
-	public popValuesToSubList(startIndex: number, exclusiveEndIndex: number): DoublyLinkedList<T> {
-		if (startIndex >= exclusiveEndIndex) {
-			throw `Provided start index, ${startIndex}, was not strictly less than exclusive end index, ${exclusiveEndIndex}`;
+	public popValuesToSubList(startIndex: number, endIndex: number): DoublyLinkedList<T> {
+		if (startIndex > endIndex) {
+			throw `Provided start index, ${startIndex}, is greater than the end index, ${endIndex}`;
 		}
 
 		if (startIndex < 1) {
 			throw `Provided start index, ${startIndex}, is less than 1`;
 		}
 
-		if (exclusiveEndIndex > this.numberOfNodes + 1) {
-			throw `Provided exclusive end index, ${exclusiveEndIndex}, is out of range of list with ${this.numberOfNodes} elements`;
+		if (endIndex > this.numberOfNodes) {
+			throw `Provided end index, ${endIndex}, is out of range of list with ${this.numberOfNodes} elements`;
 		}
 
 		const subList = new DoublyLinkedList<T>();
@@ -456,9 +456,9 @@ export class DoublyLinkedList<T extends defined> implements IDoublyLinkedList<T>
 			} else if (index === startIndex) {
 				subList.headNode = node;
 				subList.tailNode = node;
-			} else if (index < exclusiveEndIndex) {
+			} else if (index <= endIndex) {
 				subList.tailNode = node;
-			} else if (index === exclusiveEndIndex) {
+			} else if (index > endIndex) {
 				afterEndNode = node;
 				break;
 			}
@@ -475,7 +475,7 @@ export class DoublyLinkedList<T extends defined> implements IDoublyLinkedList<T>
 			afterEndNode.previousNode = priorToStartNode;
 		}
 
-		const rangeSize = exclusiveEndIndex - startIndex;
+		const rangeSize = endIndex - startIndex;
 		subList.numberOfNodes = rangeSize;
 		this.numberOfNodes -= rangeSize;
 
@@ -648,7 +648,7 @@ export class DoublyLinkedList<T extends defined> implements IDoublyLinkedList<T>
 	}
 
 	public pushToTail(value: T) {
-		const priorTailNode = this.headNode;
+		const priorTailNode = this.tailNode;
 
 		const newNode = new DoublyLinkedListNode(value);
 		newNode.previousNode = priorTailNode;

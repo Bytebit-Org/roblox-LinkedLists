@@ -5,10 +5,10 @@ export interface IDoublyLinkedList<T extends defined> extends IReadonlyDoublyLin
 	/**
 	 * {@inheritdoc IReadonlyLinkedList.copyValuesToSubList}
 	 */
-	copyValuesToSubList(startIndex: number, exclusiveEndIndex: number): IDoublyLinkedList<T>;
+	copyValuesToSubList(startIndex: number, endIndex: number): IDoublyLinkedList<T>;
 
 	/**
 	 * {@inheritdoc ILinkedList.popValuesToSubList}
 	 */
-	popValuesToSubList(startIndex: number, exclusiveEndIndex: number): IDoublyLinkedList<T>;
+	popValuesToSubList(startIndex: number, endIndex: number): IDoublyLinkedList<T>;
 }

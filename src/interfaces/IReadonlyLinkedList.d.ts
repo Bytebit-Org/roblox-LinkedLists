@@ -5,10 +5,10 @@ export interface IReadonlyLinkedList<T extends defined> {
 	/**
 	 * Copies the values from the given bounds into a sublist of the same type
 	 * @param startIndex An inclusive index to start the sub list
-	 * @param exclusiveEndIndex An exclusive index to end the sub list
-	 * @throws Throws if either index is out of bounds for the list or if startIndex >= exclusiveEndIndex
+	 * @param endIndex An inclusive index to end the sub list
+	 * @throws Throws if either index is out of bounds for the list or if startIndex > endIndex
 	 */
-	copyValuesToSubList(startIndex: number, exclusiveEndIndex: number): IReadonlyLinkedList<T>;
+	copyValuesToSubList(startIndex: number, endIndex: number): IReadonlyLinkedList<T>;
 
 	/**
 	 * Gets an iterator to be used in making looping over values in the list possible.

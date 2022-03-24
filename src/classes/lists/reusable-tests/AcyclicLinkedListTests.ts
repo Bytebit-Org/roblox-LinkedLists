@@ -8,7 +8,42 @@ export function runAcyclicLinkedListTests(
 	expect: <T>(value: T) => Expectation<T>,
 ) {
 	describe("copyValuesToSubList", () => {
-		warn("Not implemented");
+		it("copyValuesToSubList - should throw if startIndex is below 1", () => {
+			const list = createList();
+
+			const arrayInput = ["a", "b", "c"];
+			list.pushArrayToHead(arrayInput);
+
+			expect(() => list.copyValuesToSubList(0, arrayInput.size())).to.throw();
+		});
+
+		it("copyValuesToSubList - should throw if endIndex is too large", () => {
+			const list = createList();
+
+			const arrayInput = ["a", "b", "c"];
+			list.pushArrayToHead(arrayInput);
+
+			expect(() => list.copyValuesToSubList(1, arrayInput.size() + 1)).to.throw();
+		});
+
+		it("copyValuesToSubList - should return a list of the expected size and values", () => {
+			const list = createList();
+
+			const arrayInput = ["a", "b", "c", "d"];
+			list.pushArrayToHead(arrayInput);
+
+			for (let startIndex = 1; startIndex < arrayInput.size(); startIndex++) {
+				for (let endIndex = startIndex + 1; endIndex <= arrayInput.size(); endIndex++) {
+					const subList = list.copyValuesToSubList(startIndex, endIndex);
+
+					expect(subList.size()).to.equal(endIndex - startIndex + 1);
+
+					for (const [listIndex, value] of subList.getForwardIterator()) {
+						expect(value).to.equal(arrayInput[startIndex - 1 + listIndex - 1]);
+					}
+				}
+			}
+		});
 	});
 
 	describe("getForwardIterator", () => {
