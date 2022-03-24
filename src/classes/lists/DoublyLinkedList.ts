@@ -202,7 +202,7 @@ export class DoublyLinkedList<T extends defined> implements IDoublyLinkedList<T>
 			// this list was empty
 			this.tailNode = otherDoublyLinkedList.tailNode;
 		} else {
-			priorHeadNode.previousNode = otherDoublyLinkedList.tailNode!;
+			priorHeadNode.previousNode = otherDoublyLinkedList.tailNode;
 		}
 
 		this.numberOfNodes += otherDoublyLinkedList.numberOfNodes;
