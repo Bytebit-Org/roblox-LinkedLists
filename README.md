@@ -41,3 +41,56 @@ New versions of the asset are uploaded with every release. The asset can be adde
 Documentation can be found [here](https://github.com/Bytebit-Org/roblox-LinkedLists/tree/master/docs), is included in the TypeScript files directly, and was generated using [TypeDoc](https://typedoc.org/).
 
 ## Example
+Below is a simple example showing the use of a singly-linked list to implement a queue:
+
+<details>
+  <summary>roblox-ts example</summary>
+
+  ```ts
+  import { SinglyLinkedList } from "@rbxts/linked-lists";
+
+  export class Queue {
+    private readonly linkedList = new SinglyLinkedList<defined>();
+
+    public push(value: defined) {
+      this.linkedList.pushToTail(value);
+    }
+
+    public pop() {
+      return this.linkedList.popHeadValue();
+    }
+  }
+  ```
+</details>
+
+<details>
+  <summary>Luau example</summary>
+
+  ```lua
+  local SinglyLinkedList = require(path.to.modules["linked-lists"]).SinglyLinkedList
+
+  local Queue = {}
+  Queue.__index = Queue
+
+  function new()
+    local self = {}
+    setmetatable(self, Queue)
+
+    self.linkedList = SinglyLinkedList.new()
+
+    return self
+  end
+
+  function Queue:push(value)
+    self.linkedList:pushToTail(value)
+  end
+
+  function Queue:pop()
+    return self.linkedList:popHeadValue()
+  end
+
+  return {
+    new = new
+  }
+  ```
+</details>
