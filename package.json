@@ -6,8 +6,8 @@
   "scripts": {
     "eslint": "npx eslint \"src/**/*.ts\" --max-warnings 0",
     "prepublishOnly": "rm -rf ./out; rbxtsc --type=package",
-    "test": "rbxtsc --type=game && rojo build -o ./unit_tests.rbxlx && run-in-roblox --place ./unit_tests.rbxlx --script ./spec.server.lua",
-    "wsl-start-unit-tests": "set -e; rm -rf ./out; rbxtsc --type=game && rojo build -o unit_tests.rbxlx ./unit-testing.project.json; ./scripts/open-in-windows ./unit_tests.rbxlx"
+    "test": "rbxtsc --type=game --rojo=./unit-testing.project.json && rojo build -o ./unit_tests.rbxlx && run-in-roblox --place ./unit_tests.rbxlx --script ./spec.server.lua",
+    "wsl-start-unit-tests": "set -e; rm -rf ./out; rbxtsc --type=game --rojo=./unit-testing.project.json && rojo build -o unit_tests.rbxlx ./unit-testing.project.json; ./scripts/open-in-windows ./unit_tests.rbxlx"
   },
   "repository": {
     "type": "git",
