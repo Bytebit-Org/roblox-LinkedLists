@@ -1,7 +1,7 @@
-import { SinglyLinkedListNode } from "classes/nodes/SinglyLinkedListNode";
-import { ISinglyLinkedList } from "interfaces/ISinglyLinkedList";
-import { IReadonlyLinkedList } from "interfaces/IReadonlyLinkedList";
-import { ISinglyLinkedListNode } from "interfaces/ISinglyLinkedListNode";
+import { SinglyLinkedListNode } from "../nodes/SinglyLinkedListNode";
+import { ISinglyLinkedList } from "../../interfaces/ISinglyLinkedList";
+import { IReadonlyLinkedList } from "../../interfaces/IReadonlyLinkedList";
+import { ISinglyLinkedListNode } from "../../interfaces/ISinglyLinkedListNode";
 
 export class SinglyLinkedList<T extends defined> implements ISinglyLinkedList<T> {
 	protected headNode?: ISinglyLinkedListNode<T>;

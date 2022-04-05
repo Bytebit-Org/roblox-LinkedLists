@@ -1,6 +1,6 @@
-import { IReadonlyLinkedList } from "interfaces/IReadonlyLinkedList";
-import { DoublyLinkedList } from "classes/lists/DoublyLinkedList";
-import { ILinkedListNode } from "interfaces/ILinkedListNode";
+import { IReadonlyLinkedList } from "../../interfaces/IReadonlyLinkedList";
+import { DoublyLinkedList } from "./DoublyLinkedList";
+import { ILinkedListNode } from "../../interfaces/ILinkedListNode";
 
 export class CircularDoublyLinkedList<T extends defined> extends DoublyLinkedList<T> {
 	public copyLinkedListValuesToHead(valuesList: IReadonlyLinkedList<T>) {

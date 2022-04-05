@@ -1,4 +1,4 @@
-import { IReadonlyLinkedList } from "interfaces/IReadonlyLinkedList";
+import { IReadonlyLinkedList } from "./IReadonlyLinkedList";
 
 /**
  * Defines the operations available on all linked lists

@@ -1,7 +1,7 @@
-import { DoublyLinkedListNode } from "classes/nodes/DoublyLinkedListNode";
-import { IDoublyLinkedList } from "interfaces/IDoublyLinkedList";
-import { IReadonlyLinkedList } from "interfaces/IReadonlyLinkedList";
-import { IDoublyLinkedListNode } from "interfaces/IDoublyLinkedListNode";
+import { DoublyLinkedListNode } from "../nodes/DoublyLinkedListNode";
+import { IDoublyLinkedList } from "../../interfaces/IDoublyLinkedList";
+import { IReadonlyLinkedList } from "../../interfaces/IReadonlyLinkedList";
+import { IDoublyLinkedListNode } from "../../interfaces/IDoublyLinkedListNode";
 
 export class DoublyLinkedList<T extends defined> implements IDoublyLinkedList<T> {
 	protected headNode?: IDoublyLinkedListNode<T>;

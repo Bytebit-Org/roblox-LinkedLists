@@ -1,5 +1,5 @@
-import { ILinkedList } from "interfaces/ILinkedList";
-import { IReadonlyDoublyLinkedList } from "interfaces/IReadonlyDoublyLinkedList";
+import { ILinkedList } from "./ILinkedList";
+import { IReadonlyDoublyLinkedList } from "./IReadonlyDoublyLinkedList";
 
 export interface IDoublyLinkedList<T extends defined> extends IReadonlyDoublyLinkedList<T>, ILinkedList<T> {
 	/**

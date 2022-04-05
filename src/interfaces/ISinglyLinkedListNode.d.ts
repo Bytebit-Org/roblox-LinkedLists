@@ -1,4 +1,4 @@
-import { ILinkedListNode } from "interfaces/ILinkedListNode";
+import { ILinkedListNode } from "./ILinkedListNode";
 
 export interface ISinglyLinkedListNode<T extends defined> extends ILinkedListNode<T> {
 	/**

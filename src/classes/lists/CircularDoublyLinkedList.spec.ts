@@ -2,10 +2,10 @@
 /* eslint-disable @typescript-eslint/consistent-type-assertions */
 /// <reference types="@rbxts/testez/globals" />
 
-import { CircularDoublyLinkedList } from "classes/lists/CircularDoublyLinkedList";
-import { runCircularLinkedListTests } from "classes/lists/reusable-tests/CircularLinkedListTests";
-import { runDoublyLinkedListTests } from "classes/lists/reusable-tests/DoublyLinkedListTests";
-import { runUniversalLinkedListTests } from "classes/lists/reusable-tests/UniversalLinkedListTests";
+import { CircularDoublyLinkedList } from "./CircularDoublyLinkedList";
+import { runCircularLinkedListTests } from "./reusable-tests/CircularLinkedListTests";
+import { runDoublyLinkedListTests } from "./reusable-tests/DoublyLinkedListTests";
+import { runUniversalLinkedListTests } from "./reusable-tests/UniversalLinkedListTests";
 
 const createList = <T extends defined>() => new CircularDoublyLinkedList<T>();
 

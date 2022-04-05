@@ -1,5 +1,5 @@
-import { ILinkedList } from "interfaces/ILinkedList";
-import { IReadonlySinglyLinkedList } from "interfaces/IReadonlySinglyLinkedList";
+import { ILinkedList } from "./ILinkedList";
+import { IReadonlySinglyLinkedList } from "./IReadonlySinglyLinkedList";
 
 export interface ISinglyLinkedList<T extends defined> extends IReadonlySinglyLinkedList<T>, ILinkedList<T> {
 	/**

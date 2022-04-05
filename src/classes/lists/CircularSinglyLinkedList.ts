@@ -1,6 +1,6 @@
-import { IReadonlyLinkedList } from "interfaces/IReadonlyLinkedList";
-import { SinglyLinkedList } from "classes/lists/SinglyLinkedList";
-import { ILinkedListNode } from "interfaces/ILinkedListNode";
+import { IReadonlyLinkedList } from "../../interfaces/IReadonlyLinkedList";
+import { SinglyLinkedList } from "./SinglyLinkedList";
+import { ILinkedListNode } from "../../interfaces/ILinkedListNode";
 
 export class CircularSinglyLinkedList<T extends defined> extends SinglyLinkedList<T> {
 	public copyLinkedListValuesToHead(valuesList: IReadonlyLinkedList<T>) {

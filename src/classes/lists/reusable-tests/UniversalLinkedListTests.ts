@@ -1,5 +1,5 @@
 import Expectation from "@rbxts/testez/src/Expectation";
-import { ILinkedList } from "interfaces/ILinkedList";
+import { ILinkedList } from "../../../interfaces/ILinkedList";
 
 export function runUniversalLinkedListTests(
 	createList: <T extends defined>() => ILinkedList<T>,

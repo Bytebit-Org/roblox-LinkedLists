@@ -1,4 +1,4 @@
-import { IDoublyLinkedListNode } from "interfaces/IDoublyLinkedListNode";
+import { IDoublyLinkedListNode } from "../../interfaces/IDoublyLinkedListNode";
 
 export class DoublyLinkedListNode<T extends defined> implements IDoublyLinkedListNode<T> {
 	public nextNode: DoublyLinkedListNode<T> | undefined;
