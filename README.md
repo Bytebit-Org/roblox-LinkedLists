@@ -26,7 +26,7 @@ npm i @rbxts/linked-lists
 ### Wally
 [Wally](https://github.com/UpliftGames/wally/) users can install this package by adding the following line to their `Wally.toml` under `[dependencies]`:
 ```
-LinkedLists = "bytebit/linked-lists@1.0.2"
+LinkedLists = "bytebit/linked-lists@1.0.3"
 ```
 
 Then just run `wally install`.

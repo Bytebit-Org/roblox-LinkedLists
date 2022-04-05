@@ -1,6 +1,6 @@
 {
   "name": "@rbxts/linked-lists",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A module that provides basic linked list data structures.",
   "main": "out/init.lua",
   "scripts": {
