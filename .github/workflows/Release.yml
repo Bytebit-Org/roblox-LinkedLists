@@ -26,7 +26,7 @@ jobs:
       - name: clean-up package output
         run: rm -rf ./out
       - name: compile typescript code for model
-        run: rbxtsc --type=model
+        run: rbxtsc --type=model --rojo=./standalone-model.project.json
       - name: install foreman
         uses: rojo-rbx/setup-foreman@v1
         with:
@@ -34,7 +34,7 @@ jobs:
       - name: install foreman packages (rojo, run-in-roblox)
         run: foreman install
       - name: run rojo build
-        run: rojo build -o ./linked-lists-${{ steps.package-version.outputs.current-version }}.rbxmx ./standalone-model.project.json
+        run: rojo build -o ./package-name-${{ steps.package-version.outputs.current-version }}.rbxmx ./standalone-model.project.json
       - name: create-release
         uses: actions/create-release@latest
         id: create_release
@@ -52,25 +52,25 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./linked-lists-${{ steps.package-version.outputs.current-version }}.rbxmx
-          asset_name: linked-lists-${{ steps.package-version.outputs.current-version }}.rbxmx
+          asset_path: ./package-name-${{ steps.package-version.outputs.current-version }}.rbxmx
+          asset_name: package-name-${{ steps.package-version.outputs.current-version }}.rbxmx
           asset_content_type: form
       - name: upload rbxmx file to Roblox
         run: |
           cd ./scripts
-          python upload_model.py -a ${{ secrets.ASSET_ID }} -f ../linked-lists-${{ steps.package-version.outputs.current-version }}.rbxmx -r "${{ secrets.UPLOADER_BOT_ROBLOSECURITY }}"
+          python upload_model.py -a ${{ secrets.ASSET_ID }} -f ../package-name-${{ steps.package-version.outputs.current-version }}.rbxmx -r "${{ secrets.UPLOADER_BOT_ROBLOSECURITY }}"
           cd ..
       - name: prepare wally package contents
         run: |
-          mkdir -p ~/temp/linked-lists
-          cp -r ./{include,out} ~/temp/linked-lists/
-          cp ./{CHANGELOG.md,LICENSE,README.md,wally.lock,wally.toml} ~/temp/linked-lists/
-          cp ./standalone-model.project.json ~/temp/linked-lists/default.project.json
-          mkdir ~/temp/linked-lists/node_modules
-          cp -r ./node_modules/@rbxts ~/temp/linked-lists/node_modules/
+          mkdir -p ~/temp/package-name
+          cp -r ./{include,out} ~/temp/package-name/
+          cp ./{CHANGELOG.md,LICENSE,README.md,wally.lock,wally.toml} ~/temp/package-name/
+          cp ./standalone-model.project.json ~/temp/package-name/default.project.json
+          mkdir ~/temp/package-name/node_modules
+          cp -r ./node_modules/@rbxts ~/temp/package-name/node_modules/
       - name: prepare wally auth
         run: |
           mkdir ~/.wally
           echo -e '${{ secrets.WALLY_AUTH }}' > ~/.wally/auth.toml
       - name: publish wally package
-        run: wally publish --project-path ~/temp/linked-lists/
+        run: wally publish --project-path ~/temp/package-name/
