@@ -40,6 +40,16 @@ export interface ILinkedList<T extends defined> extends IReadonlyLinkedList<T> {
 	copyValuesToSubList(startIndex: number, endIndex: number): ILinkedList<T>;
 
 	/**
+	 * {@inheritdoc IReadonlyLinkedList.filter}
+	 */
+	filter(callback: (value: T, index: number, list: ILinkedList<T>) => boolean | undefined): ILinkedList<T>;
+
+	/**
+	 * {@inheritdoc IReadonlyLinkedList.map}
+	 */
+	map<U extends defined>(callback: (value: T, index: number, list: IReadonlyLinkedList<T>) => U): ILinkedList<U>;
+
+	/**
 	 * Pops the head node off the list and returns the value, if any
 	 */
 	popHeadValue(): T | undefined;
@@ -107,4 +117,12 @@ export interface ILinkedList<T extends defined> extends IReadonlyLinkedList<T> {
 	 * @param value The value to put into a node in the list
 	 */
 	pushToTail(value: T): void;
+
+	/**
+	 * Sorts list elements in a given order, in-place, from `list[1]` to `list[#list]`, so that
+	 * (`!comp(list[i+1], list[i])` will be true after the sort).
+	 * @param compareFunction A function that defines the sort order. Returns true when the first element must come
+	 * before the second. If omitted, this list is sorted according to the `<` operator.
+	 */
+	sort(compareFunction?: (a: T, b: T) => boolean): ILinkedList<T>;
 }
