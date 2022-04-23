@@ -132,6 +132,27 @@ export class DoublyLinkedList<T extends defined> implements IDoublyLinkedList<T>
 		return this.doCopyValuesToSubList(startIndex, endIndex, new DoublyLinkedList());
 	}
 
+	public filter(
+		callback: (value: T, index: number, list: DoublyLinkedList<T>) => boolean | undefined,
+	): DoublyLinkedList<T> {
+		// TODO
+		return this;
+	}
+
+	public find(predicate: (value: T, index: number, list: DoublyLinkedList<T>) => boolean | undefined): T | undefined {
+		// TODO
+		return undefined;
+	}
+
+	public findIndex(predicate: (value: T, index: number, list: DoublyLinkedList<T>) => boolean | undefined): number {
+		// TODO
+		return 0;
+	}
+
+	public forEach(callback: (value: T, index: number, list: DoublyLinkedList<T>) => void): void {
+		// TODO
+	}
+
 	public getBackwardIterator() {
 		const iterateNodes = this.getBackwardIndexAndNodeTupleIterator();
 
@@ -176,8 +197,25 @@ export class DoublyLinkedList<T extends defined> implements IDoublyLinkedList<T>
 		}) as IterableFunction<T>;
 	}
 
+	public includes(searchElement: T, fromIndex?: number): boolean {
+		// TODO
+		return false;
+	}
+
+	public indexOf(searchElement: T, fromIndex?: number): number {
+		// TODO
+		return 0;
+	}
+
 	public isEmpty() {
 		return this.headNode === undefined;
+	}
+
+	public map<U extends defined>(
+		callback: (value: T, index: number, list: DoublyLinkedList<T>) => U,
+	): DoublyLinkedList<U> {
+		// TODO
+		return new DoublyLinkedList<U>();
 	}
 
 	/**
@@ -595,8 +633,31 @@ export class DoublyLinkedList<T extends defined> implements IDoublyLinkedList<T>
 		this.numberOfNodes++;
 	}
 
+	public reduce<U>(
+		callback: (accumulator: U, currentValue: T, currentIndex: number, list: DoublyLinkedList<T>) => U,
+		initialValue: U,
+	): U {
+		let currentValue = initialValue;
+
+		for (const [index, value] of this.getForwardIterator()) {
+			currentValue = callback(currentValue, value, index, this);
+		}
+
+		return currentValue;
+	}
+
 	public size() {
 		return this.numberOfNodes;
+	}
+
+	public some(callback: (value: T, index: number, list: DoublyLinkedList<T>) => boolean | undefined): boolean {
+		// TODO
+		return false;
+	}
+
+	public sort(compareFunction?: (a: T, b: T) => boolean): this {
+		// TODO
+		return this;
 	}
 
 	public toArray() {

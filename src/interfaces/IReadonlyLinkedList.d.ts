@@ -28,7 +28,6 @@ export interface IReadonlyLinkedList<T extends defined> {
 	 * order, until it finds one where predicate returns true. If such an element is found, find
 	 * immediately returns that element value. Otherwise, find returns undefined.
 	 */
-	find<S extends T>(predicate: (value: T, index: number, list: IReadonlyLinkedList<T>) => value is S): S | undefined;
 	find(predicate: (value: T, index: number, list: IReadonlyLinkedList<T>) => boolean | undefined): T | undefined;
 
 	/**
@@ -112,22 +111,10 @@ export interface IReadonlyLinkedList<T extends defined> {
 	 * is the accumulated result, and is provided as an argument in the next call to the callback function.
 	 * @param callback A function that accepts up to four arguments. The reduce method calls the callback function one
 	 * time for each element in this list.
-	 */
-	reduce(
-		this: ReadonlyArray<defined>,
-		callback: (accumulator: T, currentValue: T, currentIndex: number, list: IReadonlyLinkedList<T>) => T,
-	): T;
-
-	/**
-	 * Calls the specified callback function for all the elements in this list. The return value of the callback function
-	 * is the accumulated result, and is provided as an argument in the next call to the callback function.
-	 * @param callback A function that accepts up to four arguments. The reduce method calls the callback function one
-	 * time for each element in this list.
 	 * @param initialValue If initialValue is specified, it is used as the initial value to start the accumulation. The
 	 * first call to the callback function provides this value as an argument instead of this list value.
 	 */
 	reduce<U>(
-		this: ReadonlyArray<defined>,
 		callback: (accumulator: U, currentValue: T, currentIndex: number, list: IReadonlyLinkedList<T>) => U,
 		initialValue: U,
 	): U;

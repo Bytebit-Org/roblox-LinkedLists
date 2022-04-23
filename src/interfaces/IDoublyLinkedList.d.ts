@@ -17,11 +17,6 @@ export interface IDoublyLinkedList<T extends defined> extends ILinkedList<T>, IR
 	/**
 	 * {@inheritdoc IReadonlyLinkedList.find}
 	 */
-	find<S extends T>(predicate: (value: T, index: number, list: IDoublyLinkedList<T>) => value is S): S | undefined;
-
-	/**
-	 * {@inheritdoc IReadonlyLinkedList.find}
-	 */
 	find(predicate: (value: T, index: number, list: IDoublyLinkedList<T>) => boolean | undefined): T | undefined;
 
 	/**
@@ -49,16 +44,7 @@ export interface IDoublyLinkedList<T extends defined> extends ILinkedList<T>, IR
 	/**
 	 * {@inheritdoc IReadonlyLinkedList.reduce}
 	 */
-	reduce(
-		this: ReadonlyArray<defined>,
-		callback: (accumulator: T, currentValue: T, currentIndex: number, list: IDoublyLinkedList<T>) => T,
-	): T;
-
-	/**
-	 * {@inheritdoc IReadonlyLinkedList.reduce}
-	 */
 	reduce<U>(
-		this: ReadonlyArray<defined>,
 		callback: (accumulator: U, currentValue: T, currentIndex: number, list: IDoublyLinkedList<T>) => U,
 		initialValue: U,
 	): U;
@@ -71,5 +57,5 @@ export interface IDoublyLinkedList<T extends defined> extends ILinkedList<T>, IR
 	/**
 	 * {@inheritdoc ILinkedList.sort}
 	 */
-	sort(compareFunction?: (a: T, b: T) => boolean): IDoublyLinkedList<T>;
+	sort(compareFunction?: (a: T, b: T) => boolean): this;
 }

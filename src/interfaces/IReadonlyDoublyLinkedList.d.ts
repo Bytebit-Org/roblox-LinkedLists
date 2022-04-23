@@ -16,13 +16,6 @@ export interface IReadonlyDoublyLinkedList<T extends defined> extends IReadonlyL
 	/**
 	 * {@inheritdoc IReadonlyLinkedList.find}
 	 */
-	find<S extends T>(
-		predicate: (value: T, index: number, list: IReadonlyDoublyLinkedList<T>) => value is S,
-	): S | undefined;
-
-	/**
-	 * {@inheritdoc IReadonlyLinkedList.find}
-	 */
 	find(
 		predicate: (value: T, index: number, list: IReadonlyDoublyLinkedList<T>) => boolean | undefined,
 	): T | undefined;
@@ -57,14 +50,6 @@ export interface IReadonlyDoublyLinkedList<T extends defined> extends IReadonlyL
 	map<U extends defined>(
 		callback: (value: T, index: number, list: IReadonlyDoublyLinkedList<T>) => U,
 	): IReadonlyDoublyLinkedList<U>;
-
-	/**
-	 * {@inheritdoc IReadonlyLinkedList.reduce}
-	 */
-	reduce(
-		this: ReadonlyArray<defined>,
-		callback: (accumulator: T, currentValue: T, currentIndex: number, list: IReadonlyDoublyLinkedList<T>) => T,
-	): T;
 
 	/**
 	 * {@inheritdoc IReadonlyLinkedList.reduce}

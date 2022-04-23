@@ -39,6 +39,31 @@ export class CircularDoublyLinkedList<T extends defined> extends DoublyLinkedLis
 		return subList;
 	}
 
+	public filter(
+		callback: (value: T, index: number, list: CircularDoublyLinkedList<T>) => boolean | undefined,
+	): CircularDoublyLinkedList<T> {
+		// TODO
+		return this;
+	}
+
+	public find(
+		predicate: (value: T, index: number, list: CircularDoublyLinkedList<T>) => boolean | undefined,
+	): T | undefined {
+		// TODO
+		return undefined;
+	}
+
+	public findIndex(
+		predicate: (value: T, index: number, list: CircularDoublyLinkedList<T>) => boolean | undefined,
+	): number {
+		// TODO
+		return 0;
+	}
+
+	public forEach(callback: (value: T, index: number, list: CircularDoublyLinkedList<T>) => void): void {
+		// TODO
+	}
+
 	/**
 	 * {@inheritdoc IReadonlyDoublyLinkedList.getBackwardIterator}
 	 * @remarks Because this iterator includes an index, it will not loop despite being
@@ -95,7 +120,24 @@ export class CircularDoublyLinkedList<T extends defined> extends DoublyLinkedLis
 		}) as IterableFunction<LuaTuple<[number, T]>>;
 	}
 
-	public moveNodesFromDoublyLinkedListToHead(otherDoublyLinkedList: DoublyLinkedList<T>) {
+	public includes(searchElement: T, fromIndex?: number): boolean {
+		// TODO
+		return false;
+	}
+
+	public indexOf(searchElement: T, fromIndex?: number): number {
+		// TODO
+		return 0;
+	}
+
+	public map<U extends defined>(
+		callback: (value: T, index: number, list: CircularDoublyLinkedList<T>) => U,
+	): CircularDoublyLinkedList<U> {
+		// TODO
+		return new DoublyLinkedList<U>();
+	}
+
+	public moveNodesFromDoublyLinkedListToHead(otherDoublyLinkedList: CircularDoublyLinkedList<T>) {
 		if (otherDoublyLinkedList.isEmpty()) {
 			return;
 		}
@@ -106,7 +148,7 @@ export class CircularDoublyLinkedList<T extends defined> extends DoublyLinkedLis
 		this.headNode!.previousNode = this.tailNode;
 	}
 
-	public moveNodesFromDoublyLinkedListToTail(otherDoublyLinkedList: DoublyLinkedList<T>) {
+	public moveNodesFromDoublyLinkedListToTail(otherDoublyLinkedList: CircularDoublyLinkedList<T>) {
 		if (otherDoublyLinkedList.isEmpty()) {
 			return;
 		}
@@ -199,6 +241,31 @@ export class CircularDoublyLinkedList<T extends defined> extends DoublyLinkedLis
 
 		this.tailNode!.nextNode = this.headNode;
 		this.headNode!.previousNode = this.tailNode;
+	}
+
+	public reduce<U>(
+		callback: (accumulator: U, currentValue: T, currentIndex: number, list: CircularDoublyLinkedList<T>) => U,
+		initialValue: U,
+	): U {
+		let currentValue = initialValue;
+
+		for (const [index, value] of this.getForwardIterator()) {
+			currentValue = callback(currentValue, value, index, this);
+		}
+
+		return currentValue;
+	}
+
+	public some(
+		callback: (value: T, index: number, list: CircularDoublyLinkedList<T>) => boolean | undefined,
+	): boolean {
+		// TODO
+		return false;
+	}
+
+	public sort(compareFunction?: (a: T, b: T) => boolean): this {
+		// TODO
+		return this;
 	}
 
 	public toArray() {

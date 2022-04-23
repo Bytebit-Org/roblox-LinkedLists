@@ -29,5 +29,5 @@ export interface ISinglyLinkedList<T extends defined> extends IReadonlySinglyLin
 	/**
 	 * {@inheritdoc ILinkedList.sort}
 	 */
-	sort(compareFunction?: (a: T, b: T) => boolean): ISinglyLinkedList<T>;
+	sort(compareFunction?: (a: T, b: T) => boolean): this;
 }

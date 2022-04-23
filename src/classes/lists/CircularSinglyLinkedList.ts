@@ -31,6 +31,31 @@ export class CircularSinglyLinkedList<T extends defined> extends SinglyLinkedLis
 		return subList;
 	}
 
+	public filter(
+		callback: (value: T, index: number, list: CircularSinglyLinkedList<T>) => boolean | undefined,
+	): CircularSinglyLinkedList<T> {
+		// TODO
+		return this;
+	}
+
+	public find(
+		predicate: (value: T, index: number, list: CircularSinglyLinkedList<T>) => boolean | undefined,
+	): T | undefined {
+		// TODO
+		return undefined;
+	}
+
+	public findIndex(
+		predicate: (value: T, index: number, list: CircularSinglyLinkedList<T>) => boolean | undefined,
+	): number {
+		// TODO
+		return 0;
+	}
+
+	public forEach(callback: (value: T, index: number, list: CircularSinglyLinkedList<T>) => void): void {
+		// TODO
+	}
+
 	/**
 	 * {@inheritdoc IReadonlyLinkedList.getForwardIterator}
 	 * @remarks Because this iterator includes an index, it will not loop despite being
@@ -59,7 +84,24 @@ export class CircularSinglyLinkedList<T extends defined> extends SinglyLinkedLis
 		}) as IterableFunction<LuaTuple<[number, T]>>;
 	}
 
-	public moveNodesFromSinglyLinkedListToHead(otherSinglyLinkedList: SinglyLinkedList<T>) {
+	public includes(searchElement: T, fromIndex?: number): boolean {
+		// TODO
+		return false;
+	}
+
+	public indexOf(searchElement: T, fromIndex?: number): number {
+		// TODO
+		return 0;
+	}
+
+	public map<U extends defined>(
+		callback: (value: T, index: number, list: CircularSinglyLinkedList<T>) => U,
+	): CircularSinglyLinkedList<U> {
+		// TODO
+		return new SinglyLinkedList<U>();
+	}
+
+	public moveNodesFromSinglyLinkedListToHead(otherSinglyLinkedList: CircularSinglyLinkedList<T>) {
 		if (otherSinglyLinkedList.isEmpty()) {
 			return;
 		}
@@ -69,7 +111,7 @@ export class CircularSinglyLinkedList<T extends defined> extends SinglyLinkedLis
 		this.tailNode!.nextNode = this.headNode;
 	}
 
-	public moveNodesFromSinglyLinkedListToTail(otherSinglyLinkedList: SinglyLinkedList<T>) {
+	public moveNodesFromSinglyLinkedListToTail(otherSinglyLinkedList: CircularSinglyLinkedList<T>) {
 		if (otherSinglyLinkedList.isEmpty()) {
 			return;
 		}
@@ -200,6 +242,31 @@ export class CircularSinglyLinkedList<T extends defined> extends SinglyLinkedLis
 		super.pushToTail(value);
 
 		this.tailNode!.nextNode = this.headNode;
+	}
+
+	public reduce<U>(
+		callback: (accumulator: U, currentValue: T, currentIndex: number, list: CircularSinglyLinkedList<T>) => U,
+		initialValue: U,
+	): U {
+		let currentValue = initialValue;
+
+		for (const [index, value] of this.getForwardIterator()) {
+			currentValue = callback(currentValue, value, index, this);
+		}
+
+		return currentValue;
+	}
+
+	public some(
+		callback: (value: T, index: number, list: CircularSinglyLinkedList<T>) => boolean | undefined,
+	): boolean {
+		// TODO
+		return false;
+	}
+
+	public sort(compareFunction?: (a: T, b: T) => boolean): this {
+		// TODO
+		return this;
 	}
 
 	public toArray() {

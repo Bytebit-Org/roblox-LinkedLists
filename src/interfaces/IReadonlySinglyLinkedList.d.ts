@@ -16,13 +16,6 @@ export interface IReadonlySinglyLinkedList<T extends defined> extends IReadonlyL
 	/**
 	 * {@inheritdoc IReadonlyLinkedList.find}
 	 */
-	find<S extends T>(
-		predicate: (value: T, index: number, list: IReadonlySinglyLinkedList<T>) => value is S,
-	): S | undefined;
-
-	/**
-	 * {@inheritdoc IReadonlyLinkedList.find}
-	 */
 	find(
 		predicate: (value: T, index: number, list: IReadonlySinglyLinkedList<T>) => boolean | undefined,
 	): T | undefined;
@@ -47,16 +40,7 @@ export interface IReadonlySinglyLinkedList<T extends defined> extends IReadonlyL
 	/**
 	 * {@inheritdoc IReadonlyLinkedList.reduce}
 	 */
-	reduce(
-		this: ReadonlyArray<defined>,
-		callback: (accumulator: T, currentValue: T, currentIndex: number, list: IReadonlySinglyLinkedList<T>) => T,
-	): T;
-
-	/**
-	 * {@inheritdoc IReadonlyLinkedList.reduce}
-	 */
 	reduce<U>(
-		this: ReadonlyArray<defined>,
 		callback: (accumulator: U, currentValue: T, currentIndex: number, list: IReadonlySinglyLinkedList<T>) => U,
 		initialValue: U,
 	): U;
