@@ -335,6 +335,20 @@ export function runUniversalLinkedListTests(
 		});
 	});
 
+	describe("contains", () => {
+		it("contains - should correctly find items", () => {
+			const arrayInput = ["a", "b", "c"];
+
+			const list = createList();
+
+			for (const item of arrayInput) {
+				expect(() => list.contains(item)).to.equal(true);
+			}
+
+			expect(() => list.contains("d")).to.equal(false);
+		});
+	});
+
 	describe("peekValueAtTail", () => {
 		it("peekValueAtTail - should change response after items are added and after the list is cleared", () => {
 			const arrayInput = ["a", "b", "c"];

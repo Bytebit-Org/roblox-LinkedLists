@@ -44,7 +44,7 @@
 
 #### Defined in
 
-[classes/nodes/SinglyLinkedListNode.ts:6](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/nodes/SinglyLinkedListNode.ts#L6)
+[classes/nodes/SinglyLinkedListNode.ts:6](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/master/src/classes/nodes/SinglyLinkedListNode.ts#L6)
 
 ## Properties
 
@@ -60,7 +60,7 @@ A reference to the next node, or "right" neighbor, from this node
 
 #### Defined in
 
-[classes/nodes/SinglyLinkedListNode.ts:4](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/nodes/SinglyLinkedListNode.ts#L4)
+[classes/nodes/SinglyLinkedListNode.ts:4](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/master/src/classes/nodes/SinglyLinkedListNode.ts#L4)
 
 ___
 

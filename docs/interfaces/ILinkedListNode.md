@@ -32,4 +32,4 @@ The value held within this node
 
 #### Defined in
 
-[interfaces/ILinkedListNode.d.ts:5](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/interfaces/ILinkedListNode.d.ts#L5)
+[interfaces/ILinkedListNode.d.ts:5](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/master/src/interfaces/ILinkedListNode.d.ts#L5)
