@@ -57,7 +57,7 @@ Compares the value to each node, and returns if any were found to be equal
 
 #### Defined in
 
-[interfaces/IReadonlyLinkedList.d.ts:53](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/interfaces/IReadonlyLinkedList.d.ts#L53)
+[interfaces/IReadonlyLinkedList.d.ts:53](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/master/src/interfaces/IReadonlyLinkedList.d.ts#L53)
 
 ___
 
@@ -84,7 +84,7 @@ ___
 
 #### Defined in
 
-[interfaces/IReadonlyDoublyLinkedList.d.ts:7](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/interfaces/IReadonlyDoublyLinkedList.d.ts#L7)
+[interfaces/IReadonlyDoublyLinkedList.d.ts:7](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/master/src/interfaces/IReadonlyDoublyLinkedList.d.ts#L7)
 
 ___
 
@@ -102,7 +102,7 @@ Iterator will loop from tail value to head value.
 
 #### Defined in
 
-[interfaces/IReadonlyDoublyLinkedList.d.ts:14](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/interfaces/IReadonlyDoublyLinkedList.d.ts#L14)
+[interfaces/IReadonlyDoublyLinkedList.d.ts:14](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/master/src/interfaces/IReadonlyDoublyLinkedList.d.ts#L14)
 
 ___
 
@@ -120,7 +120,7 @@ Iterator will loop from tail value to head value.
 
 #### Defined in
 
-[interfaces/IReadonlyDoublyLinkedList.d.ts:21](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/interfaces/IReadonlyDoublyLinkedList.d.ts#L21)
+[interfaces/IReadonlyDoublyLinkedList.d.ts:21](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/master/src/interfaces/IReadonlyDoublyLinkedList.d.ts#L21)
 
 ___
 
@@ -142,7 +142,7 @@ Iterator will loop from head value to tail value.
 
 #### Defined in
 
-[interfaces/IReadonlyLinkedList.d.ts:18](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/interfaces/IReadonlyLinkedList.d.ts#L18)
+[interfaces/IReadonlyLinkedList.d.ts:18](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/master/src/interfaces/IReadonlyLinkedList.d.ts#L18)
 
 ___
 
@@ -164,7 +164,7 @@ Iterator will loop from head value to tail value.
 
 #### Defined in
 
-[interfaces/IReadonlyLinkedList.d.ts:25](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/interfaces/IReadonlyLinkedList.d.ts#L25)
+[interfaces/IReadonlyLinkedList.d.ts:25](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/master/src/interfaces/IReadonlyLinkedList.d.ts#L25)
 
 ___
 
@@ -184,7 +184,7 @@ Gets whether the list is empty (i.e. no head node)
 
 #### Defined in
 
-[interfaces/IReadonlyLinkedList.d.ts:30](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/interfaces/IReadonlyLinkedList.d.ts#L30)
+[interfaces/IReadonlyLinkedList.d.ts:30](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/master/src/interfaces/IReadonlyLinkedList.d.ts#L30)
 
 ___
 
@@ -204,7 +204,7 @@ Peeks at the value in the head node of the list without modifying the list
 
 #### Defined in
 
-[interfaces/IReadonlyLinkedList.d.ts:35](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/interfaces/IReadonlyLinkedList.d.ts#L35)
+[interfaces/IReadonlyLinkedList.d.ts:35](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/master/src/interfaces/IReadonlyLinkedList.d.ts#L35)
 
 ___
 
@@ -232,7 +232,7 @@ Peeks at the value from the given index without moving nodes around
 
 #### Defined in
 
-[interfaces/IReadonlyLinkedList.d.ts:42](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/interfaces/IReadonlyLinkedList.d.ts#L42)
+[interfaces/IReadonlyLinkedList.d.ts:42](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/master/src/interfaces/IReadonlyLinkedList.d.ts#L42)
 
 ___
 
@@ -252,7 +252,7 @@ Peeks at the value in the tail node of the list without modifying the list
 
 #### Defined in
 
-[interfaces/IReadonlyLinkedList.d.ts:47](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/interfaces/IReadonlyLinkedList.d.ts#L47)
+[interfaces/IReadonlyLinkedList.d.ts:47](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/master/src/interfaces/IReadonlyLinkedList.d.ts#L47)
 
 ___
 
@@ -272,7 +272,7 @@ Returns the total size of the list
 
 #### Defined in
 
-[interfaces/IReadonlyLinkedList.d.ts:58](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/interfaces/IReadonlyLinkedList.d.ts#L58)
+[interfaces/IReadonlyLinkedList.d.ts:58](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/master/src/interfaces/IReadonlyLinkedList.d.ts#L58)
 
 ___
 
@@ -294,4 +294,4 @@ The array with the same values in the same order
 
 #### Defined in
 
-[interfaces/IReadonlyLinkedList.d.ts:64](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/interfaces/IReadonlyLinkedList.d.ts#L64)
+[interfaces/IReadonlyLinkedList.d.ts:64](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/master/src/interfaces/IReadonlyLinkedList.d.ts#L64)

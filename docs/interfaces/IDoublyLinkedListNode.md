@@ -36,7 +36,7 @@ A reference to the next node, or "right" neighbor, from this node
 
 #### Defined in
 
-[interfaces/IDoublyLinkedListNode.d.ts:7](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/interfaces/IDoublyLinkedListNode.d.ts#L7)
+[interfaces/IDoublyLinkedListNode.d.ts:7](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/master/src/interfaces/IDoublyLinkedListNode.d.ts#L7)
 
 ___
 
@@ -48,7 +48,7 @@ A reference to the previous node, or "left" neighbor, from this node
 
 #### Defined in
 
-[interfaces/IDoublyLinkedListNode.d.ts:12](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/interfaces/IDoublyLinkedListNode.d.ts#L12)
+[interfaces/IDoublyLinkedListNode.d.ts:12](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/master/src/interfaces/IDoublyLinkedListNode.d.ts#L12)
 
 ___
 
@@ -64,4 +64,4 @@ The value held within this node
 
 #### Defined in
 
-[interfaces/ILinkedListNode.d.ts:5](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/interfaces/ILinkedListNode.d.ts#L5)
+[interfaces/ILinkedListNode.d.ts:5](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/master/src/interfaces/ILinkedListNode.d.ts#L5)

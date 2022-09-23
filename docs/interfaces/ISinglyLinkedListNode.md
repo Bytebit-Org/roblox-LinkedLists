@@ -35,7 +35,7 @@ A reference to the next node, or "right" neighbor, from this node
 
 #### Defined in
 
-[interfaces/ISinglyLinkedListNode.d.ts:7](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/interfaces/ISinglyLinkedListNode.d.ts#L7)
+[interfaces/ISinglyLinkedListNode.d.ts:7](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/master/src/interfaces/ISinglyLinkedListNode.d.ts#L7)
 
 ___
 
@@ -51,4 +51,4 @@ The value held within this node
 
 #### Defined in
 
-[interfaces/ILinkedListNode.d.ts:5](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/interfaces/ILinkedListNode.d.ts#L5)
+[interfaces/ILinkedListNode.d.ts:5](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/master/src/interfaces/ILinkedListNode.d.ts#L5)

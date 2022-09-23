@@ -83,7 +83,7 @@
 
 #### Defined in
 
-[classes/lists/SinglyLinkedList.ts:7](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/SinglyLinkedList.ts#L7)
+[classes/lists/SinglyLinkedList.ts:7](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/master/src/classes/lists/SinglyLinkedList.ts#L7)
 
 ___
 
@@ -93,7 +93,7 @@ ___
 
 #### Defined in
 
-[classes/lists/SinglyLinkedList.ts:9](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/SinglyLinkedList.ts#L9)
+[classes/lists/SinglyLinkedList.ts:9](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/master/src/classes/lists/SinglyLinkedList.ts#L9)
 
 ___
 
@@ -103,7 +103,7 @@ ___
 
 #### Defined in
 
-[classes/lists/SinglyLinkedList.ts:8](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/SinglyLinkedList.ts#L8)
+[classes/lists/SinglyLinkedList.ts:8](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/master/src/classes/lists/SinglyLinkedList.ts#L8)
 
 ## Methods
 
@@ -123,7 +123,7 @@ Clears the list such that it contains no nodes
 
 #### Defined in
 
-[classes/lists/SinglyLinkedList.ts:11](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/SinglyLinkedList.ts#L11)
+[classes/lists/SinglyLinkedList.ts:11](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/master/src/classes/lists/SinglyLinkedList.ts#L11)
 
 ___
 
@@ -149,7 +149,7 @@ Compares the value to each node, and returns if any were found to be equal
 
 #### Defined in
 
-[classes/lists/SinglyLinkedList.ts:286](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/SinglyLinkedList.ts#L286)
+[classes/lists/SinglyLinkedList.ts:286](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/master/src/classes/lists/SinglyLinkedList.ts#L286)
 
 ___
 
@@ -177,7 +177,7 @@ head of this list
 
 #### Defined in
 
-[classes/lists/SinglyLinkedList.ts:17](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/SinglyLinkedList.ts#L17)
+[classes/lists/SinglyLinkedList.ts:17](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/master/src/classes/lists/SinglyLinkedList.ts#L17)
 
 ___
 
@@ -205,7 +205,7 @@ with the first value in the input list going in as the node at the given index
 
 #### Defined in
 
-[classes/lists/SinglyLinkedList.ts:48](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/SinglyLinkedList.ts#L48)
+[classes/lists/SinglyLinkedList.ts:48](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/master/src/classes/lists/SinglyLinkedList.ts#L48)
 
 ___
 
@@ -233,7 +233,7 @@ tail of this list
 
 #### Defined in
 
-[classes/lists/SinglyLinkedList.ts:98](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/SinglyLinkedList.ts#L98)
+[classes/lists/SinglyLinkedList.ts:98](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/master/src/classes/lists/SinglyLinkedList.ts#L98)
 
 ___
 
@@ -260,7 +260,7 @@ ___
 
 #### Defined in
 
-[classes/lists/SinglyLinkedList.ts:119](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/SinglyLinkedList.ts#L119)
+[classes/lists/SinglyLinkedList.ts:119](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/master/src/classes/lists/SinglyLinkedList.ts#L119)
 
 ___
 
@@ -282,7 +282,7 @@ ___
 
 #### Defined in
 
-[classes/lists/SinglyLinkedList.ts:571](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/SinglyLinkedList.ts#L571)
+[classes/lists/SinglyLinkedList.ts:571](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/master/src/classes/lists/SinglyLinkedList.ts#L571)
 
 ___
 
@@ -304,7 +304,7 @@ ___
 
 #### Defined in
 
-[classes/lists/SinglyLinkedList.ts:597](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/SinglyLinkedList.ts#L597)
+[classes/lists/SinglyLinkedList.ts:597](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/master/src/classes/lists/SinglyLinkedList.ts#L597)
 
 ___
 
@@ -318,7 +318,7 @@ ___
 
 #### Defined in
 
-[classes/lists/SinglyLinkedList.ts:653](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/SinglyLinkedList.ts#L653)
+[classes/lists/SinglyLinkedList.ts:653](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/master/src/classes/lists/SinglyLinkedList.ts#L653)
 
 ___
 
@@ -340,7 +340,7 @@ Iterator will loop from head value to tail value.
 
 #### Defined in
 
-[classes/lists/SinglyLinkedList.ts:123](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/SinglyLinkedList.ts#L123)
+[classes/lists/SinglyLinkedList.ts:123](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/master/src/classes/lists/SinglyLinkedList.ts#L123)
 
 ___
 
@@ -362,7 +362,7 @@ Iterator will loop from head value to tail value.
 
 #### Defined in
 
-[classes/lists/SinglyLinkedList.ts:136](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/SinglyLinkedList.ts#L136)
+[classes/lists/SinglyLinkedList.ts:136](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/master/src/classes/lists/SinglyLinkedList.ts#L136)
 
 ___
 
@@ -382,7 +382,7 @@ Gets whether the list is empty (i.e. no head node)
 
 #### Defined in
 
-[classes/lists/SinglyLinkedList.ts:145](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/SinglyLinkedList.ts#L145)
+[classes/lists/SinglyLinkedList.ts:145](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/master/src/classes/lists/SinglyLinkedList.ts#L145)
 
 ___
 
@@ -408,7 +408,7 @@ The input list is cleared in the process.
 
 #### Defined in
 
-[classes/lists/SinglyLinkedList.ts:157](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/SinglyLinkedList.ts#L157)
+[classes/lists/SinglyLinkedList.ts:157](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/master/src/classes/lists/SinglyLinkedList.ts#L157)
 
 ___
 
@@ -435,7 +435,7 @@ The input list is cleared in the process.
 
 #### Defined in
 
-[classes/lists/SinglyLinkedList.ts:185](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/SinglyLinkedList.ts#L185)
+[classes/lists/SinglyLinkedList.ts:185](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/master/src/classes/lists/SinglyLinkedList.ts#L185)
 
 ___
 
@@ -461,7 +461,7 @@ The input list is cleared in the process.
 
 #### Defined in
 
-[classes/lists/SinglyLinkedList.ts:238](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/SinglyLinkedList.ts#L238)
+[classes/lists/SinglyLinkedList.ts:238](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/master/src/classes/lists/SinglyLinkedList.ts#L238)
 
 ___
 
@@ -481,7 +481,7 @@ Peeks at the value in the head node of the list without modifying the list
 
 #### Defined in
 
-[classes/lists/SinglyLinkedList.ts:259](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/SinglyLinkedList.ts#L259)
+[classes/lists/SinglyLinkedList.ts:259](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/master/src/classes/lists/SinglyLinkedList.ts#L259)
 
 ___
 
@@ -507,7 +507,7 @@ Peeks at the value from the given index without moving nodes around
 
 #### Defined in
 
-[classes/lists/SinglyLinkedList.ts:263](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/SinglyLinkedList.ts#L263)
+[classes/lists/SinglyLinkedList.ts:263](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/master/src/classes/lists/SinglyLinkedList.ts#L263)
 
 ___
 
@@ -527,7 +527,7 @@ Peeks at the value in the tail node of the list without modifying the list
 
 #### Defined in
 
-[classes/lists/SinglyLinkedList.ts:282](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/SinglyLinkedList.ts#L282)
+[classes/lists/SinglyLinkedList.ts:282](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/master/src/classes/lists/SinglyLinkedList.ts#L282)
 
 ___
 
@@ -547,7 +547,7 @@ Pops the head node off the list and returns the value, if any
 
 #### Defined in
 
-[classes/lists/SinglyLinkedList.ts:296](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/SinglyLinkedList.ts#L296)
+[classes/lists/SinglyLinkedList.ts:296](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/master/src/classes/lists/SinglyLinkedList.ts#L296)
 
 ___
 
@@ -567,7 +567,7 @@ Pops the tail node off the list and returns the value, if any
 
 #### Defined in
 
-[classes/lists/SinglyLinkedList.ts:316](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/SinglyLinkedList.ts#L316)
+[classes/lists/SinglyLinkedList.ts:316](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/master/src/classes/lists/SinglyLinkedList.ts#L316)
 
 ___
 
@@ -593,7 +593,7 @@ Pops the value from the given index
 
 #### Defined in
 
-[classes/lists/SinglyLinkedList.ts:347](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/SinglyLinkedList.ts#L347)
+[classes/lists/SinglyLinkedList.ts:347](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/master/src/classes/lists/SinglyLinkedList.ts#L347)
 
 ___
 
@@ -620,7 +620,7 @@ ___
 
 #### Defined in
 
-[classes/lists/SinglyLinkedList.ts:386](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/SinglyLinkedList.ts#L386)
+[classes/lists/SinglyLinkedList.ts:386](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/master/src/classes/lists/SinglyLinkedList.ts#L386)
 
 ___
 
@@ -647,7 +647,7 @@ with the first value in the array being placed as the value at the head of the l
 
 #### Defined in
 
-[classes/lists/SinglyLinkedList.ts:390](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/SinglyLinkedList.ts#L390)
+[classes/lists/SinglyLinkedList.ts:390](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/master/src/classes/lists/SinglyLinkedList.ts#L390)
 
 ___
 
@@ -675,7 +675,7 @@ with the first value in the array going in as the node at the given index
 
 #### Defined in
 
-[classes/lists/SinglyLinkedList.ts:423](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/SinglyLinkedList.ts#L423)
+[classes/lists/SinglyLinkedList.ts:423](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/master/src/classes/lists/SinglyLinkedList.ts#L423)
 
 ___
 
@@ -702,7 +702,7 @@ with the last value in the array being placed as the value at the tail of the li
 
 #### Defined in
 
-[classes/lists/SinglyLinkedList.ts:472](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/SinglyLinkedList.ts#L472)
+[classes/lists/SinglyLinkedList.ts:472](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/master/src/classes/lists/SinglyLinkedList.ts#L472)
 
 ___
 
@@ -728,7 +728,7 @@ Pushes a new node to the head of the list with the given value
 
 #### Defined in
 
-[classes/lists/SinglyLinkedList.ts:493](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/SinglyLinkedList.ts#L493)
+[classes/lists/SinglyLinkedList.ts:493](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/master/src/classes/lists/SinglyLinkedList.ts#L493)
 
 ___
 
@@ -756,7 +756,7 @@ index and up over - thereby incrementing each of their indexes by one.
 
 #### Defined in
 
-[classes/lists/SinglyLinkedList.ts:505](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/SinglyLinkedList.ts#L505)
+[classes/lists/SinglyLinkedList.ts:505](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/master/src/classes/lists/SinglyLinkedList.ts#L505)
 
 ___
 
@@ -782,7 +782,7 @@ Pushes a new node to the tail of the list with the given value
 
 #### Defined in
 
-[classes/lists/SinglyLinkedList.ts:544](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/SinglyLinkedList.ts#L544)
+[classes/lists/SinglyLinkedList.ts:544](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/master/src/classes/lists/SinglyLinkedList.ts#L544)
 
 ___
 
@@ -802,7 +802,7 @@ Returns the total size of the list
 
 #### Defined in
 
-[classes/lists/SinglyLinkedList.ts:557](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/SinglyLinkedList.ts#L557)
+[classes/lists/SinglyLinkedList.ts:557](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/master/src/classes/lists/SinglyLinkedList.ts#L557)
 
 ___
 
@@ -824,4 +824,4 @@ The array with the same values in the same order
 
 #### Defined in
 
-[classes/lists/SinglyLinkedList.ts:561](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/SinglyLinkedList.ts#L561)
+[classes/lists/SinglyLinkedList.ts:561](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/master/src/classes/lists/SinglyLinkedList.ts#L561)

@@ -46,7 +46,7 @@
 
 #### Defined in
 
-[classes/nodes/DoublyLinkedListNode.ts:7](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/nodes/DoublyLinkedListNode.ts#L7)
+[classes/nodes/DoublyLinkedListNode.ts:7](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/master/src/classes/nodes/DoublyLinkedListNode.ts#L7)
 
 ## Properties
 
@@ -62,7 +62,7 @@ A reference to the next node, or "right" neighbor, from this node
 
 #### Defined in
 
-[classes/nodes/DoublyLinkedListNode.ts:4](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/nodes/DoublyLinkedListNode.ts#L4)
+[classes/nodes/DoublyLinkedListNode.ts:4](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/master/src/classes/nodes/DoublyLinkedListNode.ts#L4)
 
 ___
 
@@ -78,7 +78,7 @@ A reference to the previous node, or "left" neighbor, from this node
 
 #### Defined in
 
-[classes/nodes/DoublyLinkedListNode.ts:5](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/nodes/DoublyLinkedListNode.ts#L5)
+[classes/nodes/DoublyLinkedListNode.ts:5](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/master/src/classes/nodes/DoublyLinkedListNode.ts#L5)
 
 ___
 
