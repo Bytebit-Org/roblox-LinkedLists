@@ -322,6 +322,16 @@ export class DoublyLinkedList<T extends defined> implements IDoublyLinkedList<T>
 		return this.tailNode?.value;
 	}
 
+	public contains(value: T) {
+		for (const currentNode of this.getForwardValuesIterator()) {
+			if (currentNode === value) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	public popHeadValue() {
 		if (this.headNode === undefined) {
 			return undefined;
