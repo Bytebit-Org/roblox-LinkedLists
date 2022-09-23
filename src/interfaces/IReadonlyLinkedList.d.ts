@@ -47,6 +47,12 @@ export interface IReadonlyLinkedList<T extends defined> {
 	peekValueAtTail(): T | undefined;
 
 	/**
+	 * Compares the value to each node, and returns if any were found to be equal
+	 * @param value The value to compare against
+	 */
+	contains(value: T): boolean;
+
+	/**
 	 * Returns the total size of the list
 	 */
 	size(): number;
