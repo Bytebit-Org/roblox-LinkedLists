@@ -29,6 +29,7 @@
 ### Methods
 
 - [clear](CircularDoublyLinkedList.md#clear)
+- [contains](CircularDoublyLinkedList.md#contains)
 - [copyLinkedListValuesToHead](CircularDoublyLinkedList.md#copylinkedlistvaluestohead)
 - [copyLinkedListValuesToIndex](CircularDoublyLinkedList.md#copylinkedlistvaluestoindex)
 - [copyLinkedListValuesToTail](CircularDoublyLinkedList.md#copylinkedlistvaluestotail)
@@ -89,7 +90,7 @@
 
 #### Defined in
 
-[classes/lists/DoublyLinkedList.ts:7](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/DoublyLinkedList.ts#L7)
+[classes/lists/DoublyLinkedList.ts:7](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/DoublyLinkedList.ts#L7)
 
 ___
 
@@ -103,7 +104,7 @@ ___
 
 #### Defined in
 
-[classes/lists/DoublyLinkedList.ts:9](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/DoublyLinkedList.ts#L9)
+[classes/lists/DoublyLinkedList.ts:9](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/DoublyLinkedList.ts#L9)
 
 ___
 
@@ -117,7 +118,7 @@ ___
 
 #### Defined in
 
-[classes/lists/DoublyLinkedList.ts:8](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/DoublyLinkedList.ts#L8)
+[classes/lists/DoublyLinkedList.ts:8](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/DoublyLinkedList.ts#L8)
 
 ## Methods
 
@@ -137,7 +138,33 @@ Clears the list such that it contains no nodes
 
 #### Defined in
 
-[classes/lists/DoublyLinkedList.ts:11](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/DoublyLinkedList.ts#L11)
+[classes/lists/DoublyLinkedList.ts:11](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/DoublyLinkedList.ts#L11)
+
+___
+
+### contains
+
+▸ **contains**(`value`): `boolean`
+
+Compares the value to each node, and returns if any were found to be equal
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `value` | `T` |
+
+#### Returns
+
+`boolean`
+
+#### Inherited from
+
+[DoublyLinkedList](DoublyLinkedList.md).[contains](DoublyLinkedList.md#contains)
+
+#### Defined in
+
+[classes/lists/DoublyLinkedList.ts:325](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/DoublyLinkedList.ts#L325)
 
 ___
 
@@ -165,7 +192,7 @@ head of this list
 
 #### Defined in
 
-[classes/lists/CircularDoublyLinkedList.ts:6](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/CircularDoublyLinkedList.ts#L6)
+[classes/lists/CircularDoublyLinkedList.ts:6](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/CircularDoublyLinkedList.ts#L6)
 
 ___
 
@@ -193,7 +220,7 @@ with the first value in the input list going in as the node at the given index
 
 #### Defined in
 
-[classes/lists/DoublyLinkedList.ts:53](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/DoublyLinkedList.ts#L53)
+[classes/lists/DoublyLinkedList.ts:53](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/DoublyLinkedList.ts#L53)
 
 ___
 
@@ -221,7 +248,7 @@ tail of this list
 
 #### Defined in
 
-[classes/lists/CircularDoublyLinkedList.ts:15](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/CircularDoublyLinkedList.ts#L15)
+[classes/lists/CircularDoublyLinkedList.ts:15](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/CircularDoublyLinkedList.ts#L15)
 
 ___
 
@@ -248,7 +275,7 @@ ___
 
 #### Defined in
 
-[classes/lists/CircularDoublyLinkedList.ts:24](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/CircularDoublyLinkedList.ts#L24)
+[classes/lists/CircularDoublyLinkedList.ts:24](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/CircularDoublyLinkedList.ts#L24)
 
 ___
 
@@ -274,7 +301,7 @@ ___
 
 #### Defined in
 
-[classes/lists/DoublyLinkedList.ts:612](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/DoublyLinkedList.ts#L612)
+[classes/lists/DoublyLinkedList.ts:622](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/DoublyLinkedList.ts#L622)
 
 ___
 
@@ -300,7 +327,7 @@ ___
 
 #### Defined in
 
-[classes/lists/DoublyLinkedList.ts:638](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/DoublyLinkedList.ts#L638)
+[classes/lists/DoublyLinkedList.ts:648](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/DoublyLinkedList.ts#L648)
 
 ___
 
@@ -318,7 +345,7 @@ ___
 
 #### Defined in
 
-[classes/lists/DoublyLinkedList.ts:715](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/DoublyLinkedList.ts#L715)
+[classes/lists/DoublyLinkedList.ts:725](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/DoublyLinkedList.ts#L725)
 
 ___
 
@@ -341,7 +368,7 @@ a circular list
 
 #### Defined in
 
-[classes/lists/CircularDoublyLinkedList.ts:47](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/CircularDoublyLinkedList.ts#L47)
+[classes/lists/CircularDoublyLinkedList.ts:47](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/CircularDoublyLinkedList.ts#L47)
 
 ___
 
@@ -363,7 +390,7 @@ Iterator will loop from tail value to head value.
 
 #### Defined in
 
-[classes/lists/DoublyLinkedList.ts:148](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/DoublyLinkedList.ts#L148)
+[classes/lists/DoublyLinkedList.ts:148](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/DoublyLinkedList.ts#L148)
 
 ___
 
@@ -381,7 +408,7 @@ ___
 
 #### Defined in
 
-[classes/lists/DoublyLinkedList.ts:697](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/DoublyLinkedList.ts#L697)
+[classes/lists/DoublyLinkedList.ts:707](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/DoublyLinkedList.ts#L707)
 
 ___
 
@@ -404,7 +431,7 @@ a circular list
 
 #### Defined in
 
-[classes/lists/CircularDoublyLinkedList.ts:75](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/CircularDoublyLinkedList.ts#L75)
+[classes/lists/CircularDoublyLinkedList.ts:75](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/CircularDoublyLinkedList.ts#L75)
 
 ___
 
@@ -426,7 +453,7 @@ Iterator will loop from head value to tail value.
 
 #### Defined in
 
-[classes/lists/DoublyLinkedList.ts:170](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/DoublyLinkedList.ts#L170)
+[classes/lists/DoublyLinkedList.ts:170](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/DoublyLinkedList.ts#L170)
 
 ___
 
@@ -446,7 +473,7 @@ Gets whether the list is empty (i.e. no head node)
 
 #### Defined in
 
-[classes/lists/DoublyLinkedList.ts:179](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/DoublyLinkedList.ts#L179)
+[classes/lists/DoublyLinkedList.ts:179](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/DoublyLinkedList.ts#L179)
 
 ___
 
@@ -476,7 +503,7 @@ The input list is cleared in the process.
 
 #### Defined in
 
-[classes/lists/CircularDoublyLinkedList.ts:98](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/CircularDoublyLinkedList.ts#L98)
+[classes/lists/CircularDoublyLinkedList.ts:98](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/CircularDoublyLinkedList.ts#L98)
 
 ___
 
@@ -507,7 +534,7 @@ The input list is cleared in the process.
 
 #### Defined in
 
-[classes/lists/DoublyLinkedList.ts:221](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/DoublyLinkedList.ts#L221)
+[classes/lists/DoublyLinkedList.ts:221](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/DoublyLinkedList.ts#L221)
 
 ___
 
@@ -537,7 +564,7 @@ The input list is cleared in the process.
 
 #### Defined in
 
-[classes/lists/CircularDoublyLinkedList.ts:109](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/CircularDoublyLinkedList.ts#L109)
+[classes/lists/CircularDoublyLinkedList.ts:109](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/CircularDoublyLinkedList.ts#L109)
 
 ___
 
@@ -557,7 +584,7 @@ Peeks at the value in the head node of the list without modifying the list
 
 #### Defined in
 
-[classes/lists/DoublyLinkedList.ts:298](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/DoublyLinkedList.ts#L298)
+[classes/lists/DoublyLinkedList.ts:298](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/DoublyLinkedList.ts#L298)
 
 ___
 
@@ -583,7 +610,7 @@ Peeks at the value from the given index without moving nodes around
 
 #### Defined in
 
-[classes/lists/DoublyLinkedList.ts:302](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/DoublyLinkedList.ts#L302)
+[classes/lists/DoublyLinkedList.ts:302](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/DoublyLinkedList.ts#L302)
 
 ___
 
@@ -603,7 +630,7 @@ Peeks at the value in the tail node of the list without modifying the list
 
 #### Defined in
 
-[classes/lists/DoublyLinkedList.ts:321](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/DoublyLinkedList.ts#L321)
+[classes/lists/DoublyLinkedList.ts:321](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/DoublyLinkedList.ts#L321)
 
 ___
 
@@ -623,7 +650,7 @@ Pops the head node off the list and returns the value, if any
 
 #### Defined in
 
-[classes/lists/CircularDoublyLinkedList.ts:120](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/CircularDoublyLinkedList.ts#L120)
+[classes/lists/CircularDoublyLinkedList.ts:120](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/CircularDoublyLinkedList.ts#L120)
 
 ___
 
@@ -643,7 +670,7 @@ Pops the tail node off the list and returns the value, if any
 
 #### Defined in
 
-[classes/lists/CircularDoublyLinkedList.ts:135](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/CircularDoublyLinkedList.ts#L135)
+[classes/lists/CircularDoublyLinkedList.ts:135](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/CircularDoublyLinkedList.ts#L135)
 
 ___
 
@@ -669,7 +696,7 @@ Pops the value from the given index
 
 #### Defined in
 
-[classes/lists/DoublyLinkedList.ts:369](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/DoublyLinkedList.ts#L369)
+[classes/lists/DoublyLinkedList.ts:379](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/DoublyLinkedList.ts#L379)
 
 ___
 
@@ -696,7 +723,7 @@ ___
 
 #### Defined in
 
-[classes/lists/CircularDoublyLinkedList.ts:150](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/CircularDoublyLinkedList.ts#L150)
+[classes/lists/CircularDoublyLinkedList.ts:150](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/CircularDoublyLinkedList.ts#L150)
 
 ___
 
@@ -723,7 +750,7 @@ with the first value in the array being placed as the value at the head of the l
 
 #### Defined in
 
-[classes/lists/CircularDoublyLinkedList.ts:168](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/CircularDoublyLinkedList.ts#L168)
+[classes/lists/CircularDoublyLinkedList.ts:168](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/CircularDoublyLinkedList.ts#L168)
 
 ___
 
@@ -751,7 +778,7 @@ with the first value in the array going in as the node at the given index
 
 #### Defined in
 
-[classes/lists/DoublyLinkedList.ts:450](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/DoublyLinkedList.ts#L450)
+[classes/lists/DoublyLinkedList.ts:460](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/DoublyLinkedList.ts#L460)
 
 ___
 
@@ -778,7 +805,7 @@ with the last value in the array being placed as the value at the tail of the li
 
 #### Defined in
 
-[classes/lists/CircularDoublyLinkedList.ts:179](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/CircularDoublyLinkedList.ts#L179)
+[classes/lists/CircularDoublyLinkedList.ts:179](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/CircularDoublyLinkedList.ts#L179)
 
 ___
 
@@ -804,7 +831,7 @@ Pushes a new node to the head of the list with the given value
 
 #### Defined in
 
-[classes/lists/CircularDoublyLinkedList.ts:190](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/CircularDoublyLinkedList.ts#L190)
+[classes/lists/CircularDoublyLinkedList.ts:190](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/CircularDoublyLinkedList.ts#L190)
 
 ___
 
@@ -832,7 +859,7 @@ index and up over - thereby incrementing each of their indexes by one.
 
 #### Defined in
 
-[classes/lists/DoublyLinkedList.ts:540](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/DoublyLinkedList.ts#L540)
+[classes/lists/DoublyLinkedList.ts:550](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/DoublyLinkedList.ts#L550)
 
 ___
 
@@ -858,7 +885,7 @@ Pushes a new node to the tail of the list with the given value
 
 #### Defined in
 
-[classes/lists/CircularDoublyLinkedList.ts:197](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/CircularDoublyLinkedList.ts#L197)
+[classes/lists/CircularDoublyLinkedList.ts:197](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/CircularDoublyLinkedList.ts#L197)
 
 ___
 
@@ -878,7 +905,7 @@ Returns the total size of the list
 
 #### Defined in
 
-[classes/lists/DoublyLinkedList.ts:598](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/DoublyLinkedList.ts#L598)
+[classes/lists/DoublyLinkedList.ts:608](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/DoublyLinkedList.ts#L608)
 
 ___
 
@@ -900,4 +927,4 @@ The array with the same values in the same order
 
 #### Defined in
 
-[classes/lists/CircularDoublyLinkedList.ts:204](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/CircularDoublyLinkedList.ts#L204)
+[classes/lists/CircularDoublyLinkedList.ts:204](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/CircularDoublyLinkedList.ts#L204)

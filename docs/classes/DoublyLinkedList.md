@@ -33,6 +33,7 @@
 ### Methods
 
 - [clear](DoublyLinkedList.md#clear)
+- [contains](DoublyLinkedList.md#contains)
 - [copyLinkedListValuesToHead](DoublyLinkedList.md#copylinkedlistvaluestohead)
 - [copyLinkedListValuesToIndex](DoublyLinkedList.md#copylinkedlistvaluestoindex)
 - [copyLinkedListValuesToTail](DoublyLinkedList.md#copylinkedlistvaluestotail)
@@ -85,7 +86,7 @@
 
 #### Defined in
 
-[classes/lists/DoublyLinkedList.ts:7](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/DoublyLinkedList.ts#L7)
+[classes/lists/DoublyLinkedList.ts:7](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/DoublyLinkedList.ts#L7)
 
 ___
 
@@ -95,7 +96,7 @@ ___
 
 #### Defined in
 
-[classes/lists/DoublyLinkedList.ts:9](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/DoublyLinkedList.ts#L9)
+[classes/lists/DoublyLinkedList.ts:9](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/DoublyLinkedList.ts#L9)
 
 ___
 
@@ -105,7 +106,7 @@ ___
 
 #### Defined in
 
-[classes/lists/DoublyLinkedList.ts:8](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/DoublyLinkedList.ts#L8)
+[classes/lists/DoublyLinkedList.ts:8](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/DoublyLinkedList.ts#L8)
 
 ## Methods
 
@@ -125,7 +126,33 @@ Clears the list such that it contains no nodes
 
 #### Defined in
 
-[classes/lists/DoublyLinkedList.ts:11](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/DoublyLinkedList.ts#L11)
+[classes/lists/DoublyLinkedList.ts:11](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/DoublyLinkedList.ts#L11)
+
+___
+
+### contains
+
+▸ **contains**(`value`): `boolean`
+
+Compares the value to each node, and returns if any were found to be equal
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `value` | `T` |
+
+#### Returns
+
+`boolean`
+
+#### Implementation of
+
+[IDoublyLinkedList](../interfaces/IDoublyLinkedList.md).[contains](../interfaces/IDoublyLinkedList.md#contains)
+
+#### Defined in
+
+[classes/lists/DoublyLinkedList.ts:325](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/DoublyLinkedList.ts#L325)
 
 ___
 
@@ -153,7 +180,7 @@ head of this list
 
 #### Defined in
 
-[classes/lists/DoublyLinkedList.ts:17](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/DoublyLinkedList.ts#L17)
+[classes/lists/DoublyLinkedList.ts:17](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/DoublyLinkedList.ts#L17)
 
 ___
 
@@ -181,7 +208,7 @@ with the first value in the input list going in as the node at the given index
 
 #### Defined in
 
-[classes/lists/DoublyLinkedList.ts:53](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/DoublyLinkedList.ts#L53)
+[classes/lists/DoublyLinkedList.ts:53](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/DoublyLinkedList.ts#L53)
 
 ___
 
@@ -209,7 +236,7 @@ tail of this list
 
 #### Defined in
 
-[classes/lists/DoublyLinkedList.ts:104](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/DoublyLinkedList.ts#L104)
+[classes/lists/DoublyLinkedList.ts:104](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/DoublyLinkedList.ts#L104)
 
 ___
 
@@ -236,7 +263,7 @@ ___
 
 #### Defined in
 
-[classes/lists/DoublyLinkedList.ts:131](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/DoublyLinkedList.ts#L131)
+[classes/lists/DoublyLinkedList.ts:131](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/DoublyLinkedList.ts#L131)
 
 ___
 
@@ -258,7 +285,7 @@ ___
 
 #### Defined in
 
-[classes/lists/DoublyLinkedList.ts:612](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/DoublyLinkedList.ts#L612)
+[classes/lists/DoublyLinkedList.ts:622](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/DoublyLinkedList.ts#L622)
 
 ___
 
@@ -280,7 +307,7 @@ ___
 
 #### Defined in
 
-[classes/lists/DoublyLinkedList.ts:638](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/DoublyLinkedList.ts#L638)
+[classes/lists/DoublyLinkedList.ts:648](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/DoublyLinkedList.ts#L648)
 
 ___
 
@@ -294,7 +321,7 @@ ___
 
 #### Defined in
 
-[classes/lists/DoublyLinkedList.ts:715](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/DoublyLinkedList.ts#L715)
+[classes/lists/DoublyLinkedList.ts:725](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/DoublyLinkedList.ts#L725)
 
 ___
 
@@ -316,7 +343,7 @@ Iterator will loop from tail value to head value.
 
 #### Defined in
 
-[classes/lists/DoublyLinkedList.ts:135](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/DoublyLinkedList.ts#L135)
+[classes/lists/DoublyLinkedList.ts:135](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/DoublyLinkedList.ts#L135)
 
 ___
 
@@ -338,7 +365,7 @@ Iterator will loop from tail value to head value.
 
 #### Defined in
 
-[classes/lists/DoublyLinkedList.ts:148](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/DoublyLinkedList.ts#L148)
+[classes/lists/DoublyLinkedList.ts:148](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/DoublyLinkedList.ts#L148)
 
 ___
 
@@ -352,7 +379,7 @@ ___
 
 #### Defined in
 
-[classes/lists/DoublyLinkedList.ts:697](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/DoublyLinkedList.ts#L697)
+[classes/lists/DoublyLinkedList.ts:707](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/DoublyLinkedList.ts#L707)
 
 ___
 
@@ -374,7 +401,7 @@ Iterator will loop from head value to tail value.
 
 #### Defined in
 
-[classes/lists/DoublyLinkedList.ts:157](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/DoublyLinkedList.ts#L157)
+[classes/lists/DoublyLinkedList.ts:157](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/DoublyLinkedList.ts#L157)
 
 ___
 
@@ -396,7 +423,7 @@ Iterator will loop from head value to tail value.
 
 #### Defined in
 
-[classes/lists/DoublyLinkedList.ts:170](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/DoublyLinkedList.ts#L170)
+[classes/lists/DoublyLinkedList.ts:170](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/DoublyLinkedList.ts#L170)
 
 ___
 
@@ -416,7 +443,7 @@ Gets whether the list is empty (i.e. no head node)
 
 #### Defined in
 
-[classes/lists/DoublyLinkedList.ts:179](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/DoublyLinkedList.ts#L179)
+[classes/lists/DoublyLinkedList.ts:179](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/DoublyLinkedList.ts#L179)
 
 ___
 
@@ -442,7 +469,7 @@ The input list is cleared in the process.
 
 #### Defined in
 
-[classes/lists/DoublyLinkedList.ts:191](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/DoublyLinkedList.ts#L191)
+[classes/lists/DoublyLinkedList.ts:191](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/DoublyLinkedList.ts#L191)
 
 ___
 
@@ -469,7 +496,7 @@ The input list is cleared in the process.
 
 #### Defined in
 
-[classes/lists/DoublyLinkedList.ts:221](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/DoublyLinkedList.ts#L221)
+[classes/lists/DoublyLinkedList.ts:221](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/DoublyLinkedList.ts#L221)
 
 ___
 
@@ -495,7 +522,7 @@ The input list is cleared in the process.
 
 #### Defined in
 
-[classes/lists/DoublyLinkedList.ts:276](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/DoublyLinkedList.ts#L276)
+[classes/lists/DoublyLinkedList.ts:276](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/DoublyLinkedList.ts#L276)
 
 ___
 
@@ -515,7 +542,7 @@ Peeks at the value in the head node of the list without modifying the list
 
 #### Defined in
 
-[classes/lists/DoublyLinkedList.ts:298](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/DoublyLinkedList.ts#L298)
+[classes/lists/DoublyLinkedList.ts:298](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/DoublyLinkedList.ts#L298)
 
 ___
 
@@ -541,7 +568,7 @@ Peeks at the value from the given index without moving nodes around
 
 #### Defined in
 
-[classes/lists/DoublyLinkedList.ts:302](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/DoublyLinkedList.ts#L302)
+[classes/lists/DoublyLinkedList.ts:302](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/DoublyLinkedList.ts#L302)
 
 ___
 
@@ -561,7 +588,7 @@ Peeks at the value in the tail node of the list without modifying the list
 
 #### Defined in
 
-[classes/lists/DoublyLinkedList.ts:321](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/DoublyLinkedList.ts#L321)
+[classes/lists/DoublyLinkedList.ts:321](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/DoublyLinkedList.ts#L321)
 
 ___
 
@@ -581,7 +608,7 @@ Pops the head node off the list and returns the value, if any
 
 #### Defined in
 
-[classes/lists/DoublyLinkedList.ts:325](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/DoublyLinkedList.ts#L325)
+[classes/lists/DoublyLinkedList.ts:335](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/DoublyLinkedList.ts#L335)
 
 ___
 
@@ -601,7 +628,7 @@ Pops the tail node off the list and returns the value, if any
 
 #### Defined in
 
-[classes/lists/DoublyLinkedList.ts:347](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/DoublyLinkedList.ts#L347)
+[classes/lists/DoublyLinkedList.ts:357](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/DoublyLinkedList.ts#L357)
 
 ___
 
@@ -627,7 +654,7 @@ Pops the value from the given index
 
 #### Defined in
 
-[classes/lists/DoublyLinkedList.ts:369](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/DoublyLinkedList.ts#L369)
+[classes/lists/DoublyLinkedList.ts:379](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/DoublyLinkedList.ts#L379)
 
 ___
 
@@ -654,7 +681,7 @@ ___
 
 #### Defined in
 
-[classes/lists/DoublyLinkedList.ts:412](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/DoublyLinkedList.ts#L412)
+[classes/lists/DoublyLinkedList.ts:422](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/DoublyLinkedList.ts#L422)
 
 ___
 
@@ -681,7 +708,7 @@ with the first value in the array being placed as the value at the head of the l
 
 #### Defined in
 
-[classes/lists/DoublyLinkedList.ts:416](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/DoublyLinkedList.ts#L416)
+[classes/lists/DoublyLinkedList.ts:426](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/DoublyLinkedList.ts#L426)
 
 ___
 
@@ -709,7 +736,7 @@ with the first value in the array going in as the node at the given index
 
 #### Defined in
 
-[classes/lists/DoublyLinkedList.ts:450](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/DoublyLinkedList.ts#L450)
+[classes/lists/DoublyLinkedList.ts:460](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/DoublyLinkedList.ts#L460)
 
 ___
 
@@ -736,7 +763,7 @@ with the last value in the array being placed as the value at the tail of the li
 
 #### Defined in
 
-[classes/lists/DoublyLinkedList.ts:501](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/DoublyLinkedList.ts#L501)
+[classes/lists/DoublyLinkedList.ts:511](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/DoublyLinkedList.ts#L511)
 
 ___
 
@@ -762,7 +789,7 @@ Pushes a new node to the head of the list with the given value
 
 #### Defined in
 
-[classes/lists/DoublyLinkedList.ts:523](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/DoublyLinkedList.ts#L523)
+[classes/lists/DoublyLinkedList.ts:533](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/DoublyLinkedList.ts#L533)
 
 ___
 
@@ -790,7 +817,7 @@ index and up over - thereby incrementing each of their indexes by one.
 
 #### Defined in
 
-[classes/lists/DoublyLinkedList.ts:540](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/DoublyLinkedList.ts#L540)
+[classes/lists/DoublyLinkedList.ts:550](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/DoublyLinkedList.ts#L550)
 
 ___
 
@@ -816,7 +843,7 @@ Pushes a new node to the tail of the list with the given value
 
 #### Defined in
 
-[classes/lists/DoublyLinkedList.ts:581](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/DoublyLinkedList.ts#L581)
+[classes/lists/DoublyLinkedList.ts:591](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/DoublyLinkedList.ts#L591)
 
 ___
 
@@ -836,7 +863,7 @@ Returns the total size of the list
 
 #### Defined in
 
-[classes/lists/DoublyLinkedList.ts:598](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/DoublyLinkedList.ts#L598)
+[classes/lists/DoublyLinkedList.ts:608](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/DoublyLinkedList.ts#L608)
 
 ___
 
@@ -858,4 +885,4 @@ The array with the same values in the same order
 
 #### Defined in
 
-[classes/lists/DoublyLinkedList.ts:602](https://github.com/Bytebit-Org/roblox-LinkedLists/blob/633ec9e/src/classes/lists/DoublyLinkedList.ts#L602)
+[classes/lists/DoublyLinkedList.ts:612](https://github.com/daymxn/roblox-LinkedLists/blob/8baa320/src/classes/lists/DoublyLinkedList.ts#L612)
